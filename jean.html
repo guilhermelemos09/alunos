@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Domínio Corporal | Jean (Treino Core)</title>
+
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="manifest-jean.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Jean - Core">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-192.png">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <!-- Fonte Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --card-bg: #0c0c0c;
+      --card-inner: #131313;
+      --border-subtle: #1e1e1e;
+      --border-strong: #2c2c2c;
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      /* Identidade Visual Domínio Corporal */
+      --brand-neon: #00ff88;
+      --brand-neon-glow: rgba(0, 255, 136, 0.4);
+      --brand-neon-bg: rgba(0, 255, 136, 0.08);
+
+      --sec-ativacao: #f59e0b;
+      --sec-forca: #00ff88;
+      --sec-avancado: #a855f7;
+      --sec-flex: #38bdf8;
+
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      padding: 16px;
+      padding-bottom: 120px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--brand-neon), transparent);
+    }
+
+    .brand-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .coach-profile-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      padding: 4px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    .coach-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--brand-neon);
+    }
+    .coach-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .badge-aluno {
+      font-size: 0.7rem;
+      font-weight: 800;
+      background: rgba(0, 255, 136, 0.12);
+      color: var(--brand-neon);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+      padding: 3px 8px;
+      border-radius: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .brand h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+    .brand-slogan {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .brand-subtitle {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .brand-subtitle span {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      background: var(--card-inner);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .progress-section {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .progress-bar-bg {
+      height: 6px;
+      background: var(--card-inner);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--brand-neon);
+      width: 0%;
+      border-radius: 3px;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 8px var(--brand-neon-glow);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: #111111;
+      color: #ffffff;
+      border-color: var(--brand-neon);
+      box-shadow: 0 0 10px rgba(0, 255, 136, 0.15);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .callout-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-left: 3.5px solid var(--brand-neon);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 12px;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+    .callout-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1; }
+
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .sec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .sec-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sec-badge {
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+    .badge-ativacao { background: rgba(245, 158, 11, 0.12); color: var(--sec-ativacao); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-forca { background: rgba(0, 255, 136, 0.12); color: var(--sec-forca); border: 1px solid rgba(0, 255, 136, 0.3); }
+    .badge-avancado { background: rgba(168, 85, 247, 0.12); color: var(--sec-avancado); border: 1px solid rgba(168, 85, 247, 0.3); }
+
+    .sec-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .sec-time {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    .exercise-card {
+      background: var(--card-inner);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .exercise-card:last-child { margin-bottom: 0; }
+    
+    .ex-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+    .ex-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.3;
+    }
+    .ex-volume {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--brand-neon);
+      background: var(--brand-neon-bg);
+      border: 1px solid rgba(0, 255, 136, 0.25);
+      padding: 2px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .ex-chips {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .chip {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .bio-cue {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      background: rgba(0, 0, 0, 0.35);
+      border-left: 2px solid var(--brand-neon);
+      padding: 8px 10px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 10px 0;
+    }
+
+    .ex-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .btn-comment {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-dim);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 5px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      position: relative;
+    }
+    .btn-comment.has-note {
+      border-color: var(--brand-neon);
+      color: var(--brand-neon);
+    }
+    .btn-comment svg {
+      width: 12px;
+      height: 12px;
+      fill: currentColor;
+    }
+    .comment-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--brand-neon);
+      border-radius: 50%;
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      box-shadow: 0 0 6px var(--brand-neon);
+    }
+
+    .sets-container {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .set-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .set-pill.done {
+      background: var(--brand-neon);
+      color: #000000;
+      font-weight: 800;
+      border-color: var(--brand-neon);
+      box-shadow: 0 0 8px var(--brand-neon-glow);
+    }
+
+    .comment-drawer {
+      margin-top: 10px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+    }
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .comment-textarea {
+      width: 100%;
+      min-height: 55px;
+      background: #000000;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.78rem;
+      padding: 8px;
+      resize: vertical;
+      outline: none;
+    }
+    .comment-textarea:focus {
+      border-color: var(--brand-neon);
+    }
+
+    /* Card WhatsApp */
+    .summary-card {
+      background: linear-gradient(135deg, #0d1a12, #0c0c0c);
+      border: 1px solid rgba(0, 255, 136, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .btn-whatsapp {
+      background: #25d366;
+      color: #000;
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      transition: all 0.2s ease;
+    }
+    .btn-whatsapp svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* Timer Dock */
+    .timer-dock {
+      position: fixed;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      background: rgba(12, 12, 12, 0.94);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(14px);
+      z-index: 100;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+    }
+    .timer-info { display: flex; flex-direction: column; }
+    .timer-caption { font-size: 0.62rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; }
+    .timer-display { font-size: 1.15rem; font-weight: 800; color: var(--brand-neon); font-variant-numeric: tabular-nums; }
+    .timer-buttons { display: flex; gap: 5px; }
+    .btn-timer {
+      background: var(--card-inner);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 6px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn-timer.active {
+      background: var(--brand-neon-bg);
+      border-color: var(--brand-neon);
+      color: var(--brand-neon);
+    }
+
+    /* Modal Bio */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 2000;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      max-width: 480px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .btn-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Jean -->
+  <header>
+    <div class="brand-top">
+      <div class="coach-profile-btn" onclick="openBioModal()">
+        <img src="gui_foto.jpg" onerror="this.onerror=null; this.src='icon-192.png';" alt="Gui Lemos" class="coach-avatar">
+        <span class="coach-name">Prof. Gui Lemos</span>
+      </div>
+      <span class="badge-aluno">Consultoria • Jean</span>
+    </div>
+    <div class="brand">
+      <h1>DOMÍNIO CORPORAL</h1>
+      <div class="brand-slogan">Desafie a gravidade, domine seu corpo.</div>
+      <div class="brand-subtitle">
+        <span>Treino Core</span>
+        <span>Força & Estabilidade</span>
+        <span>Anti-Rotação</span>
+      </div>
+    </div>
+
+    <!-- Barra de Progresso Neon -->
+    <div class="progress-section">
+      <div class="progress-labels">
+        <span>Progresso da Sessão</span>
+        <span id="progressText">0 de 29 séries (0%)</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navegação por Abas -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('treino-core')">Treino Core (Jean)</button>
+    <button class="tab-btn" onclick="switchTab('orientacoes')">Diretrizes do Treinador</button>
+  </div>
+
+  <!-- ==================== TAB 1: TREINO CORE (JEAN) ==================== -->
+  <div id="tab-treino-core" class="tab-content active">
+
+    <!-- Checklist / Status do Aluno -->
+    <div class="callout-box">
+      <div class="callout-icon">🛡️</div>
+      <div>
+        <strong>Ficha de Treino do Jean • Foco em Rigidez Central:</strong><br>
+        • <strong>Aquecimento:</strong> Descompressão espinhal no Dead Hang + Rotação torácica com quadril travado + Abertura frontal profunda de quadril no Cossack.<br>
+        • <strong>Núcleo de Força & Anti-Rotação:</strong> Sustentação pesada unilateral (Suitcase), Z-Press sem apoio de pernas e Dragon Flags controladas.<br>
+        • <strong>Dica Biomecânica do Gui:</strong> Em todos os exercícios de carga (Suitcase e Z-Press), expire forte fechando as costelas (*bracing*) para ativar o transverso do abdômen!
+      </div>
+    </div>
+
+    <!-- BLOCO 1: AQUECIMENTO / SOLTURA ARTICULAR -->
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-title-wrap">
+          <span class="sec-badge badge-ativacao">Aquecimento</span>
+          <div class="sec-title">Preparação Articular & Soltura</div>
+        </div>
+        <span class="sec-time">~10 min</span>
+      </div>
+
+      <!-- Ex 1: Dead Hang -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Dead Hang na Barra Fixa (Suspensão)</div>
+            <div class="ex-chips">
+              <span class="chip">Descompressão Espinhal</span>
+              <span class="chip">Pegada</span>
+              <span class="chip">Grande Dorsal</span>
+            </div>
+          </div>
+          <div class="ex-volume">2x 10"</div>
+        </div>
+        <div class="bio-cue">
+          <strong>Foco Técnico:</strong> Segure firme na barra e deixe a gravidade tracionar suavemente as vértebras e a articulação dos ombros. Respire fundo abrindo a caixa torácica.
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-1" onclick="toggleCommentBox('ex-1')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-1" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">Série 1 (10s)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 2 (10s)</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-1" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (sensação na coluna e ombros):</span>
+            <span class="save-indicator" id="save-status-ex-1"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-1" placeholder="Ex: Ombros bem soltos, coluna aliviada..." oninput="saveExerciseNote('ex-1', this.value)"></textarea>
+        </div>
+      </div>
+
+      <!-- Ex 2: Lunge Thoracic Rotation -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Lunge Thoracic Rotation (Afundo com Rotação Torácica)</div>
+            <div class="ex-chips">
+              <span class="chip">Mobilidade Torácica</span>
+              <span class="chip">Estabilidade Pélvica</span>
+            </div>
+          </div>
+          <div class="ex-volume">2x 8 reps / lado</div>
+        </div>
+        <div class="bio-cue">
+          <strong>Foco Técnico:</strong> Posição de afundo profundo. Mantenha a pelve e o joelho da frente rigorosamente travados apontando para frente; gire apenas a caixa torácica acompanhando o braço aberto com os olhos.
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-2" onclick="toggleCommentBox('ex-2')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-2" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">S1 Lado D</div>
+            <div class="set-pill" onclick="toggleSet(this)">S1 Lado E</div>
+            <div class="set-pill" onclick="toggleSet(this)">S2 Lado D</div>
+            <div class="set-pill" onclick="toggleSet(this)">S2 Lado E</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-2" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (amplitude de rotação):</span>
+            <span class="save-indicator" id="save-status-ex-2"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-2" placeholder="Ex: Lado esquerdo um pouco mais travado que o direito..." oninput="saveExerciseNote('ex-2', this.value)"></textarea>
+        </div>
+      </div>
+
+      <!-- Ex 3: Cossack Squat -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Cossack Squat (Agachamento Cossaco Lateral)</div>
+            <div class="ex-chips">
+              <span class="chip">Adutores</span>
+              <span class="chip">Mobilidade de Tornozelo</span>
+              <span class="chip">Plano Frontal</span>
+            </div>
+          </div>
+          <div class="ex-volume">2x 6 reps / lado</div>
+        </div>
+        <div class="bio-cue">
+          <strong>Foco Técnico:</strong> Desça lateralmente mantendo o calcanhar do pé de apoio no solo. A perna esticada gira com os dedos apontando para o teto. Peito aberto e tronco ereto.
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-3" onclick="toggleCommentBox('ex-3')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-3" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">Série 1 (6 reps/lado)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 2 (6 reps/lado)</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-3" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (profundidade da descida):</span>
+            <span class="save-indicator" id="save-status-ex-3"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-3" placeholder="Ex: Calcanhar firme no chão, boa abertura..." oninput="saveExerciseNote('ex-3', this.value)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 2: CORE — FORÇA & ESTABILIDADE DINÂMICA -->
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-title-wrap">
+          <span class="sec-badge badge-forca">Core Principal</span>
+          <div class="sec-title">Força, Anti-Rotação & Anti-Inclinação</div>
+        </div>
+        <span class="sec-time">~25 min</span>
+      </div>
+
+      <!-- Ex 4: Knee Raise -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Knee Raise na Barra Fixa / Paralela</div>
+            <div class="ex-chips">
+              <span class="chip">Reto Abdominal</span>
+              <span class="chip">Flexores de Quadril</span>
+              <span class="chip">Zero Embalo</span>
+            </div>
+          </div>
+          <div class="ex-volume">2x 8 reps</div>
+        </div>
+        <div class="bio-cue">
+          <strong>Foco Técnico:</strong> Suba os joelhos até a linha do peito realizando retroversão pélvica ativa no topo. Desça em 2 segundos sem balanço pendular do corpo.
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-4" onclick="toggleCommentBox('ex-4')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-4" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">Série 1 (8 reps)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 2 (8 reps)</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-4" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (controle do balanço):</span>
+            <span class="save-indicator" id="save-status-ex-4"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-4" placeholder="Ex: Subida controlada, abdômen queimando no topo..." oninput="saveExerciseNote('ex-4', this.value)"></textarea>
+        </div>
+      </div>
+
+      <!-- Ex 5: Suitcase Carry Pesado -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Suitcase Carry Pesado (Caminhada Unilateral)</div>
+            <div class="ex-chips">
+              <span class="chip">Halter Desafiador</span>
+              <span class="chip">Anti-Inclinação Lateral</span>
+              <span class="chip">Quadrado Lombar</span>
+            </div>
+          </div>
+          <div class="ex-volume">4x Ida e Volta (Alterna Lado)</div>
+        </div>
+        <div class="bio-cue">
+          <strong>Foco Biomecânico:</strong> Segure um halter pesado em apenas um dos braços. Ande com passos firmes mantendo a coluna 100% vertical — proibidíssimo tombar o tronco para o lado do peso!
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-5" onclick="toggleCommentBox('ex-5')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-5" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">R1 Braço D</div>
+            <div class="set-pill" onclick="toggleSet(this)">R1 Braço E</div>
+            <div class="set-pill" onclick="toggleSet(this)">R2 Braço D</div>
+            <div class="set-pill" onclick="toggleSet(this)">R2 Braço E</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-5" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (peso do halter usado):</span>
+            <span class="save-indicator" id="save-status-ex-5"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-5" placeholder="Ex: Halter de 18kg, postura bem travada..." oninput="saveExerciseNote('ex-5', this.value)"></textarea>
+        </div>
+      </div>
+
+      <!-- Ex 6: Back Extension with Rotation -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Back Extension with Rotation (Extensão com Rotação)</div>
+            <div class="ex-chips">
+              <span class="chip">Eretores da Espinha</span>
+              <span class="chip">Multífidos</span>
+              <span class="chip">Glúteo Máximo</span>
+            </div>
+          </div>
+          <div class="ex-volume">2x 8 reps</div>
+        </div>
+        <div class="bio-cue">
+          <strong>Foco Técnico:</strong> No banco romano ou chão: realize a extensão pura até alinhar o tronco, e no topo gire o peito suavemente para um dos lados antes de descer. Alterne as rotações.
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-6" onclick="toggleCommentBox('ex-6')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-6" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">Série 1 (8 reps)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 2 (8 reps)</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-6" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (controle lombar):</span>
+            <span class="save-indicator" id="save-status-ex-6"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-6" placeholder="Ex: Sem dor lombar, ativação muito boa de glúteo..." oninput="saveExerciseNote('ex-6', this.value)"></textarea>
+        </div>
+      </div>
+
+      <!-- Ex 7: Seesaw Plank -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Seesaw Plank (Prancha Gangorra)</div>
+            <div class="ex-chips">
+              <span class="chip">Anti-Extensão Dinâmica</span>
+              <span class="chip">Alavanca Variável</span>
+            </div>
+          </div>
+          <div class="ex-volume">2x 10 reps</div>
+        </div>
+        <div class="bio-cue">
+          <strong>Foco Técnico:</strong> Em prancha baixa nos antebraços: empurre o corpo para frente na ponta dos pés e depois tracione para trás pelos tornozelos. Pelve neutra o tempo todo sem afundar a bacia.
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-7" onclick="toggleCommentBox('ex-7')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-7" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">Série 1 (10 reps)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 2 (10 reps)</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-7" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (estabilidade da prancha):</span>
+            <span class="save-indicator" id="save-status-ex-7"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-7" placeholder="Ex: Core bem firme, sem arquear a lombar..." oninput="saveExerciseNote('ex-7', this.value)"></textarea>
+        </div>
+      </div>
+
+      <!-- Ex 8: Z-Press Unilateral -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Z-Press Unilateral (Sentado no Solo)</div>
+            <div class="ex-chips">
+              <span class="chip">Halter Desafiador</span>
+              <span class="chip">Postura em L</span>
+              <span class="chip">Rigidez Espinhal Pura</span>
+            </div>
+          </div>
+          <div class="ex-volume">2x 8 reps / lado</div>
+        </div>
+        <div class="bio-cue">
+          <strong>O Teste de Ouro do Core:</strong> Sente-se no chão com as pernas 100% esticadas à frente. Sem apoio de pernas ou encosto, faça o press vertical com o halter até travar acima da cabeça mantendo o peito inflado.
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-8" onclick="toggleCommentBox('ex-8')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-8" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">S1 Braço D</div>
+            <div class="set-pill" onclick="toggleSet(this)">S1 Braço E</div>
+            <div class="set-pill" onclick="toggleSet(this)">S2 Braço D</div>
+            <div class="set-pill" onclick="toggleSet(this)">S2 Braço E</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-8" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (peso do halter no Z-Press):</span>
+            <span class="save-indicator" id="save-status-ex-8"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-8" placeholder="Ex: Halter de 14kg, equilíbrio difícil mas saiu limpo..." oninput="saveExerciseNote('ex-8', this.value)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 3: CORE AVANÇADO & CONTROLE ESCAPULAR -->
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-title-wrap">
+          <span class="sec-badge badge-avancado">Alavancas & Cadeia</span>
+          <div class="sec-title">Alavanca Máxima & Coordenação</div>
+        </div>
+        <span class="sec-time">~15 min</span>
+      </div>
+
+      <!-- Ex 9: Dragon Flag Raises -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Dragon Flag Raises (no Espaldar ou Banco)</div>
+            <div class="ex-chips">
+              <span class="chip">Nível Bruce Lee</span>
+              <span class="chip">Compressão Excêntrica</span>
+              <span class="chip">Corpo em Monobloco</span>
+            </div>
+          </div>
+          <div class="ex-volume">3x 12 reps</div>
+        </div>
+        <div class="bio-cue">
+          <strong>Foco Técnico:</strong> Apoie os ombros e segure firme no espaldar. Suba o tronco e as pernas juntos em uma linha reta sólida. Na descida, freie o movimento milímetro a milímetro sem dobrar o quadril.
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-9" onclick="toggleCommentBox('ex-9')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-9" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">Série 1 (12 reps)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 2 (12 reps)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 3 (12 reps)</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-9" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (controle na descida):</span>
+            <span class="save-indicator" id="save-status-ex-9"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-9" placeholder="Ex: Descida lenta, abdômen queimando muito..." oninput="saveExerciseNote('ex-9', this.value)"></textarea>
+        </div>
+      </div>
+
+      <!-- Ex 10: Superman com Puxada -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Superman com Puxada Escapular</div>
+            <div class="ex-chips">
+              <span class="chip">Cadeia Posterior Total</span>
+              <span class="chip">Grande Dorsal</span>
+              <span class="chip">Adução de Escápula</span>
+            </div>
+          </div>
+          <div class="ex-volume">3x 12 reps</div>
+        </div>
+        <div class="bio-cue">
+          <strong>Foco Técnico:</strong> Deitado de bruços: eleve o peito e as coxas do chão sustentando a hiperextensão. Puxe os cotovelos para trás raspando nas costelas, espremendo as escápulas no final.
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-10" onclick="toggleCommentBox('ex-10')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-10" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">Série 1 (12 reps)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 2 (12 reps)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 3 (12 reps)</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-10" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (sensação dorsal e lombar):</span>
+            <span class="save-indicator" id="save-status-ex-10"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-10" placeholder="Ex: Excelente contração nas costas..." oninput="saveExerciseNote('ex-10', this.value)"></textarea>
+        </div>
+      </div>
+
+      <!-- Ex 11: Hollow Body Snow Angel -->
+      <div class="exercise-card">
+        <div class="ex-top">
+          <div>
+            <div class="ex-title">Hollow Body Snow Angel (Anjo na Canoa)</div>
+            <div class="ex-chips">
+              <span class="chip">Hollow Estrito</span>
+              <span class="chip">Lombar Colada no Chão</span>
+              <span class="chip">Coordenação</span>
+            </div>
+          </div>
+          <div class="ex-volume">3x 12 reps</div>
+        </div>
+        <div class="bio-cue">
+          <strong>Foco Técnico:</strong> Trave a canoa clássica com a lombar 100% selada no solo. Mova os braços em arco circular dos quadris até acima da cabeça sem permitir que a coluna perca o contato com o chão.
+        </div>
+        <div class="ex-actions">
+          <button class="btn-comment" id="btn-comment-ex-11" onclick="toggleCommentBox('ex-11')">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+            <span>Nota</span>
+            <span class="comment-dot" id="dot-ex-11" style="display:none;"></span>
+          </button>
+          <div class="sets-container">
+            <div class="set-pill" onclick="toggleSet(this)">Série 1 (12 reps)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 2 (12 reps)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Série 3 (12 reps)</div>
+          </div>
+        </div>
+        <div id="comment-box-ex-11" class="comment-drawer" style="display: none;">
+          <div class="comment-header">
+            <span>👤 Suas anotações (sustentação da canoa):</span>
+            <span class="save-indicator" id="save-status-ex-11"></span>
+          </div>
+          <textarea class="comment-textarea" id="note-ex-11" placeholder="Ex: Muito desafiador no final, lombar manteve contato..." oninput="saveExerciseNote('ex-11', this.value)"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card de Envio no WhatsApp do Prof. Gui -->
+    <div class="summary-card">
+      <div style="font-size: 0.95rem; font-weight: 800; color: #fff; margin-bottom: 4px;">
+        📤 Finalizou o Treino de Core de Hoje, Jean?
+      </div>
+      <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">
+        Envie o resumo das séries concluídas, cargas usadas e suas dúvidas direto para o WhatsApp do Prof. Gui Lemos com 1 clique!
+      </p>
+      <button class="btn-whatsapp" onclick="sendJeanReportWhatsApp()">
+        <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.24-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.49-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/></svg>
+        Compartilhar com Prof. Gui no WhatsApp
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ==================== TAB 2: DIRETRIZES DO TREINADOR ==================== -->
+  <div id="tab-orientacoes" class="tab-content">
+    <div class="section-card">
+      <div class="sec-header">
+        <div class="sec-title">🎯 Diretrizes Biomecânicas para o Jean</div>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.7;">
+        <p><strong>1. Respiração e Bracing Abdominal:</strong><br>
+        Não prenda a respiração em apneia total. Expire vigorosamente pela boca no momento de maior esforço (ex: subida do Z-Press, elevação do Dragon Flag), puxando o umbigo para dentro para criar pressão intra-abdominal protetora.</p>
+        
+        <p style="margin-top: 12px;"><strong>2. Progressão de Sobrecarga no Suitcase Carry:</strong><br>
+        O objetivo aqui é desafiar a anti-inclinação lateral. Comece com um halter que permita caminhar 15 a 20 metros sem inclinar o tronco. Se sentir facilidade, aumente 2 kg no próximo treino!</p>
+
+        <p style="margin-top: 12px;"><strong>3. Frequência Recomendada:</strong><br>
+        Este bloco de Core e Mobilidade pode ser executado de <strong>2 a 3 vezes por semana</strong>, com intervalo de pelo menos 48 horas entre as sessões.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cronômetro Flutuante OLED -->
+  <div class="timer-dock">
+    <div class="timer-info">
+      <span class="timer-caption">Descanso</span>
+      <span class="timer-display" id="timer">01:00</span>
+    </div>
+    <div class="timer-buttons">
+      <button class="btn-timer active" onclick="startTimer(60)">60s</button>
+      <button class="btn-timer" onclick="startTimer(90)">90s</button>
+      <button class="btn-timer" onclick="startTimer(120)">120s</button>
+      <button class="btn-timer" onclick="resetTimer()">Reset</button>
+    </div>
+  </div>
+
+  <!-- Modal Bio Gui Lemos -->
+  <div id="bioModal" class="modal-overlay" onclick="handleOverlayClick(event)">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <img src="gui_foto.jpg" onerror="this.onerror=null; this.src='icon-192.png';" alt="Gui Lemos" style="width:42px; height:42px; border-radius:50%; border:2px solid var(--brand-neon);">
+          <div>
+            <h3 style="font-size:1rem; font-weight:800; color:#fff;">Guilherme de Paula Lemos</h3>
+            <div style="font-size:0.75rem; color:var(--brand-neon); font-weight:700;">Treinamento Especializado</div>
+          </div>
+        </div>
+        <button class="btn-close" onclick="closeBioModal()">&times;</button>
+      </div>
+      <div style="font-size:0.84rem; color:var(--text-muted); line-height:1.65;">
+        <p><strong>Formação & Ciência:</strong> Farmácia e Bioquímica (FCFRP-USP), Educação Física e Esporte (EEFERP-USP), Pós-graduação em Circo e Acrobacia (PUC-PR) e Mestrando em Biomecânica do Movimento (EEFERP-USP).</p>
+        <p style="margin-top:10px;"><strong>Vivência Prática:</strong> 20 anos de prática em Calistenia, Ginástica Artística/Acrobática, Dança Contemporânea, Kung Fu e CrossFit.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      if (window.event && window.event.currentTarget) {
+        window.event.currentTarget.classList.add('active');
+      }
+      const target = document.getElementById('tab-' + tabId);
+      if (target) target.classList.add('active');
+      updateProgress();
+    }
+
+    function toggleSet(btn) {
+      btn.classList.toggle('done');
+      if (btn.classList.contains('done') && 'vibrate' in navigator) {
+        navigator.vibrate(35);
+      }
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const allSets = document.querySelectorAll('.set-pill');
+      const doneSets = document.querySelectorAll('.set-pill.done');
+      const total = allSets.length;
+      const completed = doneSets.length;
+      const bar = document.getElementById('progressBar');
+      const text = document.getElementById('progressText');
+
+      if (total === 0) return;
+      const pct = Math.round((completed / total) * 100);
+      if (bar) bar.style.width = pct + '%';
+      if (text) text.innerText = `${completed} de ${total} séries (${pct}%)`;
+    }
+
+    function toggleCommentBox(exId) {
+      const box = document.getElementById('comment-box-' + exId);
+      if (box) {
+        box.style.display = box.style.display === 'none' ? 'block' : 'none';
+      }
+    }
+
+    function saveExerciseNote(exId, val) {
+      const key = 'jean_note_' + exId;
+      if (!val || val.trim() === '') {
+        localStorage.removeItem(key);
+      } else {
+        localStorage.setItem(key, val);
+      }
+      const status = document.getElementById('save-status-' + exId);
+      if (status) {
+        status.innerText = '✓ Salvo';
+        setTimeout(() => { status.innerText = ''; }, 2000);
+      }
+      updateCommentDot(exId);
+    }
+
+    function updateCommentDot(exId) {
+      const dot = document.getElementById('dot-' + exId);
+      const val = localStorage.getItem('jean_note_' + exId);
+      const btn = document.getElementById('btn-comment-' + exId);
+      if (val && val.trim() !== '') {
+        if (dot) dot.style.display = 'inline-block';
+        if (btn) btn.classList.add('has-note');
+      } else {
+        if (dot) dot.style.display = 'none';
+        if (btn) btn.classList.remove('has-note');
+      }
+    }
+
+    function loadAllNotes() {
+      document.querySelectorAll('.comment-textarea').forEach(ta => {
+        const exId = ta.id.replace('note-', '');
+        const saved = localStorage.getItem('jean_note_' + exId);
+        if (saved) {
+          ta.value = saved;
+          updateCommentDot(exId);
+        }
+      });
+    }
+
+    function sendJeanReportWhatsApp() {
+      const allSets = document.querySelectorAll('.set-pill');
+      const doneSets = document.querySelectorAll('.set-pill.done');
+      const pct = allSets.length > 0 ? Math.round((doneSets.length / allSets.length) * 100) : 0;
+
+      let msg = `*DOMÍNIO CORPORAL | Relatório de Treino*\n`;
+      msg += `*Aluno:* Jean\n`;
+      msg += `*Treinador:* Prof. Gui Lemos\n`;
+      msg += `*Sessão:* Treino Core (Força + Estabilidade)\n`;
+      msg += `*Progresso:* ${doneSets.length}/${allSets.length} séries concluídas (${pct}%)\n\n`;
+
+      const cards = document.querySelectorAll('.exercise-card');
+      let notesFound = 0;
+      let notesText = `*📝 Anotações & Cargas do Jean:*\n`;
+
+      cards.forEach(card => {
+        const titleEl = card.querySelector('.ex-title');
+        const title = titleEl ? titleEl.innerText.trim() : 'Exercício';
+        const ta = card.querySelector('.comment-textarea');
+        if (ta && ta.value && ta.value.trim() !== '') {
+          notesFound++;
+          notesText += `• *${title}:*\n  "${ta.value.trim()}"\n`;
+        }
+      });
+
+      if (notesFound > 0) {
+        msg += notesText;
+      } else {
+        msg += `_Treino finalizado com sucesso!_\n`;
+      }
+
+      msg += `\n_Enviado pelo App Domínio Corporal_`;
+
+      const phone = '5516997637744';
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
+    }
+
+    /* Cronômetro */
+    let timerInterval = null;
+    let secondsLeft = 60;
+
+    function startTimer(seconds) {
+      clearInterval(timerInterval);
+      secondsLeft = seconds;
+      updateTimerDisplay();
+      document.querySelectorAll('.btn-timer').forEach(b => b.classList.remove('active'));
+      if (window.event && window.event.currentTarget) {
+        window.event.currentTarget.classList.add('active');
+      }
+      timerInterval = setInterval(() => {
+        secondsLeft--;
+        updateTimerDisplay();
+        if (secondsLeft <= 0) {
+          clearInterval(timerInterval);
+          if ('vibrate' in navigator) navigator.vibrate([100, 100, 200]);
+        }
+      }, 1000);
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      secondsLeft = 60;
+      updateTimerDisplay();
+      document.querySelectorAll('.btn-timer').forEach(b => b.classList.remove('active'));
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(secondsLeft / 60);
+      const secs = secondsLeft % 60;
+      const el = document.getElementById('timer');
+      if (el) el.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function openBioModal() { document.getElementById('bioModal').classList.add('active'); }
+    function closeBioModal() { document.getElementById('bioModal').classList.remove('active'); }
+    function handleOverlayClick(e) { if (e.target.classList.contains('modal-overlay')) closeBioModal(); }
+
+    updateProgress();
+    loadAllNotes();
+  </script>
+</body>
+</html>
