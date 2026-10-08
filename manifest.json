@@ -1,7 +1,7 @@
 {
   "id": "/dominio-corporal-aluno",
-  "name": "Domínio Corporal",
-  "short_name": "Domínio Corporal",
+  "name": "Domínio Corporal | Alunos",
+  "short_name": "Domínio Corporal | Alunos",
   "description": "Treinamento especializado em acrobacias, calistenia e ginástica - Prof. Gui Lemos",
   "start_url": "./aluno.html",
   "scope": "./",
