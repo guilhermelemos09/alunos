@@ -3,7 +3,7 @@
   "name": "Domínio Corporal | Helenice de Paula Lemos",
   "short_name": "Domínio Corporal | Helenice",
   "description": "Treinamento Especializado e Biomecanica do Movimento - Helenice de Paula Lemos",
-  "start_url": "./helenice.html",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#000000",
