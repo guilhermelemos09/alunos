@@ -4317,23 +4317,52 @@
 
       <!-- Lista Vertical de Dias de Treino -->
       <div class="training-days-list" id="trainingDaysList">
-        <!-- Card de Treino em Estruturação -->
-        <div style="background: var(--card-bg); border: 1.5px dashed rgba(0, 255, 136, 0.35); border-radius: var(--radius-lg); padding: 28px 20px; text-align: center; margin-bottom: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
-          <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(0, 255, 136, 0.12); border: 1.5px solid var(--brand-neon); color: var(--brand-neon); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px auto; font-size: 1.5rem; box-shadow: 0 0 20px var(--brand-neon-glow);">
-            📋
+        <!-- TREINO A -->
+        <div class="training-day-card" id="dayCard-treinoa" onclick="openDayWorkout('treinoa')">
+          <div class="day-card-left">
+            <div class="day-card-name-row">
+              <span class="day-name">TREINO A</span>
+            </div>
+            <div class="day-focus-desc">Em Estruturação • Foco Personalizado</div>
+            <div class="day-meta-pill">📍 A Definir • ⏱️ ~50 min</div>
           </div>
-          <div style="display:inline-block; font-size:0.68rem; font-weight:800; letter-spacing:0.08em; color:var(--brand-neon); background:rgba(0,255,136,0.1); border:1px solid rgba(0,255,136,0.3); padding:4px 10px; border-radius:8px; text-transform:uppercase; margin-bottom:10px;">
-            Aguardando Avaliação
+          <div class="day-card-right">
+            <div class="day-status-pill status-pending" id="statusPill-treinoa">
+              <span class="status-icon">›</span>
+            </div>
           </div>
-          <h3 style="font-size: 1.2rem; font-weight: 800; color: #fff; margin: 0 0 8px 0;">
-            Rotina Semanal em Estruturação
-          </h3>
-          <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.55; margin: 0 0 18px 0; max-width: 380px; margin-left: auto; margin-right: auto;">
-            O <strong>Prof. Gui Lemos</strong> está analisando seus dados para estruturar os dias de treino, focos de mobilidade e gestão de cargas sob medida para sua saúde.
-          </p>
-          <button type="button" class="btn-submit-assessment" onclick="openDedicatedView('avaliacao')" style="margin: 0 auto; max-width: 280px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
-            <span>📝 Preencher Minha Ficha Agora ➔</span>
-          </button>
+        </div>
+
+        <!-- TREINO B -->
+        <div class="training-day-card" id="dayCard-treinob" onclick="openDayWorkout('treinob')">
+          <div class="day-card-left">
+            <div class="day-card-name-row">
+              <span class="day-name">TREINO B</span>
+            </div>
+            <div class="day-focus-desc">Em Estruturação • Foco Personalizado</div>
+            <div class="day-meta-pill">📍 A Definir • ⏱️ ~50 min</div>
+          </div>
+          <div class="day-card-right">
+            <div class="day-status-pill status-pending" id="statusPill-treinob">
+              <span class="status-icon">›</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TREINO C -->
+        <div class="training-day-card" id="dayCard-treinoc" onclick="openDayWorkout('treinoc')">
+          <div class="day-card-left">
+            <div class="day-card-name-row">
+              <span class="day-name">TREINO C</span>
+            </div>
+            <div class="day-focus-desc">Em Estruturação • Foco Personalizado</div>
+            <div class="day-meta-pill">📍 A Definir • ⏱️ ~50 min</div>
+          </div>
+          <div class="day-card-right">
+            <div class="day-status-pill status-pending" id="statusPill-treinoc">
+              <span class="status-icon">›</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -4352,240 +4381,130 @@
       </div>
     </div>
 
-
-
-  <!-- ==================== TAB ATIVA: HOJE (SEGUNDA: BOX À TARDE) ==================== -->
-  <div id="tab-segunda" class="tab-content">
+  <!-- ==================== TAB: TREINO A ==================== -->
+  <div id="tab-treinoa" class="tab-content">
     <div class="session-overall-meta">
       <span class="meta-item">📍 A Definir</span>
-      <span class="meta-item">⏳ Em Elaboração</span>
+      <span class="meta-item">⏳ ~50 a 60 min</span>
     </div>
-    <div class="callout-box" style="border-left: 3px solid var(--brand-neon); padding: 18px 16px; margin-bottom: 16px; border-radius: 12px; background: rgba(0, 255, 136, 0.04);">
-      <div class="callout-icon" style="font-size:1.4rem;">⏳</div>
+
+    <!-- DIRETRIZES DO TREINO -->
+    <div class="callout-box" style="border-left: 3px solid var(--brand-neon); padding: 18px 16px; margin-bottom: 18px; border-radius: 12px; background: rgba(0, 255, 136, 0.04);">
+      <div class="callout-icon" style="font-size:1.4rem;">🎯</div>
       <div>
-        <div class="callout-topic-header" style="color: var(--brand-neon); font-size: 0.95rem;">SESSÃO EM ELABORAÇÃO</div>
-        <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px; line-height: 1.55;">
-          Os blocos de ativação, força, educativos e flexibilidade deste treino serão inseridos pelo Prof. Gui Lemos após a análise da sua ficha de avaliação.
+        <div class="callout-topic-header" style="color: var(--brand-neon); font-size: 0.95rem; font-weight:800; letter-spacing:0.04em;">TREINO A • EM ESTRUTURAÇÃO</div>
+        <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px; line-height: 1.6;">
+          Os blocos de ativação, fortalecimento e mobilidade desta sessão serão inseridos e calibrados pelo Prof. Gui Lemos após a análise detalhada da sua avaliação inicial.
         </div>
       </div>
-    </div>
-    <div style="text-align: center; padding: 24px 16px; color: var(--text-dim); font-size: 0.82rem;">
-      <p>Nenhum exercício atribuído para este dia ainda.</p>
     </div>
 
-  
-    <!-- ========================================================================= -->
-    <!-- PADRÃO OURO DOMÍNIO CORPORAL (DIRETRIZES DE SEÇÃO E EXERCÍCIOS)           -->
-    <!-- Regra 1: Títulos de seções SEMPRE sucintos e canônicos: ATIVAÇÃO,         -->
-    <!--         FORTALECIMENTO, MOBILIDADE, CONDICIONAMENTO, HABILIDADES.         -->
-    <!--         Zero redundância, sem subtítulos prolixos ou badges repetidos.     -->
-    <!-- Regra 2: Zero texto solto no card. Todo conteúdo técnico reunido no       -->
-    <!--         botão único "Vídeo | Instruções". Sem botões avulsos de dicas.    -->
-    <!-- Regra 3: Nomes de exercícios diretos e em caixa alta (ex: BOX SQUAT).     -->
-    <!-- Regra 4: Estrutura estrita do modal Vídeo | Instruções:                    -->
-    <!--         1. Execução: (proibido usar "Na prática")                         -->
-    <!--         2. Cuidados:                                                      -->
-    <!--         3. Dicas: (quando aplicável)                                      -->
-    <!--         4. Base científica: (SEMPRE ao final de tudo)                     -->
-    <!-- ========================================================================= -->
-    <!--
-    <div class="exercise-card">
-      <div class="ex-title">
-        <span>NOME DO EXERCÍCIO EM MAIÚSCULAS</span>
-        <button type="button" class="btn-video" onclick="openVideoModal('Nome do Exercício', '<b>Execução:</b> Passo a passo da execução correta, respiração e cadência indicadas.<br><br><b>Cuidados:</b> Cuidados com alinhamento e proteção articular.<br><br><b>Base científica:</b> Explicação biomecânica do movimento e ativação muscular.', 'URL_DO_VIDEO')">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> <span>Vídeo | Instruções</span>
-        </button>
-      </div>
-      <div class="ex-volume-sets-row">
-        <div class="ex-volume-badge">3 SÉRIES • 10-12 REPS</div>
-        <div class="sets-container">
-          <div class="set-pill" onclick="toggleSet(this)">Série 1</div>
-          <div class="set-pill" onclick="toggleSet(this)">Série 2</div>
-          <div class="set-pill" onclick="toggleSet(this)">Série 3</div>
-        </div>
-      </div>
-      <div class="ex-bottom-actions">
-        <button type="button" class="btn-send-video" onclick="openSendVideoModal('Nome do Exercício')">
-          <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-          <span>Enviar sua execução</span>
-        </button>
-        <button type="button" class="btn-comment" id="btn-comment-ex-id" onclick="toggleCommentBox('ex-id')">
-          <span>💬 Observações?</span>
-          <span class="comment-dot" id="dot-ex-id" style="display:none;"></span>
-        </button>
-      </div>
-      <div id="comment-box-ex-id" class="comment-drawer" style="display: none;">
-        <div class="comment-header">
-          <span>👤 Suas anotações (cargas, sensações, dores):</span>
-          <span class="save-indicator" id="save-status-ex-id"></span>
-        </div>
-        <textarea class="comment-textarea" id="note-ex-id" placeholder="Ex: Carga usada, sensações, observações..." oninput="saveExerciseNote('ex-id', this.value)"></textarea>
-      </div>
+    <div style="text-align: center; padding: 32px 16px; color: var(--text-dim); font-size: 0.85rem;">
+      <p>Sessão em formatação pelo treinador.</p>
     </div>
-    -->
 
-    <!-- Card Clean de Finalização de Treino (Segunda) -->
-    <div class="workout-finish-clean-card" id="workoutFinishCard-segunda">
+    <!-- Card Clean de Finalização de Treino -->
+    <div class="workout-finish-clean-card" id="workoutFinishCard-treinoa">
       <div class="finish-controls-row">
         <label class="finish-checkbox-label">
-          <input type="checkbox" id="checkFinish-segunda" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('segunda', this.checked)">
+          <input type="checkbox" id="checkFinish-treinoa" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('treinoa', this.checked)">
           <span class="finish-custom-checkbox"></span>
           <span class="finish-checkbox-text">Finalizar sessão 🏁</span>
         </label>
-        <button type="button" class="btn-send-coach" id="btnSendCoach-segunda" onclick="completeWorkoutSession('segunda')" disabled>
+        <button type="button" class="btn-send-coach" id="btnSendCoach-treinoa" onclick="completeWorkoutSession('treinoa')" disabled>
           <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
           <span>Enviar para Coach</span>
         </button>
       </div>
-      <div id="completeFeedback-segunda" class="complete-feedback-box" style="display:none; width: 100%;">
+      <div id="completeFeedback-treinoa" class="complete-feedback-box" style="display:none; width: 100%;">
         ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
       </div>
     </div>
-
   </div>
 
-  <!-- ==================== TAB ATIVA: HOJE (TERÇA: BOX + LAB BMU COMPARTILHADO) ==================== -->
-  <div id="tab-terca" class="tab-content">
+  <!-- ==================== TAB: TREINO B ==================== -->
+  <div id="tab-treinob" class="tab-content">
     <div class="session-overall-meta">
       <span class="meta-item">📍 A Definir</span>
-      <span class="meta-item">⏳ Em Elaboração</span>
+      <span class="meta-item">⏳ ~50 a 60 min</span>
     </div>
-    <div class="callout-box" style="border-left: 3px solid var(--brand-neon); padding: 18px 16px; margin-bottom: 16px; border-radius: 12px; background: rgba(0, 255, 136, 0.04);">
-      <div class="callout-icon" style="font-size:1.4rem;">⏳</div>
+
+    <!-- DIRETRIZES DO TREINO -->
+    <div class="callout-box" style="border-left: 3px solid var(--brand-neon); padding: 18px 16px; margin-bottom: 18px; border-radius: 12px; background: rgba(0, 255, 136, 0.04);">
+      <div class="callout-icon" style="font-size:1.4rem;">🎯</div>
       <div>
-        <div class="callout-topic-header" style="color: var(--brand-neon); font-size: 0.95rem;">SESSÃO EM ELABORAÇÃO</div>
-        <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px; line-height: 1.55;">
-          Os blocos de ativação, força, educativos e flexibilidade deste treino serão inseridos pelo Prof. Gui Lemos após a análise da sua ficha de avaliação.
+        <div class="callout-topic-header" style="color: var(--brand-neon); font-size: 0.95rem; font-weight:800; letter-spacing:0.04em;">TREINO B • EM ESTRUTURAÇÃO</div>
+        <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px; line-height: 1.6;">
+          Os blocos de ativação, fortalecimento e mobilidade desta sessão serão inseridos e calibrados pelo Prof. Gui Lemos após a análise detalhada da sua avaliação inicial.
         </div>
       </div>
     </div>
-    <div style="text-align: center; padding: 24px 16px; color: var(--text-dim); font-size: 0.82rem;">
-      <p>Nenhum exercício atribuído para este dia ainda.</p>
+
+    <div style="text-align: center; padding: 32px 16px; color: var(--text-dim); font-size: 0.85rem;">
+      <p>Sessão em formatação pelo treinador.</p>
     </div>
 
-  
-    <!-- Card Clean de Finalização de Treino (Terca) -->
-    <div class="workout-finish-clean-card" id="workoutFinishCard-terca">
+    <!-- Card Clean de Finalização de Treino -->
+    <div class="workout-finish-clean-card" id="workoutFinishCard-treinob">
       <div class="finish-controls-row">
         <label class="finish-checkbox-label">
-          <input type="checkbox" id="checkFinish-terca" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('terca', this.checked)">
+          <input type="checkbox" id="checkFinish-treinob" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('treinob', this.checked)">
           <span class="finish-custom-checkbox"></span>
           <span class="finish-checkbox-text">Finalizar sessão 🏁</span>
         </label>
-        <button type="button" class="btn-send-coach" id="btnSendCoach-terca" onclick="completeWorkoutSession('terca')" disabled>
+        <button type="button" class="btn-send-coach" id="btnSendCoach-treinob" onclick="completeWorkoutSession('treinob')" disabled>
           <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
           <span>Enviar para Coach</span>
         </button>
       </div>
-      <div id="completeFeedback-terca" class="complete-feedback-box" style="display:none; width: 100%;">
+      <div id="completeFeedback-treinob" class="complete-feedback-box" style="display:none; width: 100%;">
         ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
       </div>
     </div>
-
   </div>
 
-  <!-- ==================== TAB: SEXTA (PORTAGEM, DANÇA & ARGOLAS) ==================== -->
-  <div id="tab-sexta" class="tab-content">
+  <!-- ==================== TAB: TREINO C ==================== -->
+  <div id="tab-treinoc" class="tab-content">
     <div class="session-overall-meta">
       <span class="meta-item">📍 A Definir</span>
-      <span class="meta-item">⏳ Em Elaboração</span>
+      <span class="meta-item">⏳ ~50 a 60 min</span>
     </div>
-    <div class="callout-box" style="border-left: 3px solid var(--brand-neon); padding: 18px 16px; margin-bottom: 16px; border-radius: 12px; background: rgba(0, 255, 136, 0.04);">
-      <div class="callout-icon" style="font-size:1.4rem;">⏳</div>
+
+    <!-- DIRETRIZES DO TREINO -->
+    <div class="callout-box" style="border-left: 3px solid var(--brand-neon); padding: 18px 16px; margin-bottom: 18px; border-radius: 12px; background: rgba(0, 255, 136, 0.04);">
+      <div class="callout-icon" style="font-size:1.4rem;">🎯</div>
       <div>
-        <div class="callout-topic-header" style="color: var(--brand-neon); font-size: 0.95rem;">SESSÃO EM ELABORAÇÃO</div>
-        <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px; line-height: 1.55;">
-          Os blocos de ativação, força, educativos e flexibilidade deste treino serão inseridos pelo Prof. Gui Lemos após a análise da sua ficha de avaliação.
+        <div class="callout-topic-header" style="color: var(--brand-neon); font-size: 0.95rem; font-weight:800; letter-spacing:0.04em;">TREINO C • EM ESTRUTURAÇÃO</div>
+        <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px; line-height: 1.6;">
+          Os blocos de ativação, fortalecimento e mobilidade desta sessão serão inseridos e calibrados pelo Prof. Gui Lemos após a análise detalhada da sua avaliação inicial.
         </div>
       </div>
     </div>
-    <div style="text-align: center; padding: 24px 16px; color: var(--text-dim); font-size: 0.82rem;">
-      <p>Nenhum exercício atribuído para este dia ainda.</p>
+
+    <div style="text-align: center; padding: 32px 16px; color: var(--text-dim); font-size: 0.85rem;">
+      <p>Sessão em formatação pelo treinador.</p>
     </div>
 
-  
-    <!-- Card Clean de Finalização de Treino (Sexta) -->
-    <div class="workout-finish-clean-card" id="workoutFinishCard-sexta">
+    <!-- Card Clean de Finalização de Treino -->
+    <div class="workout-finish-clean-card" id="workoutFinishCard-treinoc">
       <div class="finish-controls-row">
         <label class="finish-checkbox-label">
-          <input type="checkbox" id="checkFinish-sexta" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('sexta', this.checked)">
+          <input type="checkbox" id="checkFinish-treinoc" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('treinoc', this.checked)">
           <span class="finish-custom-checkbox"></span>
           <span class="finish-checkbox-text">Finalizar sessão 🏁</span>
         </label>
-        <button type="button" class="btn-send-coach" id="btnSendCoach-sexta" onclick="completeWorkoutSession('sexta')" disabled>
+        <button type="button" class="btn-send-coach" id="btnSendCoach-treinoc" onclick="completeWorkoutSession('treinoc')" disabled>
           <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
           <span>Enviar para Coach</span>
         </button>
       </div>
-      <div id="completeFeedback-sexta" class="complete-feedback-box" style="display:none; width: 100%;">
+      <div id="completeFeedback-treinoc" class="complete-feedback-box" style="display:none; width: 100%;">
         ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
       </div>
     </div>
-
   </div>
 
-  <!-- ==================== TAB: QUINTA (DANÇA & FORÇA REAL EXECUTADA) ==================== -->
-  <div id="tab-quinta" class="tab-content">
-    <div class="session-overall-meta">
-      <span class="meta-item">📍 A Definir</span>
-      <span class="meta-item">⏳ Em Elaboração</span>
-    </div>
-    <div class="callout-box" style="border-left: 3px solid var(--brand-neon); padding: 18px 16px; margin-bottom: 16px; border-radius: 12px; background: rgba(0, 255, 136, 0.04);">
-      <div class="callout-icon" style="font-size:1.4rem;">⏳</div>
-      <div>
-        <div class="callout-topic-header" style="color: var(--brand-neon); font-size: 0.95rem;">SESSÃO EM ELABORAÇÃO</div>
-        <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px; line-height: 1.55;">
-          Os blocos de ativação, força, educativos e flexibilidade deste treino serão inseridos pelo Prof. Gui Lemos após a análise da sua ficha de avaliação.
-        </div>
-      </div>
-    </div>
-    <div style="text-align: center; padding: 24px 16px; color: var(--text-dim); font-size: 0.82rem;">
-      <p>Nenhum exercício atribuído para este dia ainda.</p>
-    </div>
 
-  
-    <!-- Card Clean de Finalização de Treino (Quinta) -->
-    <div class="workout-finish-clean-card" id="workoutFinishCard-quinta">
-      <div class="finish-controls-row">
-        <label class="finish-checkbox-label">
-          <input type="checkbox" id="checkFinish-quinta" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('quinta', this.checked)">
-          <span class="finish-custom-checkbox"></span>
-          <span class="finish-checkbox-text">Finalizar sessão 🏁</span>
-        </label>
-        <button type="button" class="btn-send-coach" id="btnSendCoach-quinta" onclick="completeWorkoutSession('quinta')" disabled>
-          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-          <span>Enviar para Coach</span>
-        </button>
-      </div>
-      <div id="completeFeedback-quinta" class="complete-feedback-box" style="display:none; width: 100%;">
-        ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ==================== TAB: QUARTA-FEIRA ==================== -->
-  <div id="tab-quarta" class="tab-content">
-    <div class="session-overall-meta">
-      <span class="meta-item">📍 A Definir</span>
-      <span class="meta-item">⏳ Em Elaboração</span>
-    </div>
-    <div class="callout-box" style="border-left: 3px solid var(--brand-neon); padding: 18px 16px; margin-bottom: 16px; border-radius: 12px; background: rgba(0, 255, 136, 0.04);">
-      <div class="callout-icon" style="font-size:1.4rem;">⏳</div>
-      <div>
-        <div class="callout-topic-header" style="color: var(--brand-neon); font-size: 0.95rem;">SESSÃO EM ELABORAÇÃO</div>
-        <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px; line-height: 1.55;">
-          Os blocos de ativação, força, educativos e flexibilidade deste treino serão inseridos pelo Prof. Gui Lemos após a análise da sua ficha de avaliação.
-        </div>
-      </div>
-    </div>
-    <div style="text-align: center; padding: 24px 16px; color: var(--text-dim); font-size: 0.82rem;">
-      <p>Nenhum exercício atribuído para este dia ainda.</p>
-    </div>
-
-  </div><!-- end #tab-quarta -->
-
-  </div><!-- end #mainTrainingView -->
 
 
   <!-- ==================== TAB: MURAL DE RECADOS & COMUNICADOS ==================== -->
@@ -5676,7 +5595,7 @@
               <span>🏋️‍♂️</span> 1. Rotina de Treino Diária
             </div>
             <div style="font-size: 0.78rem; color: #cbd5e1;">
-              Toque no dia da semana (Segunda a Sexta) para abrir seus exercícios. Conforme for realizando cada série, marque os círculos para salvar sua execução e equilibrar o volume de treino.
+              Toque no treino desejado (Treino A, B ou C) para abrir seus exercícios. Conforme for realizando cada série, marque os círculos para salvar sua execução e equilibrar o volume de treino.
             </div>
           </div>
 
@@ -5957,7 +5876,7 @@
       window.location.replace(cleanUrl);
     }
 
-    let lastActiveDayTab = 'segunda';
+    let lastActiveDayTab = 'treinoa';
 
     function switchDayTab(dayId) {
       openDayWorkout(dayId);
@@ -6020,31 +5939,11 @@
     }
 
     function renderTrainingHubDays() {
-      // Terça-feira concluída no Box conforme decisão estratégica do atleta
-      try {
-        const _comp = JSON.parse(localStorage.getItem('dominio_aluno_completed_workouts') || '{}');
-        if (!_comp['terca']) {
-          _comp['terca'] = true;
-          localStorage.setItem('dominio_aluno_completed_workouts', JSON.stringify(_comp));
-        }
-      } catch (e) {}
-
-      const dayOfWeek = new Date().getDay(); // 0: Dom, 1: Seg, 2: Ter, 3: Qua, 4: Qui, 5: Sex, 6: Sab
-      const dayMap = { 1: 'segunda', 2: 'terca', 3: 'quarta', 4: 'quinta', 5: 'sexta' };
-      const todayTab = dayMap[dayOfWeek] || 'segunda';
-
-      const days = ['segunda', 'terca', 'quarta', 'quinta', 'sexta'];
-      days.forEach(d => {
-        // Badge Hoje
-        const todayBadge = document.getElementById('todayBadge-' + d);
-        if (todayBadge) {
-          todayBadge.style.display = (d === todayTab) ? 'inline-flex' : 'none';
-        }
-
-        // Status Pill (Check Concluído ou Chevron)
-        const isDone = isWorkoutCompleted(d);
-        const pill = document.getElementById('statusPill-' + d);
-        const card = document.getElementById('dayCard-' + d);
+      const workouts = ['treinoa', 'treinob', 'treinoc'];
+      workouts.forEach(w => {
+        const isDone = isWorkoutCompleted(w);
+        const pill = document.getElementById('statusPill-' + w);
+        const card = document.getElementById('dayCard-' + w);
         if (pill) {
           if (isDone) {
             pill.className = 'day-status-pill status-done';
@@ -6078,11 +5977,9 @@
       if (topBar) topBar.style.display = 'flex';
 
       const dayNames = {
-        'segunda': 'SEGUNDA-FEIRA',
-        'terca': 'TERÇA-FEIRA',
-        'quarta': 'QUARTA-FEIRA',
-        'quinta': 'QUINTA-FEIRA',
-        'sexta': 'SEXTA-FEIRA'
+        'treinoa': 'TREINO A',
+        'treinob': 'TREINO B',
+        'treinoc': 'TREINO C'
       };
 
       const titleEl = document.getElementById('dedicatedBarTitle');
@@ -7927,11 +7824,9 @@
       let tabName = 'Treino';
 
       const dayNames = {
-        'segunda': 'Segunda-feira',
-        'terca': 'Terça-feira',
-        'quarta': 'Quarta-feira',
-        'quinta': 'Quinta-feira',
-        'sexta': 'Sexta-feira'
+        'treinoa': 'Treino A',
+        'treinob': 'Treino B',
+        'treinoc': 'Treino C'
       };
 
       if (dayId && typeof dayId === 'string') {
