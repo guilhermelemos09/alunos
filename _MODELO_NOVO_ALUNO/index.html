@@ -4384,19 +4384,17 @@
   
     <!-- ========================================================================= -->
     <!-- PADRÃO OURO DE CARD DE EXERCÍCIO (MODELO PARA NOVOS TREINOS DO ALUNO)     -->
-    <!-- Regra 1: Zero texto solto no card. Todas as instruções e cuidados em botões  -->
+    <!-- Regra 1: Zero texto solto no card. Instruções, cuidados e vídeo reunidos em Vídeo | Instruções -->
     <!-- Regra 2: Nomes sucintos e diretos (ex: ICE CREAM MAKERS). Menos é mais.       -->
-    <!--         Detalhes de altura, carga, ângulo ou cuidados vão nas Instruções/Vídeo -->
+    <!--         Detalhes de execução, cuidados, dicas e base científica vão no modal Vídeo | Instruções -->
     <!-- ========================================================================= -->
     <!--
     <div class="exercise-card">
       <div class="ex-title">
         <span>NOME DO EXERCÍCIO EM MAIÚSCULAS</span>
-        <!-- Botão opcional de vídeo demonstrativo:
-        <button type="button" class="btn-video" onclick="openVideoModal('Título do Vídeo', 'Mecânica chave...', 'URL_DO_VIDEO')">
-          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> <span>Vídeo</span>
+        <button type="button" class="btn-video" onclick="openVideoModal('Nome do Exercício', '<b>Execução:</b> Passo a passo da execução correta, respiração e cadência indicadas.<br><br><b>Cuidados:</b> Cuidados com alinhamento e proteção articular.<br><br><b>Base científica:</b> Explicação biomecânica do movimento e ativação muscular.', 'URL_DO_VIDEO')">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> <span>Vídeo | Instruções</span>
         </button>
-        -->
       </div>
       <div class="ex-volume-sets-row">
         <div class="ex-volume-badge">3 SÉRIES • 10-12 REPS</div>
@@ -4405,10 +4403,6 @@
           <div class="set-pill" onclick="toggleSet(this)">Série 2</div>
           <div class="set-pill" onclick="toggleSet(this)">Série 3</div>
         </div>
-      </div>
-      <div class="ex-cues-row">
-        <button type="button" class="btn-tip-cue cue-cuidados" onclick="openTip('Cuidados Articulares', '• Cuidados com alinhamento e proteção articular...\n\nBase científica:\n• Explicação biomecânica do movimento.', '🛡️ Cuidados')">🛡️ Cuidados</button>
-        <button type="button" class="btn-tip-cue cue-instrucoes" onclick="openTip('Instruções do Exercício', '• Passo a passo da execução correta...\n• Respiração e cadência indicadas.\n\nBase científica:\n• Ativação muscular e padrão motor.', '🔧 Instruções')">🔧 Instruções</button>
       </div>
       <div class="ex-bottom-actions">
         <button type="button" class="btn-send-video" onclick="openSendVideoModal('Nome do Exercício')">
@@ -7402,32 +7396,44 @@
 
     function openVideoModal(title, desc, videoUrl) {
       document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalDesc').innerHTML = desc;
+      
+      let formattedDesc = desc || '';
+      formattedDesc = formattedDesc.replace(/<b>Na pr[áa]tica:?<\/b>/gi, '<b style="color:#00ff88;">Execução:</b>');
+      formattedDesc = formattedDesc.replace(/<b>Execu[çc][ãa]o:?<\/b>/gi, '<b style="color:#00ff88;">Execução:</b>');
+      formattedDesc = formattedDesc.replace(/<b>Cuidados:?<\/b>/gi, '<b style="color:#f87171;">Cuidados:</b>');
+      formattedDesc = formattedDesc.replace(/<b>Dicas?:?<\/b>/gi, '<b style="color:#facc15;">Dicas:</b>');
+      formattedDesc = formattedDesc.replace(/<b>Base cient[íi]fica:?<\/b>/gi, '<b style="color:#38bdf8;">Base científica:</b>');
+
+      const descEl = document.getElementById('modalDesc');
+      if (descEl) descEl.innerHTML = formattedDesc;
+
       const iframe = document.getElementById('videoIframe');
       const player = document.getElementById('videoPlayer');
-      
-      const isDirectVideo = /\.(mp4|webm|mov)($|\?)/i.test(videoUrl) || videoUrl.startsWith('Midia/');
-      
-      if (isDirectVideo) {
-        if (iframe) {
-          iframe.style.display = 'none';
-          iframe.src = '';
-        }
-        if (player) {
-          player.style.display = 'block';
-          player.src = videoUrl;
-          player.load();
-          player.play().catch(() => {});
-        }
+      const container = document.querySelector('#videoModal .video-container');
+
+      const hasVideo = videoUrl && typeof videoUrl === 'string' && videoUrl.trim() !== '';
+
+      if (!hasVideo) {
+        if (container) container.style.display = 'none';
+        if (iframe) { iframe.style.display = 'none'; iframe.src = ''; }
+        if (player) { player.pause(); player.style.display = 'none'; player.src = ''; }
       } else {
-        if (player) {
-          player.pause();
-          player.src = '';
-          player.style.display = 'none';
-        }
-        if (iframe) {
-          iframe.style.display = 'block';
-          iframe.src = formatVideoEmbedUrl(videoUrl);
+        if (container) container.style.display = 'block';
+        const isDirectVideo = /\.(mp4|webm|mov)($|\?)/i.test(videoUrl) || videoUrl.startsWith('Midia/');
+        if (isDirectVideo) {
+          if (iframe) { iframe.style.display = 'none'; iframe.src = ''; }
+          if (player) {
+            player.style.display = 'block';
+            player.src = videoUrl;
+            player.load();
+            player.play().catch(() => {});
+          }
+        } else {
+          if (player) { player.pause(); player.src = ''; player.style.display = 'none'; }
+          if (iframe) {
+            iframe.style.display = 'block';
+            iframe.src = formatVideoEmbedUrl(videoUrl);
+          }
         }
       }
       document.getElementById('videoModal').classList.add('active');
@@ -7438,11 +7444,20 @@
       document.getElementById('videoModal').classList.remove('active');
       const iframe = document.getElementById('videoIframe');
       const player = document.getElementById('videoPlayer');
-      if (iframe) iframe.src = '';
+      const container = document.querySelector('#videoModal .video-container');
+      if (iframe) {
+        iframe.src = '';
+        iframe.style.display = 'none';
+      }
       if (player) {
         player.pause();
         player.src = '';
+        player.style.display = 'none';
       }
+      if (container) {
+        container.style.display = 'block';
+      }
+    }
     }
 
     /* Modal de Bio Gui Lemos */
@@ -8036,7 +8051,7 @@
           if (!t) return '<div style="height:6px;"></div>';
           const lower = t.toLowerCase();
           if (lower.startsWith('na prática') || lower.startsWith('na pratica') || t.startsWith('🗣️')) {
-            return `<div style="margin-top:4px; margin-bottom:6px; font-weight:800; font-size:0.84rem; color:#00ff88; letter-spacing:0.02em;">Na prática:</div>`;
+            return `<div style="margin-top:4px; margin-bottom:6px; font-weight:800; font-size:0.84rem; color:#00ff88; letter-spacing:0.02em;">Execução:</div>`;
           }
           if (lower.startsWith('base científica') || lower.startsWith('base cientifica') || t.startsWith('🔬')) {
             return `<div style="margin-top:12px; margin-bottom:6px; font-weight:800; font-size:0.84rem; color:#38bdf8; letter-spacing:0.02em;">Base científica:</div>`;
