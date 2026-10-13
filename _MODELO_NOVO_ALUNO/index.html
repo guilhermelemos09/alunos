@@ -341,14 +341,24 @@
       content: none !important;
     }
 
-    .section-header .meta-chip {
-      font-size: 0.70rem;
-      font-weight: 800;
-      color: #ffffff;
-      background: rgba(0, 0, 0, 0.30);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      padding: 3px 8px;
-      border-radius: 6px;
+    /* Destaque em Branco Puro para o Relógio de Duração no Cabeçalho */
+    .section-header .meta-chip,
+    .section-header .meta-chip-time,
+    .section-header .meta-chip-loc,
+    .section-header .session-meta-chips span {
+      background: rgba(0, 0, 0, 0.28) !important;
+      border: 1px solid rgba(255, 255, 255, 0.35) !important;
+      color: #ffffff !important;
+      padding: 3px 9px !important;
+      border-radius: 7px !important;
+      font-size: 0.74rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.02em !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+      opacity: 1 !important;
     }
     .time-badge {
       font-size: 0.72rem;
@@ -2284,6 +2294,149 @@
     @keyframes fadeInPane {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===================================================
+       CENTRAL DE COMPOSIÇÃO CORPORAL E EVOLUÇÃO
+       =================================================== */
+    .comp-metric-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .comp-metric-box:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .comp-metric-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.2;
+      font-family: inherit;
+      color: #fff;
+    }
+    .comp-metric-lbl {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+    .comp-delta-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+      margin-top: 4px;
+      width: fit-content;
+    }
+    .comp-delta-badge.neutral {
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+    }
+    .comp-delta-badge.good {
+      background: rgba(0, 255, 136, 0.12);
+      border: 1px solid rgba(0, 255, 136, 0.25);
+      color: var(--brand-neon);
+    }
+    .comp-delta-badge.alert {
+      background: rgba(244, 63, 94, 0.12);
+      border: 1px solid rgba(244, 63, 94, 0.25);
+      color: #f43f5e;
+    }
+    .comp-form-group {
+      margin-bottom: 12px;
+      text-align: left;
+    }
+    .comp-form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-bottom: 5px;
+      letter-spacing: 0.02em;
+    }
+    .comp-form-input, .comp-form-select, .comp-form-textarea {
+      width: 100%;
+      background: #0b0e14;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-family: inherit;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .comp-form-input:focus, .comp-form-select:focus, .comp-form-textarea:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+    }
+    .comp-photo-slot {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      position: relative;
+    }
+    .comp-photo-slot img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      background: #000;
+    }
+    .comp-photo-empty {
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 0.75rem;
+      gap: 6px;
+    }
+    .comp-history-item {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #modalRelatorioComposicao, #modalRelatorioComposicao * {
+        visibility: visible !important;
+      }
+      #modalRelatorioComposicao {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      .no-print {
+        display: none !important;
+      }
     }
 
     .training-hub-section {
@@ -5337,20 +5490,50 @@
 
     <!-- ==================== SUBPÁGINA: COMPOSIÇÃO CORPORAL ==================== -->
     <div id="evolView-composicao" class="evolucao-view-pane" style="display:none;">
-      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding: 6px 0; border-bottom: 1px solid var(--border-subtle);">
+      <!-- Barra Superior de Navegação e Guias -->
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding: 6px 0; border-bottom: 1px solid var(--border-subtle); flex-wrap:wrap; gap:8px;">
         <button type="button" class="btn-back-workout" onclick="closeEvolucaoView()">
           ← Voltar para Evolução
         </button>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn-orientacoes-popup" onclick="openInstrucoesMedidasModal()" title="Instruções de como medir cintura, pescoço e quadril">
+            <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+            <span>GUIA DE MEDIDAS</span>
+          </button>
+          <button type="button" class="btn-orientacoes-popup" onclick="openInstrucoesFotosModal()" title="Instruções de como tirar fotos padronizadas">
+            <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <span>GUIA DE FOTOS</span>
+          </button>
+        </div>
       </div>
 
-      <!-- Card: Dados de Entrada da Ficha de Avaliação -->
+      <!-- Hero Card de Apresentação e Ação Principal -->
+      <div class="evolucao-hero" style="margin-bottom:16px; position:relative; overflow:hidden;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px;">
+          <div>
+            <div class="evolucao-title">
+              <span id="compHeroTitle">📈 Composição Corporal e Alavancas</span>
+              <span class="evolucao-badge-delta" id="compHeroBadge">Recomposição</span>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin:8px 0 0; line-height: 1.55; max-width:520px;">
+              Acompanhamento de peso, cintura, relação cintura-estatura e adiposidade para otimizar suas alavancas biomecânicas e força relativa no Domínio Corporal.
+            </p>
+          </div>
+          <button type="button" onclick="openAddMedicaoModal()" style="background:var(--brand-neon); color:#000; font-size:0.82rem; font-weight:800; border:none; border-radius:10px; padding:10px 16px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; box-shadow:0 0 16px var(--brand-neon-glow); transition:transform 0.15s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            <span style="font-size:1.05rem; font-weight:900;">+</span>
+            <span>Registrar Medição</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card: Dados de Entrada da Ficha de Avaliação (Ponto de Partida) -->
       <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(56,189,248,0.25); border-radius: 16px; padding: 16px; margin-bottom: 16px;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px; flex-wrap:wrap; gap:8px;">
           <div style="display:flex; align-items:center; gap:8px;">
             <span style="font-size:1.1rem;">📋</span>
             <div>
               <div style="font-size:0.86rem; font-weight:800; color:#fff;">Ponto de Partida • Ficha de Avaliação</div>
-              <div style="font-size:0.72rem; color:var(--text-muted);">Métricas registradas na ficha inicial para alimentar sua evolução corporal</div>
+              <div style="font-size:0.72rem; color:var(--text-muted);">Métricas registradas na ficha inicial como ponto de partida da sua evolução</div>
             </div>
           </div>
           <button type="button" onclick="openDedicatedView('avaliacao')" style="background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.35); color:#38bdf8; font-size:0.75rem; font-weight:700; border-radius:8px; padding:6px 12px; cursor:pointer;">
@@ -5374,21 +5557,99 @@
         </div>
       </div>
 
-      <div class="evolucao-hero">
-        <div class="evolucao-title">
-          <span>📈 Composição Corporal: Nome do Aluno</span>
-          <span class="evolucao-badge-delta">Acompanhamento</span>
+      <!-- Grid de 4 Métricas Chave Atualizadas -->
+      <div class="metrics-summary-grid" style="margin-bottom:18px;">
+        <!-- Card 1: Peso -->
+        <div class="metric-summary-card" style="border-left: 3.5px solid #38bdf8;">
+          <div class="metric-value" id="compMetricWeight" style="color:#38bdf8;">-- kg</div>
+          <div class="metric-label">Peso Atual</div>
+          <div style="font-size:0.7rem; color:#94a3b8; margin-top:3px;" id="compDeltaWeight">Inicial: -- kg</div>
         </div>
-        <p style="font-size:0.82rem; color:var(--text-muted); margin:8px 0 0; line-height: 1.55;">
-          O histórico de pesagem, medidas antropométricas e evolução física será registrado periodicamente a cada reavaliação com o Prof. Gui Lemos.
-        </p>
+        <!-- Card 2: Cintura -->
+        <div class="metric-summary-card" style="border-left: 3.5px solid var(--brand-neon);">
+          <div class="metric-value" id="compMetricWaist" style="color:var(--brand-neon);">-- cm</div>
+          <div class="metric-label">Cintura Abdominal</div>
+          <div style="font-size:0.7rem; color:#94a3b8; margin-top:3px;" id="compDeltaWaist">Inicial: -- cm</div>
+        </div>
+        <!-- Card 3: RCEst -->
+        <div class="metric-summary-card" style="border-left: 3.5px solid #c084fc;">
+          <div class="metric-value" id="compMetricWhtr" style="color:#c084fc;">--</div>
+          <div class="metric-label">Relação Cintura-Estatura</div>
+          <div style="font-size:0.7rem; margin-top:3px;" id="compWhtrBadge">Meta: &lt; 0.50</div>
+        </div>
+        <!-- Card 4: % Gordura -->
+        <div class="metric-summary-card" style="border-left: 3.5px solid #fbbf24;">
+          <div class="metric-value" id="compMetricBF" style="color:#fbbf24;">--%</div>
+          <div class="metric-label">% Gordura (BF)</div>
+          <div style="font-size:0.7rem; color:#94a3b8; margin-top:3px;" id="compBFSub">Marinha / Informado</div>
+        </div>
       </div>
 
-      <div style="background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.15); border-radius: 14px; padding: 24px 16px; text-align: center; margin-top: 14px;">
-        <span style="font-size: 1.8rem;">⚖️</span>
-        <div style="font-size: 0.88rem; font-weight: 700; color: #fff; margin-top: 8px;">Aguardando primeira avaliação física</div>
-        <div style="font-size: 0.78rem; color: var(--text-dim); margin-top: 4px;">Seus dados e fotos de progresso ficarão arquivados de forma privada aqui.</div>
+      <!-- Card: Gráfico de Tendência Vetorial SVG -->
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 16px; margin-bottom: 20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <div style="font-size:0.92rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+            <span>📊</span> <span>Curva de Evolução Temporal</span>
+          </div>
+          <!-- Seletor de Métrica do Gráfico -->
+          <div style="display:flex; gap:6px; background:rgba(0,0,0,0.3); padding:3px; border-radius:8px; border:1px solid rgba(255,255,255,0.08);">
+            <button type="button" id="btnChartTabWeight" onclick="switchBodyCompChart('weight')" style="background:rgba(56,189,248,0.2); color:#38bdf8; border:none; padding:4px 10px; font-size:0.72rem; font-weight:700; border-radius:6px; cursor:pointer;">Peso (kg)</button>
+            <button type="button" id="btnChartTabWaist" onclick="switchBodyCompChart('waist')" style="background:transparent; color:#94a3b8; border:none; padding:4px 10px; font-size:0.72rem; font-weight:700; border-radius:6px; cursor:pointer;">Cintura (cm) e RCEst</button>
+          </div>
+        </div>
+
+        <div id="compChartContainer" style="width:100%; min-height:190px; position:relative; overflow:hidden;">
+          <!-- SVG dinamicamente gerado via script -->
+        </div>
       </div>
+
+      <!-- Card: Comparativo Visual de Fotos (Antes vs Recente) -->
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 16px; margin-bottom: 20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:8px;">
+          <div style="font-size:0.92rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+            <span>📸</span> <span>Registro Fotográfico Padronizado</span>
+          </div>
+          <span style="font-size:0.72rem; color:#94a3b8; background:rgba(255,255,255,0.05); padding:3px 8px; border-radius:6px;">Privado no dispositivo</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:12px;" id="compPhotosGallery">
+          <!-- Slots das Fotos: Frente, Lado, Costas -->
+        </div>
+      </div>
+
+      <!-- Card: Histórico Cronológico de Check-ins -->
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 16px; margin-bottom: 20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+          <div style="font-size:0.92rem; font-weight:800; color:#fff; display:flex; align-items:center; gap:6px;">
+            <span>🗓️</span> <span>Histórico Cronológico de Medições</span>
+          </div>
+          <span style="font-size:0.72rem; color:var(--brand-neon); font-weight:700;" id="compHistoryCount">0 registros</span>
+        </div>
+
+        <div id="compHistoryList" style="display:flex; flex-direction:column; gap:8px;">
+          <!-- Linhas do histórico injetadas aqui -->
+        </div>
+      </div>
+
+      <!-- Card Nobre: Gerador de Relatório Completo de Composição e Força Relativa -->
+      <div style="background: linear-gradient(135deg, rgba(2,132,199,0.12), rgba(124,58,237,0.12)); border: 1.5px solid rgba(56,189,248,0.35); border-radius: 16px; padding: 20px 18px; margin-bottom: 24px; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+        <div style="display:flex; align-items:flex-start; gap:12px; flex-wrap:wrap; justify-content:space-between;">
+          <div style="max-width: 480px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <span style="font-size:1.3rem;">📋</span>
+              <h3 style="margin:0; font-size:1.02rem; font-weight:800; color:#ffffff; letter-spacing:-0.01em;">Relatório Completo de Composição e Força Relativa</h3>
+            </div>
+            <p style="font-size:0.8rem; color:#cbd5e1; line-height:1.55; margin:0 0 14px 0;">
+              Compilação automática com diagnóstico em termos práticos, cálculo de sobrecarga articular, impacto biomecânico nos seus treinos de Domínio Corporal e embasamento científico com autores de referência.
+            </p>
+          </div>
+          <button type="button" onclick="openRelatorioComposicaoModal()" style="background:#38bdf8; color:#031326; font-size:0.82rem; font-weight:800; border:none; border-radius:10px; padding:12px 18px; cursor:pointer; display:inline-flex; align-items:center; gap:8px; box-shadow:0 0 16px rgba(56,189,248,0.4); white-space:nowrap; transition:all 0.2s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:currentColor;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+            <span>Gerar Relatório Completo</span>
+          </button>
+        </div>
+      </div>
+
     </div>
 
     <div id="evolView-tecnica" class="evolucao-view-pane" style="display:none;">
