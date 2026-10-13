@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dominio-alunos-v127';
+const CACHE_NAME = 'dominio-alunos-v128';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
