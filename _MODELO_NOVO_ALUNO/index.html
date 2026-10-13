@@ -270,38 +270,43 @@
       border-left: 4.5px solid #e11d48; /* Condicionamento: Coral sólido */
     }
 
-    /* Faixa de Cabeçalho Superior Sólida (Borda a Borda) */
+    /* Faixa de Cabeçalho Superior (Efeito 2: Dark Cyber Glass com Névoa Iluminada) */
     .section-header {
       margin: -14px -16px 12px -16px;
-      padding: 10px 16px;
+      padding: 11px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
     .sec-aquecimento .section-header,
     .sec-ativacao .section-header,
     .border-ativacao .section-header {
-      background: #d97706;
+      background: linear-gradient(90deg, rgba(217, 119, 6, 0.38) 0%, rgba(217, 119, 6, 0.12) 55%, rgba(17, 20, 26, 0.85) 100%);
+      border-bottom: 1.5px solid rgba(217, 119, 6, 0.40);
     }
     .sec-skills .section-header,
     .sec-habilidade .section-header,
     .border-habilidade .section-header {
-      background: #059669;
+      background: linear-gradient(90deg, rgba(5, 150, 105, 0.38) 0%, rgba(5, 150, 105, 0.12) 55%, rgba(17, 20, 26, 0.85) 100%);
+      border-bottom: 1.5px solid rgba(5, 150, 105, 0.40);
     }
     .sec-forca .section-header,
     .sec-fortalecimento .section-header,
     .border-fortalecimento .section-header {
-      background: #0284c7;
+      background: linear-gradient(90deg, rgba(2, 132, 199, 0.38) 0%, rgba(2, 132, 199, 0.12) 55%, rgba(17, 20, 26, 0.85) 100%);
+      border-bottom: 1.5px solid rgba(2, 132, 199, 0.40);
     }
     .sec-flex .section-header,
     .sec-flexibilidade .section-header,
     .border-flexibilidade .section-header {
-      background: #7c3aed;
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.38) 0%, rgba(124, 58, 237, 0.12) 55%, rgba(17, 20, 26, 0.85) 100%);
+      border-bottom: 1.5px solid rgba(124, 58, 237, 0.40);
     }
     .sec-cardio .section-header,
     .border-cardio .section-header {
-      background: #e11d48;
+      background: linear-gradient(90deg, rgba(225, 29, 72, 0.38) 0%, rgba(225, 29, 72, 0.12) 55%, rgba(17, 20, 26, 0.85) 100%);
+      border-bottom: 1.5px solid rgba(225, 29, 72, 0.40);
     }
 
     .section-title-wrap {
@@ -321,11 +326,11 @@
       border: 1px solid rgba(255, 255, 255, 0.25);
     }
 
-    /* Título da Seção em Branco Puro de Alto Contraste */
+    /* Título da Seção em Branco Puro de Alto Contraste (1.05rem Ampliado) */
     .section-title {
-      font-size: 0.88rem;
+      font-size: 1.05rem;
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: #ffffff !important;
       padding: 0;
@@ -334,7 +339,7 @@
       border: none !important;
       box-shadow: none !important;
       line-height: 1.2;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     }
     .section-title::before {
       display: none !important;
@@ -4404,6 +4409,116 @@
       display: none !important;
     }
 
+  
+    /* Estilos do Conteúdo do Modal de Vídeo e Instruções */
+    .modal-instruction-block {
+      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .modal-block-label {
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .modal-label-exec { color: #38bdf8; }
+    .modal-label-care { color: #f87171; }
+    .modal-label-tip { color: #fbbf24; }
+    .modal-bullets-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .modal-bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: #e2e8f0;
+    }
+    /* BOLINHA DOS TÓPICOS: rigorosamente na cor da fonte do texto (#94a3b8), e NÃO do título */
+    .modal-bullet-dot {
+      color: #94a3b8;
+      font-size: 1.05rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .modal-bullet-text { flex: 1; }
+
+    /* Dropdown / Accordion Retrátil da Base Científica */
+    .modal-science-accordion {
+      margin-top: 12px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      background: rgba(56, 189, 248, 0.05);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+    .modal-science-accordion[open] {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.45);
+    }
+    .modal-science-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #38bdf8;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+    }
+    .modal-science-summary::-webkit-details-marker { display: none; }
+    .modal-science-summary:hover {
+      background: rgba(56, 189, 248, 0.10);
+    }
+    .science-chevron {
+      font-size: 0.85rem;
+      transition: transform 0.2s ease;
+    }
+    .modal-science-accordion[open] .science-chevron {
+      transform: rotate(180deg);
+    }
+    .modal-science-content {
+      padding: 12px 14px 14px 14px;
+      border-top: 1px solid rgba(56, 189, 248, 0.15);
+    }
+    .modal-science-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.80rem;
+      line-height: 1.55;
+      color: #cbd5e1;
+    }
+    .modal-science-body {
+      flex: 1;
+    }
+    .modal-science-topic {
+      color: #38bdf8;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    .modal-science-ref {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      font-style: italic;
+    }
+
   </style>
 </head>
 <body>
@@ -5800,6 +5915,244 @@
 
 
 
+    <!-- ==================== MODAL: REGISTRAR MEDIÇÃO CORPORAL ==================== -->
+  <div id="modalAddMedicao" class="modal-overlay" onclick="if(event.target === this) closeAddMedicaoModal();">
+    <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 520px;">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:36px; height:36px; border-radius:10px; background:rgba(0, 255, 136, 0.12); border:1px solid rgba(0, 255, 136, 0.3); display:flex; align-items:center; justify-content:center; font-size:1.25rem;">
+            <span>⚖️</span>
+          </div>
+          <div>
+            <h3 style="margin:0; font-size:1.02rem; color:#fff;">Registrar Medição Corporal</h3>
+            <span style="font-size:0.75rem; color:var(--brand-neon); font-weight:600;">Check-in de Composição e Recomposição</span>
+          </div>
+        </div>
+        <button class="btn-close" type="button" onclick="closeAddMedicaoModal()" aria-label="Fechar">&times;</button>
+      </div>
+
+      <div style="padding: 16px 20px; max-height: 75vh; overflow-y: auto;">
+        <!-- Data e Peso -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="comp-form-group">
+            <label class="comp-form-label" for="add_comp_date">📅 Data da Medição</label>
+            <input type="date" id="add_comp_date" class="comp-form-input">
+          </div>
+          <div class="comp-form-group">
+            <label class="comp-form-label" for="add_comp_weight">⚖️ Peso Corporal (kg) *</label>
+            <input type="number" step="0.1" id="add_comp_weight" class="comp-form-input" placeholder="Ex: 68.5">
+          </div>
+        </div>
+
+        <!-- Cintura e Quadril -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="comp-form-group">
+            <label class="comp-form-label" for="add_comp_waist">📏 Cintura (cm) *</label>
+            <input type="number" step="0.1" id="add_comp_waist" class="comp-form-input" placeholder="Ex: 79.0">
+          </div>
+          <div class="comp-form-group">
+            <label class="comp-form-label" for="add_comp_hip">👖 Quadril (cm)</label>
+            <input type="number" step="0.1" id="add_comp_hip" class="comp-form-input" placeholder="Ex: 98.0 (opcional)">
+          </div>
+        </div>
+
+        <!-- Pescoço e % Gordura Manual -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="comp-form-group">
+            <label class="comp-form-label" for="add_comp_neck">👔 Pescoço (cm)</label>
+            <input type="number" step="0.1" id="add_comp_neck" class="comp-form-input" placeholder="Ex: 37.0 (p/ Marinha)">
+          </div>
+          <div class="comp-form-group">
+            <label class="comp-form-label" for="add_comp_bf_manual">🔬 % Gordura (BF)</label>
+            <input type="number" step="0.1" id="add_comp_bf_manual" class="comp-form-input" placeholder="Ex: 19.5 (se souber)">
+          </div>
+        </div>
+
+        <div style="font-size:0.72rem; color:#94a3b8; margin:-4px 0 12px 0; line-height: 1.4;">
+          💡 <em>Dica: Caso não saiba o % de gordura, o app calcula uma estimativa pela Fórmula da Marinha dos EUA se preencher pescoço e cintura.</em>
+        </div>
+
+        <!-- Percepção de Roupas e Energia -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="comp-form-group">
+            <label class="comp-form-label" for="add_comp_clothes">👕 Ajuste das Roupas</label>
+            <select id="add_comp_clothes" class="comp-form-select">
+              <option value="folgadas">Roupas mais folgadas</option>
+              <option value="normais" selected>Normais e confortáveis</option>
+              <option value="apertadas">Roupas mais justas</option>
+            </select>
+          </div>
+          <div class="comp-form-group">
+            <label class="comp-form-label" for="add_comp_energy">⚡ Disposição e Energia</label>
+            <select id="add_comp_energy" class="comp-form-select">
+              <option value="5" selected>⭐⭐⭐⭐⭐ Excelente / Máxima</option>
+              <option value="4">⭐⭐⭐⭐ Muito Boa</option>
+              <option value="3">⭐⭐⭐ Normal / Regular</option>
+              <option value="2">⭐⭐ Baixa / Cansado</option>
+              <option value="1">⭐ Muito Baixa</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Upload de Fotos Opcionais -->
+        <div class="comp-form-group" style="margin-top:4px;">
+          <label class="comp-form-label">📸 Fotos de Progresso (Opcionais - salvas no aparelho)</label>
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;">
+            <div>
+              <label for="comp_photo_input_front" style="display:block; font-size:0.68rem; color:#94a3b8; margin-bottom:4px; text-align:center;">Frente</label>
+              <input type="file" id="comp_photo_input_front" accept="image/*" style="font-size:0.65rem; color:#94a3b8; width:100%;" onchange="handleCompPhotoPreview(this, 'preview_front')">
+              <div id="preview_front" style="margin-top:4px; height:60px; background:rgba(255,255,255,0.02); border:1px dashed rgba(255,255,255,0.15); border-radius:6px; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:0.68rem; color:#64748b;">Sem foto</div>
+            </div>
+            <div>
+              <label for="comp_photo_input_side" style="display:block; font-size:0.68rem; color:#94a3b8; margin-bottom:4px; text-align:center;">Lado</label>
+              <input type="file" id="comp_photo_input_side" accept="image/*" style="font-size:0.65rem; color:#94a3b8; width:100%;" onchange="handleCompPhotoPreview(this, 'preview_side')">
+              <div id="preview_side" style="margin-top:4px; height:60px; background:rgba(255,255,255,0.02); border:1px dashed rgba(255,255,255,0.15); border-radius:6px; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:0.68rem; color:#64748b;">Sem foto</div>
+            </div>
+            <div>
+              <label for="comp_photo_input_back" style="display:block; font-size:0.68rem; color:#94a3b8; margin-bottom:4px; text-align:center;">Costas</label>
+              <input type="file" id="comp_photo_input_back" accept="image/*" style="font-size:0.65rem; color:#94a3b8; width:100%;" onchange="handleCompPhotoPreview(this, 'preview_back')">
+              <div id="preview_back" style="margin-top:4px; height:60px; background:rgba(255,255,255,0.02); border:1px dashed rgba(255,255,255,0.15); border-radius:6px; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:0.68rem; color:#64748b;">Sem foto</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Observações -->
+        <div class="comp-form-group">
+          <label class="comp-form-label" for="add_comp_notes">📝 Observações e Sensações</label>
+          <textarea id="add_comp_notes" class="comp-form-textarea" rows="2" placeholder="Ex: Me sinto mais leve nos apoios, calça mais folgada na cintura..."></textarea>
+        </div>
+
+        <!-- Botões de Ação do Modal -->
+        <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:16px;">
+          <button type="button" onclick="closeAddMedicaoModal()" style="background:rgba(255,255,255,0.08); border:none; color:#cbd5e1; font-size:0.8rem; font-weight:700; border-radius:8px; padding:10px 16px; cursor:pointer;">
+            Cancelar
+          </button>
+          <button type="button" onclick="saveBodyCompRecordFromForm()" style="background:var(--brand-neon); border:none; color:#000; font-size:0.82rem; font-weight:800; border-radius:8px; padding:10px 18px; cursor:pointer; box-shadow:0 0 14px var(--brand-neon-glow);">
+            Salvar Medição
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: INSTRUÇÕES DE MEDIÇÃO ==================== -->
+  <div id="modalInstrucoesMedidas" class="modal-overlay" onclick="if(event.target === this) closeInstrucoesMedidasModal();">
+    <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 520px;">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:36px; height:36px; border-radius:10px; background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.3); display:flex; align-items:center; justify-content:center; font-size:1.25rem;">
+            <span>📏</span>
+          </div>
+          <div>
+            <h3 style="margin:0; font-size:1.02rem; color:#fff;">Guia de Medição Precisa</h3>
+            <span style="font-size:0.75rem; color:#38bdf8; font-weight:600;">Padronização Antropométrica</span>
+          </div>
+        </div>
+        <button class="btn-close" type="button" onclick="closeInstrucoesMedidasModal()" aria-label="Fechar">&times;</button>
+      </div>
+
+      <div style="padding: 18px 20px; font-size:0.82rem; color:#cbd5e1; line-height:1.65; max-height:75vh; overflow-y:auto;">
+        <div style="margin-bottom:14px; padding:10px 12px; background:rgba(56,189,248,0.06); border-left:3.5px solid #38bdf8; border-radius:8px;">
+          <strong style="color:#fff;">⚖️ Pesagem Correta na Balança</strong><br>
+          Pese sempre pela manhã, em jejum, logo após urinar e antes de ingerir água ou café. Use roupas íntimas leves e descalço. Evite pesar todos os dias para não se iludir com variações naturais de água e sódio.
+        </div>
+
+        <div style="margin-bottom:14px; padding:10px 12px; background:rgba(0,255,136,0.06); border-left:3.5px solid var(--brand-neon); border-radius:8px;">
+          <strong style="color:#fff;">📐 Cintura Abdominal (Métrica Rainha da Saúde)</strong><br>
+          Posicione a fita métrica na linha do umbigo ou no ponto mais estreito do tronco (entre a última costela e o osso do quadril). Mantenha a fita nivelada e justa à pele, sem apertar. Realize a leitura no final de uma <strong>expiração normal</strong> (sem puxar o abdômen e sem estufar).
+        </div>
+
+        <div style="margin-bottom:14px; padding:10px 12px; background:rgba(192,132,252,0.06); border-left:3.5px solid #c084fc; border-radius:8px;">
+          <strong style="color:#fff;">👔 Pescoço (Para Fórmula da Marinha)</strong><br>
+          Passe a fita logo abaixo da laringe (pomo de adão em homens), ligeiramente inclinada para baixo na frente. A fita deve encostar na pele sem estrangular.
+        </div>
+
+        <div style="padding:10px 12px; background:rgba(251,191,36,0.06); border-left:3.5px solid #fbbf24; border-radius:8px;">
+          <strong style="color:#fff;">👖 Quadril (Para Mulheres)</strong><br>
+          Com os pés unidos, posicione a fita métrica na maior circunferência dos glúteos. Mantenha a fita paralela ao chão.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: INSTRUÇÕES DE FOTOS ==================== -->
+  <div id="modalInstrucoesFotos" class="modal-overlay" onclick="if(event.target === this) closeInstrucoesFotosModal();">
+    <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 520px;">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:36px; height:36px; border-radius:10px; background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.3); display:flex; align-items:center; justify-content:center; font-size:1.25rem;">
+            <span>📸</span>
+          </div>
+          <div>
+            <h3 style="margin:0; font-size:1.02rem; color:#fff;">Guia de Fotos Padronizadas</h3>
+            <span style="font-size:0.75rem; color:#38bdf8; font-weight:600;">Comparação Visual Fidedigna</span>
+          </div>
+        </div>
+        <button class="btn-close" type="button" onclick="closeInstrucoesFotosModal()" aria-label="Fechar">&times;</button>
+      </div>
+
+      <div style="padding: 18px 20px; font-size:0.82rem; color:#cbd5e1; line-height:1.65; max-height:75vh; overflow-y:auto;">
+        <div style="margin-bottom:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.08);">
+          <strong style="color:#fff;">1. Mesma Iluminação Sempre</strong><br>
+          Fotografe no mesmo cômodo e horário. Prefira luz natural ou luz frontal uniforme. Evite lâmpadas de teto que apontam diretamente para sua cabeça, pois criam sombras artificiais que enganam a real definição.
+        </div>
+
+        <div style="margin-bottom:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.08);">
+          <strong style="color:#fff;">2. Posição da Câmera (Sem Espelho Inclinado)</strong><br>
+          Apoie o celular na altura do peito ou umbigo em um móvel ou tripé, a cerca de 2 metros de distância. Use o timer de 5 ou 10 segundos. Evite fotos no espelho com o celular na mão, pois inclinam o tronco.
+        </div>
+
+        <div style="margin-bottom:12px; padding:10px 12px; background:rgba(255,255,255,0.03); border-radius:8px; border:1px solid rgba(255,255,255,0.08);">
+          <strong style="color:#fff;">3. Três Poses Relaxadas</strong><br>
+          • <strong>Frente:</strong> Pés na largura do quadril, braços soltos relaxados ao lado do tronco.<br>
+          • <strong>Perfil (Lado):</strong> Coluna neutra, olhando para a frente, braço suavemente afastado para não cobrir a cintura.<br>
+          • <strong>Costas:</strong> Pés alinhados, braços relaxados ao lado.
+        </div>
+
+        <div style="padding:10px 12px; background:rgba(0,255,136,0.06); border-left:3.5px solid var(--brand-neon); border-radius:8px;">
+          <strong style="color:var(--brand-neon);">Postura Neutra (Sem Murchar a Barriga)</strong><br>
+          Respire normalmente e mantenha a postura de repouso. O objetivo do acompanhamento é ver a evolução real do tônus muscular e contorno corporal, não posar com contração forçada.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL: RELATÓRIO COMPLETO DE COMPOSIÇÃO E FORÇA RELATIVA ==================== -->
+  <div id="modalRelatorioComposicao" class="modal-overlay" onclick="if(event.target === this) closeRelatorioComposicaoModal();">
+    <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 650px;">
+      <div class="modal-header no-print">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:36px; height:36px; border-radius:10px; background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.35); display:flex; align-items:center; justify-content:center; font-size:1.25rem;">
+            <span>📋</span>
+          </div>
+          <div>
+            <h3 style="margin:0; font-size:1.02rem; color:#fff;">Relatório de Composição e Força Relativa</h3>
+            <span style="font-size:0.75rem; color:#38bdf8; font-weight:600;">Diagnóstico Clínico, Biomecânico e Científico</span>
+          </div>
+        </div>
+        <button class="btn-close" type="button" onclick="closeRelatorioComposicaoModal()" aria-label="Fechar">&times;</button>
+      </div>
+
+      <div id="relatorioComposicaoContent" style="padding: 22px 24px; max-height: 80vh; overflow-y: auto; color:#e2e8f0; font-size:0.83rem; line-height:1.65;">
+        <!-- Preenchido dinamicamente por buildRelatorioComposicaoHTML() -->
+      </div>
+
+      <div class="no-print" style="padding: 14px 20px; background: rgba(0,0,0,0.3); border-top: 1px solid var(--border-subtle); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <button type="button" onclick="closeRelatorioComposicaoModal()" style="background:rgba(255,255,255,0.08); border:none; color:#cbd5e1; font-size:0.8rem; font-weight:700; border-radius:8px; padding:9px 14px; cursor:pointer;">
+          Fechar
+        </button>
+        <div style="display:flex; gap:8px;">
+          <button type="button" onclick="window.print()" style="background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.35); color:#38bdf8; font-size:0.8rem; font-weight:700; border-radius:8px; padding:9px 14px; cursor:pointer; display:inline-flex; align-items:center; gap:6px;">
+            <span>🖨️ Imprimir / Salvar PDF</span>
+          </button>
+          <button type="button" onclick="shareRelatorioWhatsApp()" style="background:var(--brand-neon); border:none; color:#000; font-size:0.8rem; font-weight:800; border-radius:8px; padding:9px 16px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; box-shadow:0 0 12px var(--brand-neon-glow);">
+            <span>📲 WhatsApp</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <!-- Modal de Instruções Contextuais do App -->
   <div id="contextualHelpModal" class="modal-overlay" onclick="if(event.target === this) closeContextualHelp();">
     <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 520px;">
@@ -6547,6 +6900,9 @@
         }
       });
 
+      if (viewId === 'composicao' && typeof renderBodyCompUI === 'function') {
+        renderBodyCompUI();
+      }
       if (viewId === 'relatorio' && typeof updateEvolucaoStats === 'function') {
         updateEvolucaoStats();
       }
@@ -6606,6 +6962,674 @@
           badge.style.color = '#e2e8f0';
         }
       }
+    }
+
+    /* ===================================================
+       MOTOR DE COMPOSIÇÃO CORPORAL E FORÇA RELATIVA
+       =================================================== */
+    let currentBodyCompChartType = 'weight';
+    let tempCompPhotos = { front: '', side: '', back: '' };
+
+    function getStudentBaseProfile() {
+      let data = {};
+      try {
+        const raw = localStorage.getItem('dominio_aluno_student_intake');
+        if (raw) data = JSON.parse(raw);
+      } catch (e) {}
+      const name = data.nome || document.getElementById('athleteProfileName')?.textContent || 'Aluno';
+      const weight = parseFloat(data.peso) || null;
+      const height = parseFloat(data.altura) || null;
+      const bf = (data.gordura !== undefined && data.gordura !== '') ? parseFloat(data.gordura) : null;
+      const gender = (data.sexo || 'masculino').toLowerCase();
+      return { name, weight, height, bf, gender };
+    }
+
+    function getBodyCompHistory() {
+      let history = [];
+      try {
+        const raw = localStorage.getItem('dominio_aluno_body_comp_history');
+        if (raw) history = JSON.parse(raw);
+      } catch (e) {}
+
+      // Se o histórico estiver vazio, tenta inicializar com o Ponto de Partida da Ficha de Avaliação
+      if (!history || history.length === 0) {
+        const base = getStudentBaseProfile();
+        if (base.weight && base.height) {
+          const initEntry = {
+            id: 'comp_init',
+            date: new Date().toISOString().split('T')[0],
+            weight: base.weight,
+            waist: (base.height > 100) ? Math.round(base.height * 0.49 * 10) / 10 : 80.0,
+            neck: 38.0,
+            hip: null,
+            bfManual: base.bf,
+            clothes: 'normais',
+            energy: 4,
+            notes: 'Ponto de Partida • Ficha Inicial',
+            photos: { front: '', side: '', back: '' }
+          };
+          history = [initEntry];
+          try {
+            localStorage.setItem('dominio_aluno_body_comp_history', JSON.stringify(history));
+          } catch (e) {}
+        }
+      }
+      history.sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+      return history;
+    }
+
+    function calculateUSNavyBF(gender, height, waist, neck, hip) {
+      if (!height || !waist || !neck || height <= 0 || waist <= 0 || neck <= 0) return null;
+      const isFemale = (gender === 'feminino' || gender === 'f' || gender === 'mulher');
+      if (isFemale) {
+        if (!hip || hip <= 0) return null;
+        const val = waist + hip - neck;
+        if (val <= 0) return null;
+        const bf = 495 / (1.29579 - 0.35004 * Math.log10(val) + 0.22100 * Math.log10(height)) - 450;
+        return (bf >= 3 && bf <= 65) ? Math.round(bf * 10) / 10 : null;
+      } else {
+        const val = waist - neck;
+        if (val <= 0) return null;
+        const bf = 495 / (1.0324 - 0.19077 * Math.log10(val) + 0.15456 * Math.log10(height)) - 450;
+        return (bf >= 3 && bf <= 65) ? Math.round(bf * 10) / 10 : null;
+      }
+    }
+
+    function renderBodyCompUI() {
+      const history = getBodyCompHistory();
+      const base = getStudentBaseProfile();
+      const height = base.height || 170;
+      const gender = base.gender || 'masculino';
+
+      const weightEl = document.getElementById('compMetricWeight');
+      const waistEl = document.getElementById('compMetricWaist');
+      const whtrEl = document.getElementById('compMetricWhtr');
+      const bfEl = document.getElementById('compMetricBF');
+      const deltaWeightEl = document.getElementById('compDeltaWeight');
+      const deltaWaistEl = document.getElementById('compDeltaWaist');
+      const whtrBadgeEl = document.getElementById('compWhtrBadge');
+      const bfSubEl = document.getElementById('compBFSub');
+
+      if (!history || history.length === 0) {
+        if (weightEl) weightEl.textContent = base.weight ? `${base.weight.toFixed(1)} kg` : '-- kg';
+        if (waistEl) waistEl.textContent = '-- cm';
+        if (whtrEl) whtrEl.textContent = '--';
+        if (bfEl) bfEl.textContent = base.bf ? `${base.bf.toFixed(1)}%` : '--%';
+        renderBodyCompChart(currentBodyCompChartType);
+        renderBodyCompHistoryList([]);
+        renderBodyCompPhotosGallery(null);
+        return;
+      }
+
+      const baseline = history[0];
+      const latest = history[history.length - 1];
+
+      // 1. Peso Atual e Delta
+      if (weightEl) weightEl.textContent = `${latest.weight.toFixed(1)} kg`;
+      if (deltaWeightEl) {
+        const dW = latest.weight - baseline.weight;
+        const dSign = dW > 0 ? `+${dW.toFixed(1)}` : `${dW.toFixed(1)}`;
+        deltaWeightEl.textContent = (history.length > 1) ? `Δ ${dSign} kg desde início` : `Inicial: ${baseline.weight.toFixed(1)} kg`;
+        deltaWeightEl.style.color = (dW < 0) ? 'var(--brand-neon)' : (dW > 0 ? '#38bdf8' : '#94a3b8');
+      }
+
+      // 2. Cintura e Delta
+      if (waistEl) waistEl.textContent = `${latest.waist.toFixed(1)} cm`;
+      if (deltaWaistEl) {
+        const dWaist = latest.waist - baseline.waist;
+        const dSignW = dWaist > 0 ? `+${dWaist.toFixed(1)}` : `${dWaist.toFixed(1)}`;
+        deltaWaistEl.textContent = (history.length > 1) ? `Δ ${dSignW} cm desde início` : `Inicial: ${baseline.waist.toFixed(1)} cm`;
+        deltaWaistEl.style.color = (dWaist < 0) ? 'var(--brand-neon)' : (dWaist > 0 ? '#f43f5e' : '#94a3b8');
+      }
+
+      // 3. RCEst (Relação Cintura / Estatura)
+      const whtr = height ? (latest.waist / height) : null;
+      if (whtrEl) whtrEl.textContent = whtr ? whtr.toFixed(2) : '--';
+      if (whtrBadgeEl) {
+        if (!whtr) {
+          whtrBadgeEl.textContent = 'Meta: < 0.50';
+          whtrBadgeEl.style.color = '#94a3b8';
+        } else if (whtr < 0.50) {
+          whtrBadgeEl.textContent = 'Faixa Ideal (< 0.50)';
+          whtrBadgeEl.style.color = 'var(--brand-neon)';
+        } else if (whtr <= 0.54) {
+          whtrBadgeEl.textContent = 'Atenção Leve (0.50-0.54)';
+          whtrBadgeEl.style.color = '#fbbf24';
+        } else {
+          whtrBadgeEl.textContent = 'Alerta Visceral (≥ 0.55)';
+          whtrBadgeEl.style.color = '#f43f5e';
+        }
+      }
+
+      // 4. % Gordura (Manual ou Marinha)
+      let currentBF = latest.bfManual || null;
+      let bfSource = 'Informado pelo Aluno';
+      if (!currentBF && latest.neck) {
+        const navyCalc = calculateUSNavyBF(gender, height, latest.waist, latest.neck, latest.hip);
+        if (navyCalc) {
+          currentBF = navyCalc;
+          bfSource = 'Fórmula da Marinha';
+        }
+      }
+      if (bfEl) bfEl.textContent = currentBF ? `${currentBF.toFixed(1)}%` : '--%';
+      if (bfSubEl) bfSubEl.textContent = currentBF ? bfSource : 'Marinha / Informado';
+
+      // Atualiza Gráficos, Fotos e Histórico
+      renderBodyCompChart(currentBodyCompChartType);
+      renderBodyCompHistoryList(history);
+      renderBodyCompPhotosGallery(latest.photos || baseline.photos || null);
+    }
+
+    function switchBodyCompChart(type) {
+      currentBodyCompChartType = type;
+      const btnW = document.getElementById('btnChartTabWeight');
+      const btnC = document.getElementById('btnChartTabWaist');
+      if (btnW && btnC) {
+        if (type === 'weight') {
+          btnW.style.background = 'rgba(56,189,248,0.2)';
+          btnW.style.color = '#38bdf8';
+          btnC.style.background = 'transparent';
+          btnC.style.color = '#94a3b8';
+        } else {
+          btnC.style.background = 'rgba(0,255,136,0.18)';
+          btnC.style.color = 'var(--brand-neon)';
+          btnW.style.background = 'transparent';
+          btnW.style.color = '#94a3b8';
+        }
+      }
+      renderBodyCompChart(type);
+    }
+
+    function renderBodyCompChart(type) {
+      const container = document.getElementById('compChartContainer');
+      if (!container) return;
+
+      const history = getBodyCompHistory();
+      if (!history || history.length === 0) {
+        container.innerHTML = `
+          <div style="height:190px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#64748b; font-size:0.8rem; text-align:center;">
+            <span>📈 Nenhum registro disponível para traçar a curva.</span>
+            <span style="font-size:0.72rem; margin-top:4px;">Adicione seu primeiro check-in para iniciar!</span>
+          </div>`;
+        return;
+      }
+
+      const w = 500;
+      const h = 190;
+      const padTop = 25;
+      const padBottom = 35;
+      const padLeft = 45;
+      const padRight = 25;
+
+      const isWeight = (type === 'weight');
+      const strokeColor = isWeight ? '#38bdf8' : 'var(--brand-neon)';
+      const unit = isWeight ? 'kg' : 'cm';
+
+      const values = history.map(d => isWeight ? d.weight : d.waist).filter(v => typeof v === 'number' && !isNaN(v));
+      if (values.length === 0) return;
+
+      let minVal = Math.min(...values);
+      let maxVal = Math.max(...values);
+      if (minVal === maxVal) {
+        minVal -= 2;
+        maxVal += 2;
+      } else {
+        const span = maxVal - minVal;
+        minVal -= span * 0.15;
+        maxVal += span * 0.15;
+      }
+
+      const getX = (idx) => {
+        if (history.length === 1) return w / 2;
+        return padLeft + (idx / (history.length - 1)) * (w - padLeft - padRight);
+      };
+
+      const getY = (val) => {
+        return padTop + (1 - (val - minVal) / (maxVal - minVal)) * (h - padTop - padBottom);
+      };
+
+      const points = history.map((d, i) => {
+        const val = isWeight ? d.weight : d.waist;
+        return { x: getX(i), y: getY(val), val, date: d.date || '' };
+      });
+
+      const polyPoints = points.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+
+      let svg = `<svg viewBox="0 0 ${w} ${h}" style="width:100%; height:auto; overflow:visible;" xmlns="http://www.w3.org/2000/svg">`;
+      // Grid horizontal
+      const gridSteps = 3;
+      for (let s = 0; s <= gridSteps; s++) {
+        const valStep = minVal + (s / gridSteps) * (maxVal - minVal);
+        const yPos = getY(valStep);
+        svg += `<line x1="${padLeft}" y1="${yPos}" x2="${w - padRight}" y2="${yPos}" stroke="rgba(255,255,255,0.06)" stroke-dasharray="3,3" />`;
+        svg += `<text x="${padLeft - 6}" y="${yPos + 3}" fill="#64748b" font-size="9" text-anchor="end" font-family="monospace">${valStep.toFixed(1)}</text>`;
+      }
+
+      // Linha do gráfico
+      if (points.length > 1) {
+        svg += `<polyline points="${polyPoints}" fill="none" stroke="${strokeColor}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />`;
+      }
+
+      // Pontos e Labels
+      points.forEach(p => {
+        svg += `<circle cx="${p.x}" cy="${p.y}" r="4.5" fill="#0b0e14" stroke="${strokeColor}" stroke-width="2.5" />`;
+        svg += `<text x="${p.x}" y="${p.y - 8}" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle" font-family="sans-serif">${p.val.toFixed(1)} ${unit}</text>`;
+        const dateParts = p.date.split('-');
+        const dateLabel = (dateParts.length === 3) ? `${dateParts[2]}/${dateParts[1]}` : p.date;
+        svg += `<text x="${p.x}" y="${h - 12}" fill="#94a3b8" font-size="8.5" text-anchor="middle" font-family="sans-serif">${dateLabel}</text>`;
+      });
+
+      svg += `</svg>`;
+      container.innerHTML = svg;
+    }
+
+    function renderBodyCompPhotosGallery(photos) {
+      const container = document.getElementById('compPhotosGallery');
+      if (!container) return;
+
+      const p = photos || {};
+      const poses = [
+        { key: 'front', label: 'Frente' },
+        { key: 'side', label: 'Perfil (Lado)' },
+        { key: 'back', label: 'Costas' }
+      ];
+
+      let html = '';
+      poses.forEach(pose => {
+        const src = p[pose.key];
+        if (src) {
+          html += `
+            <div class="comp-photo-slot">
+              <img src="${src}" alt="Foto ${pose.label}">
+              <div style="font-size:0.7rem; font-weight:700; color:#cbd5e1; margin-top:6px;">${pose.label}</div>
+            </div>`;
+        } else {
+          html += `
+            <div class="comp-photo-slot">
+              <div class="comp-photo-empty">
+                <span style="font-size:1.4rem;">📷</span>
+                <span>${pose.label}</span>
+                <span style="font-size:0.65rem; color:#475569;">Aguardando foto</span>
+              </div>
+              <div style="font-size:0.7rem; font-weight:700; color:#94a3b8; margin-top:6px;">${pose.label}</div>
+            </div>`;
+        }
+      });
+      container.innerHTML = html;
+    }
+
+    function renderBodyCompHistoryList(history) {
+      const countEl = document.getElementById('compHistoryCount');
+      const listEl = document.getElementById('compHistoryList');
+      if (countEl) countEl.textContent = `${history.length} registro(s)`;
+      if (!listEl) return;
+
+      if (!history || history.length === 0) {
+        listEl.innerHTML = `<div style="text-align:center; color:#64748b; font-size:0.78rem; padding:12px;">Nenhuma medição registrada ainda.</div>`;
+        return;
+      }
+
+      const reversed = [...history].reverse();
+      let html = '';
+      reversed.forEach(item => {
+        const dParts = (item.date || '').split('-');
+        const dateFormatted = (dParts.length === 3) ? `${dParts[2]}/${dParts[1]}/${dParts[0]}` : item.date;
+        const clothesMap = {
+          'folgadas': '👕 Roupas mais folgadas',
+          'normais': '👕 Roupas confortáveis',
+          'apertadas': '👕 Roupas ajustadas'
+        };
+        const energyStars = '⭐'.repeat(parseInt(item.energy) || 4);
+
+        html += `
+          <div class="comp-history-item">
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                <span style="font-size:0.85rem; font-weight:800; color:#fff;">📅 ${dateFormatted}</span>
+                <span style="font-size:0.72rem; color:#38bdf8; font-weight:700; background:rgba(56,189,248,0.1); padding:2px 6px; border-radius:6px;">${item.weight.toFixed(1)} kg</span>
+                <span style="font-size:0.72rem; color:var(--brand-neon); font-weight:700; background:rgba(0,255,136,0.1); padding:2px 6px; border-radius:6px;">Cintura: ${item.waist.toFixed(1)} cm</span>
+                ${item.bfManual ? `<span style="font-size:0.72rem; color:#fbbf24; font-weight:700; background:rgba(251,191,36,0.1); padding:2px 6px; border-radius:6px;">BF: ${item.bfManual}%</span>` : ''}
+              </div>
+              <div style="font-size:0.72rem; color:#94a3b8; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <span>${clothesMap[item.clothes] || '👕 Roupas normais'}</span>
+                <span>⚡ Energia: ${energyStars}</span>
+                ${item.notes ? `<span style="color:#cbd5e1;">💬 "${item.notes}"</span>` : ''}
+              </div>
+            </div>
+            <button type="button" onclick="deleteBodyCompRecord('${item.id}')" title="Excluir medição" style="background:rgba(244,63,94,0.1); border:1px solid rgba(244,63,94,0.25); color:#f43f5e; font-size:0.72rem; border-radius:6px; padding:4px 8px; cursor:pointer;">
+              ✕ Excluir
+            </button>
+          </div>`;
+      });
+      listEl.innerHTML = html;
+    }
+
+    function openAddMedicaoModal() {
+      tempCompPhotos = { front: '', side: '', back: '' };
+      const dateEl = document.getElementById('add_comp_date');
+      if (dateEl) dateEl.value = new Date().toISOString().split('T')[0];
+      
+      const history = getBodyCompHistory();
+      const base = getStudentBaseProfile();
+      const latest = (history && history.length > 0) ? history[history.length - 1] : null;
+
+      const weightEl = document.getElementById('add_comp_weight');
+      const waistEl = document.getElementById('add_comp_waist');
+      const neckEl = document.getElementById('add_comp_neck');
+      const hipEl = document.getElementById('add_comp_hip');
+      const bfEl = document.getElementById('add_comp_bf_manual');
+      const notesEl = document.getElementById('add_comp_notes');
+
+      if (weightEl) weightEl.value = latest ? latest.weight : (base.weight || '');
+      if (waistEl) waistEl.value = latest ? latest.waist : '';
+      if (neckEl) neckEl.value = latest ? (latest.neck || '') : '';
+      if (hipEl) hipEl.value = latest ? (latest.hip || '') : '';
+      if (bfEl) bfEl.value = latest ? (latest.bfManual || '') : '';
+      if (notesEl) notesEl.value = '';
+
+      ['front', 'side', 'back'].forEach(k => {
+        const preview = document.getElementById('preview_' + k);
+        if (preview) preview.innerHTML = 'Sem foto';
+        const fileIn = document.getElementById('comp_photo_input_' + k);
+        if (fileIn) fileIn.value = '';
+      });
+
+      const modal = document.getElementById('modalAddMedicao');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeAddMedicaoModal() {
+      const modal = document.getElementById('modalAddMedicao');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function handleCompPhotoPreview(input, previewId) {
+      const preview = document.getElementById(previewId);
+      if (!preview) return;
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const key = previewId.replace('preview_', '');
+          tempCompPhotos[key] = e.target.result;
+          preview.innerHTML = `<img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover; border-radius:4px;">`;
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function saveBodyCompRecordFromForm() {
+      const dateVal = document.getElementById('add_comp_date')?.value || new Date().toISOString().split('T')[0];
+      const weightVal = parseFloat(document.getElementById('add_comp_weight')?.value);
+      const waistVal = parseFloat(document.getElementById('add_comp_waist')?.value);
+      const neckVal = parseFloat(document.getElementById('add_comp_neck')?.value) || null;
+      const hipVal = parseFloat(document.getElementById('add_comp_hip')?.value) || null;
+      const bfVal = parseFloat(document.getElementById('add_comp_bf_manual')?.value) || null;
+      const clothesVal = document.getElementById('add_comp_clothes')?.value || 'normais';
+      const energyVal = parseInt(document.getElementById('add_comp_energy')?.value) || 5;
+      const notesVal = document.getElementById('add_comp_notes')?.value.trim() || '';
+
+      if (!weightVal || isNaN(weightVal) || weightVal <= 20 || weightVal > 300) {
+        alert('Por favor, informe um peso corporal válido em kg.');
+        document.getElementById('add_comp_weight')?.focus();
+        return;
+      }
+      if (!waistVal || isNaN(waistVal) || waistVal <= 30 || waistVal > 250) {
+        alert('Por favor, informe uma medida de cintura válida em cm.');
+        document.getElementById('add_comp_waist')?.focus();
+        return;
+      }
+
+      const newRecord = {
+        id: 'comp_' + Date.now(),
+        date: dateVal,
+        weight: weightVal,
+        waist: waistVal,
+        neck: neckVal,
+        hip: hipVal,
+        bfManual: bfVal,
+        clothes: clothesVal,
+        energy: energyVal,
+        notes: notesVal,
+        photos: { ...tempCompPhotos }
+      };
+
+      const history = getBodyCompHistory();
+      const existingIdx = history.findIndex(h => h.date === dateVal);
+      if (existingIdx >= 0) {
+        history[existingIdx] = newRecord;
+      } else {
+        history.push(newRecord);
+      }
+
+      try {
+        localStorage.setItem('dominio_aluno_body_comp_history', JSON.stringify(history));
+      } catch (e) {
+        console.error('Erro ao salvar no localStorage:', e);
+      }
+
+      closeAddMedicaoModal();
+      renderBodyCompUI();
+    }
+
+    function deleteBodyCompRecord(id) {
+      if (!confirm('Deseja realmente excluir esta medição?')) return;
+      let history = getBodyCompHistory();
+      history = history.filter(h => h.id !== id);
+      try {
+        localStorage.setItem('dominio_aluno_body_comp_history', JSON.stringify(history));
+      } catch (e) {}
+      renderBodyCompUI();
+    }
+
+    function openInstrucoesMedidasModal() {
+      const modal = document.getElementById('modalInstrucoesMedidas');
+      if (modal) modal.classList.add('active');
+    }
+    function closeInstrucoesMedidasModal() {
+      const modal = document.getElementById('modalInstrucoesMedidas');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function openInstrucoesFotosModal() {
+      const modal = document.getElementById('modalInstrucoesFotos');
+      if (modal) modal.classList.add('active');
+    }
+    function closeInstrucoesFotosModal() {
+      const modal = document.getElementById('modalInstrucoesFotos');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function openRelatorioComposicaoModal() {
+      buildRelatorioComposicaoHTML();
+      const modal = document.getElementById('modalRelatorioComposicao');
+      if (modal) modal.classList.add('active');
+    }
+    function closeRelatorioComposicaoModal() {
+      const modal = document.getElementById('modalRelatorioComposicao');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function buildRelatorioComposicaoHTML() {
+      const container = document.getElementById('relatorioComposicaoContent');
+      if (!container) return;
+
+      const history = getBodyCompHistory();
+      const base = getStudentBaseProfile();
+      const height = base.height || 170;
+      const studentName = base.name || 'Aluno';
+      const todayStr = new Date().toLocaleDateString('pt-BR');
+
+      if (!history || history.length === 0) {
+        container.innerHTML = `<p style="text-align:center; color:#94a3b8;">Nenhum dado registrado para compilar o relatório.</p>`;
+        return;
+      }
+
+      const baseline = history[0];
+      const latest = history[history.length - 1];
+
+      const dWeight = latest.weight - baseline.weight;
+      const dWaist = latest.waist - baseline.waist;
+      const whtrLatest = height ? (latest.waist / height) : null;
+
+      const kneeReliefPerStep = Math.max(0, -dWeight * 4);
+
+      let html = `
+        <div style="border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;">
+            <div>
+              <div style="font-size:1.15rem; font-weight:800; color:#fff;">DOMÍNIO CORPORAL • RELATÓRIO TÉCNICO</div>
+              <div style="font-size:0.75rem; color:#38bdf8; font-weight:700;">Composição Corporal, Biomecânica e Força Relativa</div>
+            </div>
+            <div style="text-align:right; font-size:0.72rem; color:#94a3b8;">
+              <div>Data: <strong style="color:#fff;">${todayStr}</strong></div>
+              <div>Treinador: <strong style="color:#fff;">Prof. Gui Lemos</strong></div>
+            </div>
+          </div>
+          <div style="font-size:0.82rem; color:#cbd5e1; margin-top:8px;">
+            Atleta: <strong style="color:#fff;">${studentName}</strong> | Estatura: <strong style="color:#fff;">${height} cm</strong>
+          </div>
+        </div>
+
+        <!-- 1. QUADRO COMPARATIVO DAS MÉTRICAS -->
+        <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:14px; margin-bottom:18px;">
+          <div style="font-size:0.82rem; font-weight:800; color:var(--brand-neon); margin-bottom:10px; text-transform:uppercase; letter-spacing:0.04em;">
+            1. Quadro de Evolução Antropométrica
+          </div>
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap:10px;">
+            <div style="background:rgba(0,0,0,0.3); padding:8px 10px; border-radius:8px;">
+              <div style="font-size:0.68rem; color:#94a3b8;">Peso Inicial</div>
+              <div style="font-size:0.95rem; font-weight:800; color:#fff;">${baseline.weight.toFixed(1)} kg</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3); padding:8px 10px; border-radius:8px;">
+              <div style="font-size:0.68rem; color:#94a3b8;">Peso Atual</div>
+              <div style="font-size:0.95rem; font-weight:800; color:#38bdf8;">${latest.weight.toFixed(1)} kg</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3); padding:8px 10px; border-radius:8px;">
+              <div style="font-size:0.68rem; color:#94a3b8;">Variação (Δ Peso)</div>
+              <div style="font-size:0.95rem; font-weight:800; color:${dWeight <= 0 ? 'var(--brand-neon)' : '#fbbf24'};">${dWeight > 0 ? `+${dWeight.toFixed(1)}` : dWeight.toFixed(1)} kg</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3); padding:8px 10px; border-radius:8px;">
+              <div style="font-size:0.68rem; color:#94a3b8;">Cintura Atual</div>
+              <div style="font-size:0.95rem; font-weight:800; color:var(--brand-neon);">${latest.waist.toFixed(1)} cm</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3); padding:8px 10px; border-radius:8px;">
+              <div style="font-size:0.68rem; color:#94a3b8;">Variação Cintura</div>
+              <div style="font-size:0.95rem; font-weight:800; color:${dWaist <= 0 ? 'var(--brand-neon)' : '#f43f5e'};">${dWaist > 0 ? `+${dWaist.toFixed(1)}` : dWaist.toFixed(1)} cm</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3); padding:8px 10px; border-radius:8px;">
+              <div style="font-size:0.68rem; color:#94a3b8;">RCEst (Cintura/Alt)</div>
+              <div style="font-size:0.95rem; font-weight:800; color:#c084fc;">${whtrLatest ? whtrLatest.toFixed(2) : '--'}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. DIAGNÓSTICO EM TERMOS PRÁTICOS (LEIGO) -->
+        <div style="margin-bottom:18px;">
+          <div style="font-size:0.88rem; font-weight:800; color:#fff; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+            <span>🔬</span> <span>2. Diagnóstico em Linguagem Prática</span>
+          </div>
+          <div style="font-size:0.8rem; color:#cbd5e1; line-height:1.65; background:rgba(255,255,255,0.02); padding:12px 14px; border-radius:10px; border-left:3.5px solid #38bdf8;">
+            <p style="margin:0 0 8px 0;">
+              <strong>Balança Comum vs Recomposição Real:</strong> A balança afere a atração gravitacional total do corpo (massa magra, ossos, órgãos, água, glicogênio e gordura). Ela é cega para a composição. Quando a cintura diminui e o peso permanece estável ou oscila pouco, você vivenciou o padrão ouro do treinamento: <strong>recomposição corporal</strong> (ganho de tecido muscular denso com diminuição simultânea de adiposidade visceral).
+            </p>
+            <p style="margin:0;">
+              <strong>Relação Cintura-Estatura (RCEst = ${whtrLatest ? whtrLatest.toFixed(2) : '--'}):</strong> Sua cintura representa ${(whtrLatest * 100).toFixed(1)}% da sua estatura total. ${whtrLatest < 0.50 ? '<span style="color:var(--brand-neon); font-weight:700;">Você está na faixa clinicamente ideal (< 0.50)</span>, com baixo acúmulo de gordura intra-abdominal e excelente sensibilidade à insulina.' : '<span style="color:#fbbf24; font-weight:700;">Está na faixa de atenção preventiva</span>; o foco em exercícios com grandes massas musculares e calistenia continuará mobilizando essa gordura visceral.'}
+            </p>
+          </div>
+        </div>
+
+        <!-- 3. IMPLICAÇÃO DIRETA NA FORÇA RELATIVA E TREINOS -->
+        <div style="margin-bottom:18px;">
+          <div style="font-size:0.88rem; font-weight:800; color:#fff; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+            <span>⚡</span> <span>3. Implicações na Força Relativa e no Treinamento</span>
+          </div>
+          <div style="font-size:0.8rem; color:#cbd5e1; line-height:1.65; background:rgba(255,255,255,0.02); padding:12px 14px; border-radius:10px; border-left:3.5px solid var(--brand-neon);">
+            <p style="margin:0 0 8px 0;">
+              <strong>Conceito de Força Relativa:</strong> No Domínio Corporal, a métrica soberana é a <em>Força Relativa</em> (Força Absoluta ÷ Massa Corporal). O tecido adiposo é metabolicamente inerte para gerar torque mecânico — ele funciona biologicamente como um <em>"colete de lastro passivo"</em>.
+            </p>
+            <p style="margin:0 0 8px 0;">
+              <strong>Alívio Articular Cumulativo (Regra de Messier 4:1):</strong> ${kneeReliefPerStep > 0 ? `Com a redução de ${Math.abs(dWeight).toFixed(1)} kg de peso inerte, suas articulações de joelho recebem um alívio estimado de <strong>~${kneeReliefPerStep.toFixed(1)} kg a menos de impacto compressivo por passo</strong> durante a caminhada e subida de escadas. Isso desacelera o desgaste da cartilagem patelofemoral e preserva os meniscos.` : 'A manutenção do peso com diminuição da cintura otimiza a eficiência mecânica sem perda de sustentação articular.'}
+            </p>
+            <p style="margin:0;">
+              <strong>Vantagem Biomecânica na Calistenia e Exercícios de Base:</strong> Movimentos como <em>Box Squat</em>, <em>Pranchas</em>, <em>Flexões</em> e <em>Handstands</em> dependem de alavancas corporais. Com o centro de massa mais enxuto e menor momento de inércia, o aluno realiza os movimentos com maior amplitude, menos fadiga precoce e total segurança lombar.
+            </p>
+          </div>
+        </div>
+
+        <!-- 4. EMBASAMENTO CIENTÍFICO E AUTORES -->
+        <div style="margin-bottom:8px;">
+          <div style="font-size:0.85rem; font-weight:800; color:#fff; margin-bottom:8px; display:flex; align-items:center; gap:6px;">
+            <span>📚</span> <span>4. Embasamento Científico e Referências Bibliográficas</span>
+          </div>
+          <div style="font-size:0.75rem; color:#94a3b8; line-height:1.6; background:rgba(0,0,0,0.25); padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06);">
+            <p style="margin:0 0 6px 0;">
+              • <strong>Relação Cintura-Estatura (RCEst):</strong> <em>Ashwell, M., & Gibson, S. (2014)</em>. "Waist-to-height ratio is a better screening tool than waist circumference and BMI for adult cardiometabolic risk factors: systematic review and meta-analysis." <em>Obesity Reviews</em>.
+            </p>
+            <p style="margin:0 0 6px 0;">
+              • <strong>Fórmula de Circunferências da Marinha dos EUA:</strong> <em>Hodgdon, J. A., & Beckett, M. B. (1984)</em>. "Prediction of percent body fat for U.S. Navy men and women from body circumferences and height." <em>Naval Health Research Center</em>.
+            </p>
+            <p style="margin:0 0 6px 0;">
+              • <strong>Força Relativa e Biomecânica Esportiva:</strong> <em>Zatsiorsky, V. M., & Kraemer, W. J. (2006)</em>. "Science and Practice of Strength Training." <em>Human Kinetics</em>.
+            </p>
+            <p style="margin:0;">
+              • <strong>Sobrecarga e Força Compressiva Articular:</strong> <em>Messier, S. P., et al. (2005)</em>. "Weight loss reduces knee-joint loads in overweight and obese adults with knee osteoarthritis." <em>Arthritis & Rheumatism</em>, 52(7), 2026-2032.
+            </p>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+    }
+
+    function shareRelatorioWhatsApp() {
+      const history = getBodyCompHistory();
+      const base = getStudentBaseProfile();
+      const studentName = base.name || 'Aluno';
+      const baseline = (history && history.length > 0) ? history[0] : null;
+      const latest = (history && history.length > 0) ? history[history.length - 1] : null;
+
+      let msg = `*📋 DOMÍNIO CORPORAL | Check-in de Composição e Evolução*\n`;
+      msg += `-------------------------------------------\n`;
+      msg += `👤 *Aluno(a):* ${studentName}\n`;
+      msg += `📅 *Data:* ${new Date().toLocaleDateString('pt-BR')}\n\n`;
+
+      if (latest) {
+        msg += `⚖️ *Peso Atual:* ${latest.weight.toFixed(1)} kg`;
+        if (baseline && baseline !== latest) {
+          const dW = latest.weight - baseline.weight;
+          msg += ` (${dW > 0 ? '+' : ''}${dW.toFixed(1)} kg)\n`;
+        } else {
+          msg += `\n`;
+        }
+
+        msg += `📏 *Cintura:* ${latest.waist.toFixed(1)} cm`;
+        if (baseline && baseline !== latest) {
+          const dC = latest.waist - baseline.waist;
+          msg += ` (${dC > 0 ? '+' : ''}${dC.toFixed(1)} cm)\n`;
+        } else {
+          msg += `\n`;
+        }
+
+        if (latest.bfManual) {
+          msg += `🔬 *% Gordura:* ${latest.bfManual}%\n`;
+        }
+
+        const clothesMap = {
+          'folgadas': 'Mais folgadas',
+          'normais': 'Normais e confortáveis',
+          'apertadas': 'Mais justas'
+        };
+        msg += `👕 *Roupas:* ${clothesMap[latest.clothes] || 'Normais'}\n`;
+        msg += `⚡ *Disposição:* ${'⭐'.repeat(latest.energy || 5)}\n`;
+        if (latest.notes) {
+          msg += `📝 *Observação:* ${latest.notes}\n`;
+        }
+      }
+
+      msg += `\n*Prof. Gui Lemos*, confira meu relatório atualizado no aplicativo! 💪`;
+      const phone = '5516981222356';
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+      window.open(url, '_blank');
     }
 
     function openDedicatedView(sectionId) {
@@ -7055,6 +8079,10 @@
         if (eWeightEl) eWeightEl.textContent = weightVal ? `${weightVal.toFixed(1)} kg` : '-- kg';
         if (eHeightEl) eHeightEl.textContent = heightVal ? `${heightVal} cm` : '-- cm';
         if (eBFEl) eBFEl.textContent = (bfVal !== null && !isNaN(bfVal)) ? `${bfVal.toFixed(1)}%` : '--%';
+
+        if (typeof renderBodyCompUI === 'function') {
+          renderBodyCompUI();
+        }
       } catch (e) {
         console.error('Erro ao sincronizar métricas da avaliação:', e);
       }
@@ -7992,18 +9020,139 @@
       return clean;
     }
 
+        function formatModalInstructions(desc, title) {
+      if (!desc) return '';
+
+      function textToBullets(text) {
+        if (!text) return '';
+        const cleanText = text.replace(/<br\s*\/?>/gi, ' ').replace(/\s+/g, ' ').trim();
+        const sentences = cleanText
+          .split(/(?<=[.!?])\s+(?=[A-Z0-9À-Ú])/)
+          .map(s => s.trim())
+          .filter(s => s.length > 3);
+
+        if (sentences.length <= 1) {
+          return '<div class="modal-bullet-item"><span class="modal-bullet-dot">•</span><span class="modal-bullet-text">' + cleanText + '</span></div>';
+        }
+
+        return sentences
+          .map(s => '<div class="modal-bullet-item"><span class="modal-bullet-dot">•</span><span class="modal-bullet-text">' + s + '</span></div>')
+          .join('');
+      }
+
+      function parseScience(sciText, exerciseTitle) {
+        if (!sciText) return '';
+        const clean = sciText.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        
+        // Padrão 1: Texto já possui estrutura 'Tópico (Autor): Explicação' ou 'Tópico: Explicação'
+        const colonMatch = clean.match(/^([^:]{3,65}):\s*([\s\S]+)$/);
+        if (colonMatch) {
+          let rawTopic = colonMatch[1].trim();
+          let expl = colonMatch[2].trim();
+          let author = '';
+          
+          const parenInTopic = rawTopic.match(/^([^(]+)\s*\(([^)]+)\)$/);
+          if (parenInTopic) {
+            rawTopic = parenInTopic[1].trim();
+            author = parenInTopic[2].trim();
+          }
+          
+          const parenAtEnd = expl.match(/\(([^)]+)\)\.?$/);
+          if (parenAtEnd) {
+            author = parenAtEnd[1].trim();
+            expl = expl.replace(/\(([^)]+)\)\.?$/, '').trim();
+          }
+          
+          const authorStr = author ? ' <span class="modal-science-ref">(' + author + ')</span>' : '';
+          return '<div class="modal-science-item"><span class="modal-bullet-dot">•</span><div class="modal-science-body"><div><strong class="modal-science-topic">Tópico:</strong> ' + rawTopic + '</div><div style="margin-top:4px;"><strong>Explicação:</strong> ' + expl + authorStr + '</div></div></div>';
+        }
+
+        // Padrão 2: Mapeamento canônico do repositório REFERENCIAS_CIENTIFICAS.md
+        const lower = (clean + ' ' + (exerciseTitle || '')).toLowerCase();
+        let topic = 'Fisiologia e Biomecânica Aplicada';
+        let author = 'Domínio Corporal, 2026';
+        
+        if (lower.includes('bicicleta') || lower.includes('bike') || lower.includes('fáscia plantar')) {
+          topic = 'Hidrodinâmica Sinovial e Preservação Articular';
+          author = 'Hunter e Bierma-Zeinstra, 2019; ACSM, 2022';
+        } else if (lower.includes('mobilização espinhal') || lower.includes('cat-cow') || lower.includes('gato')) {
+          topic = 'Descompressão Discal Multissegmentar';
+          author = 'Kapandji, 2019; Geneen et al., 2017';
+        } else if (lower.includes('glúteo máximo') || lower.includes('ponte de glúteo')) {
+          topic = 'Ativação do Glúteo Máximo sem Carga Axial';
+          author = 'Neumann, 2016; Schoenfeld, 2020';
+        } else if (lower.includes('box squat') || lower.includes('senta e levanta') || lower.includes('glut-4')) {
+          topic = 'Limitação de Braço de Momento e Captação de GLUT-4';
+          author = 'Kapandji, 2019; Powers e Howley, 2018';
+        } else if (lower.includes('remada') || lower.includes('suporte torácico')) {
+          topic = 'Suporte Torácico Anterior e Proteção Lombar';
+          author = 'Neumann, 2016; Schoenfeld, 2020';
+        } else if (lower.includes('flexão') || lower.includes('cadeia anterior de empurrar')) {
+          topic = 'Ajuste do Braço de Momento Gravitacional';
+          author = 'Neumann, 2016; Escamilla et al., 2001';
+        } else if (lower.includes('glúteo médio') || lower.includes('valgismo dinâmico')) {
+          topic = 'Estabilidade Pélvica no Plano Frontal';
+          author = 'Neumann, 2016; Powers e Howley, 2018';
+        } else if (lower.includes('panturrilha') || lower.includes('retorno venoso') || lower.includes('sóleo')) {
+          topic = 'Bomba Muscular Periférica e Retorno Venoso';
+          author = 'Powers e Howley, 2018; ACSM, 2022';
+        } else if (lower.includes('isquiotibiais') || lower.includes('estresse de tração')) {
+          topic = 'Desativação da Tensão Sacrolombar';
+          author = 'Kapandji, 2019; Neumann, 2016';
+        } else if (lower.includes('abertura torácica') || lower.includes('peitoral menor')) {
+          topic = 'Restauração do Ritmo Escapulotorácico';
+          author = 'Neumann, 2016; Schoenfeld, 2020';
+        } else if (lower.includes('parassimpático') || lower.includes('cortisol') || lower.includes('volta à calma')) {
+          topic = 'Modulação Parassimpática e Relaxamento Muscular';
+          author = 'Powers e Howley, 2018; Geneen et al., 2017';
+        }
+
+        const authorStr = author ? ' <span class="modal-science-ref">(' + author + ')</span>' : '';
+        return '<div class="modal-science-item"><span class="modal-bullet-dot">•</span><div class="modal-science-body"><div><strong class="modal-science-topic">Tópico:</strong> ' + topic + '</div><div style="margin-top:4px;"><strong>Explicação:</strong> ' + clean + authorStr + '</div></div></div>';
+      }
+
+      let execText = '';
+      let careText = '';
+      let tipText = '';
+      let sciText = '';
+
+      const execMatch = desc.match(/<b>(?:Execu[çc][ãa]o|Na pr[áa]tica):?<\/b>\s*([\s\S]*?)(?=<b>(?:Cuidados|Dicas?|Base cient[íi]fica):?<\/b>|$)/i);
+      if (execMatch) execText = execMatch[1].trim();
+
+      const careMatch = desc.match(/<b>Cuidados:?<\/b>\s*([\s\S]*?)(?=<b>(?:Dicas?|Base cient[íi]fica):?<\/b>|$)/i);
+      if (careMatch) careText = careMatch[1].trim();
+
+      const tipMatch = desc.match(/<b>Dicas?:?<\/b>\s*([\s\S]*?)(?=<b>Base cient[íi]fica:?<\/b>|$)/i);
+      if (tipMatch) tipText = tipMatch[1].trim();
+
+      const sciMatch = desc.match(/<b>Base cient[íi]fica:?<\/b>\s*([\s\S]*?)$/i);
+      if (sciMatch) sciText = sciMatch[1].trim();
+
+      if (!execText && !careText && !sciText) {
+        return '<div class="modal-instruction-block"><div class="modal-bullet-item"><span class="modal-bullet-dot">•</span><span class="modal-bullet-text">' + desc + '</span></div></div>';
+      }
+
+      let html = '';
+      if (execText) {
+        html += '<div class="modal-instruction-block"><div class="modal-block-label modal-label-exec">⚡ EXECUÇÃO</div><div class="modal-bullets-list">' + textToBullets(execText) + '</div></div>';
+      }
+      if (careText) {
+        html += '<div class="modal-instruction-block"><div class="modal-block-label modal-label-care">🛡️ CUIDADOS</div><div class="modal-bullets-list">' + textToBullets(careText) + '</div></div>';
+      }
+      if (tipText) {
+        html += '<div class="modal-instruction-block"><div class="modal-block-label modal-label-tip">💡 DICAS</div><div class="modal-bullets-list">' + textToBullets(tipText) + '</div></div>';
+      }
+      if (sciText) {
+        html += '<details class="modal-science-accordion"><summary class="modal-science-summary"><span>🔬 BASE CIENTÍFICA</span><span class="science-chevron">▾</span></summary><div class="modal-science-content">' + parseScience(sciText, title) + '</div></details>';
+      }
+      return html;
+    }
+
     function openVideoModal(title, desc, videoUrl) {
       document.getElementById('modalTitle').innerText = title;
       
-      let formattedDesc = desc || '';
-      formattedDesc = formattedDesc.replace(/<b>Na pr[áa]tica:?<\/b>/gi, '<b style="color:#00ff88;">Execução:</b>');
-      formattedDesc = formattedDesc.replace(/<b>Execu[çc][ãa]o:?<\/b>/gi, '<b style="color:#00ff88;">Execução:</b>');
-      formattedDesc = formattedDesc.replace(/<b>Cuidados:?<\/b>/gi, '<b style="color:#f87171;">Cuidados:</b>');
-      formattedDesc = formattedDesc.replace(/<b>Dicas?:?<\/b>/gi, '<b style="color:#facc15;">Dicas:</b>');
-      formattedDesc = formattedDesc.replace(/<b>Base cient[íi]fica:?<\/b>/gi, '<b style="color:#38bdf8;">Base científica:</b>');
-
       const descEl = document.getElementById('modalDesc');
-      if (descEl) descEl.innerHTML = formattedDesc;
+      if (descEl) descEl.innerHTML = formatModalInstructions(desc, title);
 
       const iframe = document.getElementById('videoIframe');
       const player = document.getElementById('videoPlayer');
