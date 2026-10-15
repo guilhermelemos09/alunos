@@ -2580,12 +2580,19 @@
     .day-status-pill {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 5px;
       padding: 6px 10px;
       border-radius: 12px;
       font-size: 0.75rem;
       font-weight: 800;
-      transition: all 0.2s ease;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .day-status-pill:active {
+      transform: scale(0.92);
     }
     .day-status-pill.status-pending {
       background: rgba(255, 255, 255, 0.05);
@@ -2597,6 +2604,23 @@
       line-height: 1;
       font-weight: 700;
       color: #64748b;
+    }
+    .day-status-pill.status-counter {
+      background: rgba(56, 189, 248, 0.10);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.04em;
+    }
+    .day-status-pill.status-counter:hover {
+      background: rgba(56, 189, 248, 0.20);
+      border-color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+    }
+    .day-status-pill.status-counter.counter-zero {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
     }
     .day-status-pill.status-done {
       background: rgba(0, 255, 136, 0.12);
@@ -4813,7 +4837,7 @@
       <!-- Lista Vertical de Dias de Treino -->
       <div class="training-days-list" id="trainingDaysList">
         <!-- TREINO A -->
-        <div class="training-day-card" id="dayCard-treinoa" onclick="openDayWorkout('treinoa')">
+        <div class="training-day-card" id="dayCard-treinoa" data-workout-type="treino" data-target="6" onclick="openDayWorkout('treinoa')">
           <div class="day-card-left">
             <div class="day-card-name-row">
               <span class="day-name">SEGUNDA | TREINO A</span>
@@ -4822,14 +4846,14 @@
             <div class="day-meta-pill">📍 A Definir • ⏱️ ~50 min</div>
           </div>
           <div class="day-card-right">
-            <div class="day-status-pill status-pending" id="statusPill-treinoa">
+            <div class="day-status-pill status-pending" id="statusPill-treinoa" onclick="event.stopPropagation(); handleWorkoutStatusClick('treinoa')">
               <span class="status-icon">›</span>
             </div>
           </div>
         </div>
 
         <!-- TREINO B -->
-        <div class="training-day-card" id="dayCard-treinob" onclick="openDayWorkout('treinob')">
+        <div class="training-day-card" id="dayCard-treinob" data-workout-type="treino" data-target="6" onclick="openDayWorkout('treinob')">
           <div class="day-card-left">
             <div class="day-card-name-row">
               <span class="day-name">QUARTA | TREINO B</span>
@@ -4838,14 +4862,14 @@
             <div class="day-meta-pill">📍 A Definir • ⏱️ ~50 min</div>
           </div>
           <div class="day-card-right">
-            <div class="day-status-pill status-pending" id="statusPill-treinob">
+            <div class="day-status-pill status-pending" id="statusPill-treinob" onclick="event.stopPropagation(); handleWorkoutStatusClick('treinob')">
               <span class="status-icon">›</span>
             </div>
           </div>
         </div>
 
         <!-- TREINO C -->
-        <div class="training-day-card" id="dayCard-treinoc" onclick="openDayWorkout('treinoc')">
+        <div class="training-day-card" id="dayCard-treinoc" data-workout-type="treino" data-target="6" onclick="openDayWorkout('treinoc')">
           <div class="day-card-left">
             <div class="day-card-name-row">
               <span class="day-name">SEXTA | TREINO C</span>
@@ -4854,7 +4878,7 @@
             <div class="day-meta-pill">📍 A Definir • ⏱️ ~50 min</div>
           </div>
           <div class="day-card-right">
-            <div class="day-status-pill status-pending" id="statusPill-treinoc">
+            <div class="day-status-pill status-pending" id="statusPill-treinoc" onclick="event.stopPropagation(); handleWorkoutStatusClick('treinoc')">
               <span class="status-icon">›</span>
             </div>
           </div>
@@ -6905,7 +6929,7 @@
     });
 
     // Limpeza forçada de caches legados para garantir que novidades apareçam imediatamente
-    const APP_BUILD_VERSION = '143';
+    const APP_BUILD_VERSION = '144';
     if (localStorage.getItem('dominio_aluno_build_ver') !== APP_BUILD_VERSION) {
       localStorage.setItem('dominio_aluno_build_ver', APP_BUILD_VERSION);
       if ('caches' in window) {
@@ -6973,24 +6997,63 @@
       } catch (e) {}
     }
 
-    function isWorkoutCompleted(dayId) {
+    function getWorkoutConfig(workoutId) {
+      const card = document.getElementById('dayCard-' + workoutId);
+      const isDayName = ['segunda','terca','quarta','quinta','sexta','sabado','domingo'].includes(workoutId);
+      const type = card?.getAttribute('data-workout-type') || (isDayName ? 'dia' : 'treino');
+      const targetAttr = card?.getAttribute('data-target');
+      const target = targetAttr ? parseInt(targetAttr, 10) : (type === 'dia' ? 1 : 1);
+      return { type, target };
+    }
+
+    function getWorkoutProgress(workoutId) {
+      const { type, target } = getWorkoutConfig(workoutId);
       const completed = getCompletedWorkouts();
-      return !!completed[dayId];
+      const rawVal = completed[workoutId];
+      let count = 0;
+      if (typeof rawVal === 'number') {
+        count = rawVal;
+      } else if (typeof rawVal === 'object' && rawVal !== null) {
+        count = rawVal.count || 0;
+      } else if (rawVal === true) {
+        count = target;
+      }
+      const isDone = count >= target;
+      return { type, target, count, isDone };
+    }
+
+    function isWorkoutCompleted(dayId) {
+      const { isDone } = getWorkoutProgress(dayId);
+      return isDone;
+    }
+
+    function handleWorkoutStatusClick(workoutId) {
+      const { type, target, count, isDone } = getWorkoutProgress(workoutId);
+      const completed = getCompletedWorkouts();
+
+      if (type === 'dia' || target <= 1) {
+        const newDone = !isDone;
+        completed[workoutId] = newDone;
+        saveCompletedWorkouts(completed);
+        if ('vibrate' in navigator) navigator.vibrate(newDone ? [40, 40, 80] : 35);
+      } else {
+        let newCount = count + 1;
+        if (newCount > target) {
+          newCount = 0;
+          if ('vibrate' in navigator) navigator.vibrate(35);
+        } else {
+          if ('vibrate' in navigator) navigator.vibrate(newCount === target ? [50, 50, 100] : 45);
+        }
+        completed[workoutId] = newCount;
+        saveCompletedWorkouts(completed);
+      }
+
+      updateWorkoutCompletionUI(workoutId);
+      renderTrainingHubDays();
     }
 
     function toggleWorkoutComplete(dayId) {
-      const completed = getCompletedWorkouts();
-      completed[dayId] = !completed[dayId];
-      try {
-        localStorage.setItem('dominio_aluno_completed_workouts', JSON.stringify(completed));
-      } catch (e) {}
-
-      if ('vibrate' in navigator) {
-        navigator.vibrate(completed[dayId] ? [40, 40, 80] : 35);
-      }
-
-      updateWorkoutCompletionUI(dayId);
-      renderTrainingHubDays();
+      handleWorkoutStatusClick(dayId);
     }
 
     function updateWorkoutCompletionUI(dayId) {
@@ -7012,19 +7075,32 @@
     function renderTrainingHubDays() {
       const workouts = ['treinoa', 'treinob', 'treinoc'];
       workouts.forEach(w => {
-        const isDone = isWorkoutCompleted(w);
         const pill = document.getElementById('statusPill-' + w);
         const card = document.getElementById('dayCard-' + w);
-        if (pill) {
-          if (isDone) {
-            pill.className = 'day-status-pill status-done';
-            pill.innerHTML = `<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> <span>Concluído</span>`;
-            if (card) card.classList.add('is-done');
-          } else {
-            pill.className = 'day-status-pill status-pending';
-            pill.innerHTML = `<span class="status-icon">›</span>`;
-            if (card) card.classList.remove('is-done');
-          }
+        if (!pill) return;
+
+        pill.onclick = (e) => {
+          e.stopPropagation();
+          handleWorkoutStatusClick(w);
+        };
+        pill.style.cursor = 'pointer';
+
+        const { type, target, count, isDone } = getWorkoutProgress(w);
+        if (isDone) {
+          pill.className = 'day-status-pill status-done';
+          pill.title = 'Concluído! Toque para desmarcar ou reiniciar ciclo';
+          pill.innerHTML = `<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> <span>Concluído</span>`;
+          if (card) card.classList.add('is-done');
+        } else if (type === 'treino' && target > 1) {
+          pill.className = 'day-status-pill status-counter' + (count === 0 ? ' counter-zero' : '');
+          pill.title = `Progresso: ${count}/${target} sessões. Toque para registrar +1`;
+          pill.innerHTML = `<span style="font-weight:900; letter-spacing:0.04em;">${count}/${target}</span>`;
+          if (card) card.classList.remove('is-done');
+        } else {
+          pill.className = 'day-status-pill status-pending';
+          pill.title = 'Pendente. Toque para marcar concluído';
+          pill.innerHTML = `<span class="status-icon">›</span>`;
+          if (card) card.classList.remove('is-done');
         }
       });
     }
@@ -8978,8 +9054,13 @@
     }
 
     function completeWorkoutSession(dayId) {
+      const { type, target, count } = getWorkoutProgress(dayId);
       const completed = getCompletedWorkouts();
-      completed[dayId] = true;
+      if (type === 'dia' || target <= 1) {
+        completed[dayId] = true;
+      } else {
+        completed[dayId] = Math.min(target, count + 1);
+      }
       saveCompletedWorkouts(completed);
 
       const activeTab = document.getElementById('tab-' + dayId);
@@ -9955,7 +10036,7 @@
     // Registra Service Worker (PWA Offline)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=143').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=144').then((reg) => {
           reg.update();
         }).catch(err => console.log('SW falhou:', err));
       });
