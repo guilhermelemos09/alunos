@@ -248,6 +248,29 @@ window.DominioDB = (function() {
     return dispatchCloud('salvarAvaliacao', payload);
   }
 
+  async function carregarAvaliacao(alunoSlug, tipo) {
+    const cfg = getConfig();
+    const slug = alunoSlug || cfg.athleteSlug;
+    const tipoVal = tipo || 'inicial';
+    if (!cfg.supabaseUrl || !cfg.supabaseAnonKey) return null;
+    try {
+      const cleanUrl = cfg.supabaseUrl.replace(/\/+$/, '');
+      const url = `${cleanUrl}/rest/v1/avaliacoes_anamnese?aluno_slug=eq.${encodeURIComponent(slug)}&tipo=eq.${encodeURIComponent(tipoVal)}&order=created_at.desc&limit=1`;
+      const resp = await fetch(url, {
+        headers: {
+          'apikey': cfg.supabaseAnonKey,
+          'Authorization': `Bearer ${cfg.supabaseAnonKey}`
+        }
+      });
+      if (!resp.ok) return null;
+      const list = await resp.json();
+      return (list && list.length > 0) ? list[0] : null;
+    } catch (e) {
+      console.warn('[DominioDB] Erro ao carregar avaliação do Supabase:', e);
+      return null;
+    }
+  }
+
   async function testConnection(testCfg) {
     const cfg = testCfg || getConfig();
     const results = { supabase: null, sheets: null };
@@ -311,26 +334,20 @@ window.DominioDB = (function() {
 
   function updateCloudStatusUI() {
     const status = getStatus();
-    const dot = document.getElementById('cloudStatusDot');
-    const label = document.getElementById('cloudStatusLabel');
-    const badge = document.getElementById('btnCloudStatusIndicator');
-    if (!dot || !label) return;
+    const btnRefresh = document.getElementById('btnAppRefresh');
+    if (!btnRefresh) return;
 
-    if (!status.isConfigured) {
-      dot.style.background = '#94a3b8'; // Cinza
-      dot.style.boxShadow = 'none';
-      label.textContent = 'Local';
-      if (badge) badge.title = 'Modo Local (Clique para configurar banco de dados na nuvem)';
+    btnRefresh.classList.remove('cloud-connected', 'cloud-syncing', 'cloud-offline');
+
+    if (!status.isConfigured || !navigator.onLine) {
+      btnRefresh.classList.add('cloud-offline');
+      btnRefresh.title = 'Modo Local (Offline) • Toque para sincronizar e atualizar';
     } else if (status.queueCount > 0) {
-      dot.style.background = '#fbbf24'; // Amarelo
-      dot.style.boxShadow = '0 0 8px rgba(251, 191, 36, 0.6)';
-      label.textContent = `${status.queueCount} pendente${status.queueCount > 1 ? 's' : ''}`;
-      if (badge) badge.title = `${status.queueCount} registros aguardando envio para ${status.providerLabel}`;
+      btnRefresh.classList.add('cloud-syncing');
+      btnRefresh.title = `${status.queueCount} registro${status.queueCount > 1 ? 's' : ''} pendente${status.queueCount > 1 ? 's' : ''} • Sincronizando com a Nuvem...`;
     } else {
-      dot.style.background = '#00ff88'; // Verde Neon
-      dot.style.boxShadow = '0 0 8px rgba(0, 255, 136, 0.6)';
-      label.textContent = status.providerLabel.split(' ')[0];
-      if (badge) badge.title = `Conectado a ${status.providerLabel}`;
+      btnRefresh.classList.add('cloud-connected');
+      btnRefresh.title = 'Conectado à Nuvem (Supabase) • Toque para sincronizar e atualizar';
     }
   }
 
@@ -350,6 +367,7 @@ window.DominioDB = (function() {
     salvarMedicao: salvarMedicao,
     salvarNotaExercicio: salvarNotaExercicio,
     salvarAvaliacao: salvarAvaliacao,
+    carregarAvaliacao: carregarAvaliacao,
     flushSyncQueue: flushSyncQueue,
     testConnection: testConnection,
     getStatus: getStatus,
