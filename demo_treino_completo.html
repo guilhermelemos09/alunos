@@ -5283,6 +5283,31 @@
       transform: scale(1.1);
     }
 
+
+    .btn-send-video-drawer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.10);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .btn-send-video-drawer:hover, .btn-send-video-drawer:active {
+      background: rgba(56, 189, 248, 0.22);
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+
 </style>
 </head>
 <body>
@@ -5581,21 +5606,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Warm Up Dinâmico • Terça')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-ter-warm" onclick="toggleCommentBox('ex-ter-warm')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-ter-warm" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-ter-warm" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre a Ativação:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-ter-warm"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-ter-warm" placeholder="Ex: Joelho bem aquecido..." oninput="saveExerciseNote('ex-ter-warm', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-ter-warm" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-ter-warm', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Warm Up Dinâmico • Terça')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -5634,153 +5662,24 @@
           </button>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Força LPO E3MOM • Terça')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
-          <button type="button" class="btn-comment" id="btn-comment-ex-ter-lpo" onclick="toggleCommentBox('ex-ter-lpo')">
-            <span>💬 Observações?</span>
-            <span class="comment-dot" id="dot-ex-ter-lpo" style="display:none;"></span>
-          </button>
-        </div>
-        <div id="comment-box-ex-ter-lpo" class="comment-drawer" style="display: none;">
-          <div class="comment-header">
-            <span>👤 Suas observações sobre as cargas de Força:</span>
-            <span class="save-indicator" id="save-status-ex-ter-lpo"></span>
-          </div>
-          <textarea class="comment-textarea" id="note-ex-ter-lpo" placeholder="Ex: Carga máxima squat 80kg..." oninput="saveExerciseNote('ex-ter-lpo', this.value)">Carga máxima squat 80kg, DB lunge com halteres de 15kg e remadas com barra completas.</textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- ==================== SEÇÃO 3: CONDICIONAMENTO ==================== -->
-    <div class="section-card sec-cardio">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="section-title">CONDICIONAMENTO</div>
-        </div>
-        <div class="session-meta-chips">
-          <span class="meta-chip meta-chip-time">⏱️ 15 min (5x AMRAP 2 min:</span>
-        </div>
-      </div>
-
-      <div class="exercise-card">
-        <div class="ex-title">
-          <span>WOD 5X AMRAP 2' • 1' REST</span>
-          <button type="button" class="btn-video" onclick="openVideoModal('WOD 5X AMRAP 2 MIN • 1 MIN REST', '<b>Execução:</b> 5 passagens de AMRAP 2 minutos com 1 minuto de descanso entre cada passagem:<br>1. 35 Double Unders (ou 60 Single Unders)<br>2. 9 Toes To Bar (compressão pélvica e ritmo gímnico)<br>3. 12 Box Jump Overs (com descida no passo - step-down)<br>4. 15 Wallballs com 20 lb (9 kg).<br><br><b>Cuidados:</b> 1. Nos Box Jump Overs, o step-down é obrigatório para resguardar o menisco lateral esquerdo contra desacelerações de alta força de reação.<br>2. No Wallball de 9 kg, manter base sólida com joelhos alinhados com o segundo metatarso.<br><br><b>Base científica:</b> CAPACIDADE GLICOLÍTICA INTERMITENTE: A relação 2:1 (2 min esforço : 1 min pausa) exige alto tamponamento de lactato e tolerância à fadiga central, preservando a técnica sob estresse cardiovascular (Buchheit e Laursen, 2013).', '')">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> <span>Instruções</span>
-          </button>
-        </div>
-        <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">5 ROUNDS • WALLBALL 9 KG • ⏱️ REST: 1 MIN ENTRE ROUNDS</div>
-          <div class="sets-container">
-            <div class="set-pill" onclick="toggleSet(this)">Round 1</div>
-            <div class="set-pill" onclick="toggleSet(this)">Round 2</div>
-            <div class="set-pill" onclick="toggleSet(this)">Round 3</div>
-            <div class="set-pill" onclick="toggleSet(this)">Round 4</div>
-            <div class="set-pill" onclick="toggleSet(this)">Round 5</div>
-          </div>
-        </div>
-        <div class="workout-timer-cta-wrap">
-          <button type="button" class="btn-workout-timer-cta" onclick="openWorkoutTimerWithCard('amrap', 2, 'WOD 5X AMRAP 2 MIN • 1 MIN REST', '5x AMRAP 2 min com 1 min descanso:\n• 35 Double Unders\n• 9 Toes To Bar\n• 12 Box Jump Overs (step-down)\n• 15 Wallballs (20lb / 9kg)', this)">
-            <svg viewBox="0 0 24 24"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
-            <span>Abrir Cronômetro AMRAP (2 min) ➔</span>
-          </button>
-        </div>
-        <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('WOD 5x AMRAP • Terça')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
-          <button type="button" class="btn-comment" id="btn-comment-ex-ter-wod" onclick="toggleCommentBox('ex-ter-wod')">
-            <span>💬 Observações?</span>
-            <span class="comment-dot" id="dot-ex-ter-wod" style="display:none;"></span>
-          </button>
-        </div>
-        <div id="comment-box-ex-ter-wod" class="comment-drawer" style="display: none;">
-          <div class="comment-header">
-            <span>👤 Suas observações sobre o WOD:</span>
-            <span class="save-indicator" id="save-status-ex-ter-wod"></span>
-          </div>
-          <textarea class="comment-textarea" id="note-ex-ter-wod" placeholder="Ex: Wallball 9kg..." oninput="saveExerciseNote('ex-ter-wod', this.value)">WOD fechado com bola de 9kg (20lb), saltos com step-down preservando joelho e ritmo forte nos 5 rounds.</textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card Clean de Finalização de Treino (Terça) -->
-    <div class="workout-finish-clean-card" id="workoutFinishCard-terca">
-      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-terca" onclick="openBiometriaSessaoModal('terca')">
-        <span>FINALIZAR</span> <span class="finish-flag-icon">🏁</span> <span>SESSÃO</span>
-      </button>
-      <div id="completeFeedback-terca" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
-        ✅ Sessão finalizada e registrada com sucesso!
-      </div>
-    </div>
-    </div>
-
-    <!-- Ajuda Contextual do Treino -->
-    <div class="contextual-help-wrap" style="margin-top: 24px; margin-bottom: 80px;">
-      <button type="button" class="btn-contextual-help" onclick="openContextualHelp('treinos')">
-        <span>precisa de ajuda?</span> <u>acesse as instruções</u>
-      </button>
-    </div>
-  </div><!-- end #tab-terca -->
-
-  <!-- ==================== TAB: HOJE (QUARTA: ARGOLAS E GINÁSTICA • EEFERP) ==================== -->
-  <div id="tab-quarta" class="tab-content">
-
-    <!-- LOCAL E DURAÇÃO DA SESSÃO -->
-    <div class="session-overall-meta">
-      <span class="meta-item">📍 Ginásio EEFERP</span>
-      <span class="meta-separator">|</span>
-      <span class="meta-item">⏱️ ~1h30 (90 min)</span>
-      <span class="meta-separator">|</span>
-      <span class="meta-item">⏳ Hoje 🔥</span>
-    </div>
-
-    <!-- ==================== SEÇÃO 1: ATIVAÇÃO ==================== -->
-    <div class="section-card sec-aquecimento">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="section-title">ATIVAÇÃO</div>
-        </div>
-        <div class="session-meta-chips">
-          <span class="meta-chip meta-chip-time">⏱️ ~15 min</span>
-        </div>
-      </div>
-
-      <!-- EXERCÍCIO 1: PROTOCOLO KIRSCH -->
-      <div class="exercise-card">
-        <div class="ex-title">
-          <span>DESCOMPRESSÃO SUBACROMIAL (KIRSCH)</span>
-          <button type="button" class="btn-video" onclick="openVideoModal('DESCOMPRESSÃO SUBACROMIAL (KIRSCH)', '<b>Execução:</b> 1. Segurar na barra fixa ou argolas altas com pegada neutra ou pronada à largura dos ombros.<br>2. Suspender o peso do corpo gradativamente, permitindo que as escápulas subam em elevação completa e o arco coracoacromial abra espaço.<br>3. Respirar fundo pelo diafragma mantendo a suspensão totalmente passiva por 35 a 45 segundos.<br><br><b>Cuidados:</b> 1. Não contrair trapézio superior ou tracionar com os braços; o objetivo é a tração axial passiva para remodelar o espaço subacromial.<br>2. Se sentir fadiga na pegada, desça suavemente sem pular de forma brusca para preservar a tenodese do bíceps e o menisco.<br><br><b>Base científica:</b> DESCOMPRESSÃO DO ESPAÇO SUBACROMIAL: A tração braquial sob o Protocolo Kirsch curva o acrômio para cima e alivia a compressão sobre o tendão do supraespinhal e cabeça longa do bíceps (Kirsch, 2013).', '')">
-            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> <span>Instruções</span>
-          </button>
-        </div>
-        <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">3 SÉRIES • 35-45S ISOMETRIA • ⏱️ REST: 45s</div>
-          <div class="sets-container">
-            <div class="set-pill" onclick="toggleSet(this)">Série 1</div>
-            <div class="set-pill" onclick="toggleSet(this)">Série 2</div>
-            <div class="set-pill" onclick="toggleSet(this)">Série 3</div>
-          </div>
-        </div>
-        <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Descompressão Kirsch • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-kirsch" onclick="toggleCommentBox('ex-qua-kirsch')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-kirsch" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-kirsch" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre a Descompressão:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-kirsch"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-kirsch" placeholder="Ex: Sensação de alívio no ombro direito..." oninput="saveExerciseNote('ex-qua-kirsch', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-kirsch" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-kirsch', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Força LPO E3MOM • Terça')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -5800,21 +5699,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Mobilidade de Punhos • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-punhos" onclick="toggleCommentBox('ex-qua-punhos')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-punhos" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-punhos" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre a Mobilidade de Punhos:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-punhos"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-punhos" placeholder="Ex: Punhos destravados..." oninput="saveExerciseNote('ex-qua-punhos', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-punhos" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-punhos', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Mobilidade de Punhos • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -5834,21 +5736,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Scapular Ring Pulls • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-scap" onclick="toggleCommentBox('ex-qua-scap')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-scap" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-scap" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre as Escápulas:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-scap"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-scap" placeholder="Ex: Escápulas ativas..." oninput="saveExerciseNote('ex-qua-scap', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-scap" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-scap', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Scapular Ring Pulls • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -5868,21 +5773,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Hollow Arch Rocks • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-hollow" onclick="toggleCommentBox('ex-qua-hollow')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-hollow" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-hollow" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre o Core:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-hollow"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-hollow" placeholder="Ex: Tensão boa no core..." oninput="saveExerciseNote('ex-qua-hollow', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-hollow" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-hollow', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Hollow Arch Rocks • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -5915,21 +5823,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('False Grip Hang • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-fg" onclick="toggleCommentBox('ex-qua-fg')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-fg" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-fg" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre o False Grip:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-fg"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-fg" placeholder="Ex: Pegada bem encaixada..." oninput="saveExerciseNote('ex-qua-fg', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-fg" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-fg', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('False Grip Hang • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -5950,21 +5861,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Transição RMU Solo • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-trans" onclick="toggleCommentBox('ex-qua-trans')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-trans" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-trans" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre a Transição:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-trans"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-trans" placeholder="Ex: Cotovelos bem colados..." oninput="saveExerciseNote('ex-qua-trans', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-trans" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-trans', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Transição RMU Solo • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -5986,21 +5900,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Strict Ring Muscle-Up • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar vídeo para análise</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-srmu" onclick="toggleCommentBox('ex-qua-srmu')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-srmu" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-srmu" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-srmu"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-srmu" placeholder="Ex: Transição limpa, sem dor no bíceps..." oninput="saveExerciseNote('ex-qua-srmu', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-srmu" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-srmu', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Strict Ring Muscle-Up • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -6022,21 +5939,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Kipping Ring Muscle-Up • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar vídeo para análise</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-krmu" onclick="toggleCommentBox('ex-qua-krmu')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-krmu" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-krmu" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-krmu"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-krmu" placeholder="Ex: Balanço encaixado, descida controlada no colchão..." oninput="saveExerciseNote('ex-qua-krmu', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-krmu" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-krmu', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Kipping Ring Muscle-Up • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -6069,21 +5989,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('RTO Support Hold • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-rto" onclick="toggleCommentBox('ex-qua-rto')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-rto" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-rto" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre o RTO Support:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-rto"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-rto" placeholder="Ex: Estabilidade firme a 60°..." oninput="saveExerciseNote('ex-qua-rto', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-rto" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-rto', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('RTO Support Hold • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -6104,21 +6027,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Ring Dips Cadenciados • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-dips" onclick="toggleCommentBox('ex-qua-dips')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-dips" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-dips" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre os Ring Dips:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-dips"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-dips" placeholder="Ex: Descida lenta sem dor..." oninput="saveExerciseNote('ex-qua-dips', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-dips" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-dips', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Ring Dips Cadenciados • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -6139,21 +6065,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Ice Cream Makers • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-icm" onclick="toggleCommentBox('ex-qua-icm')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-icm" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-icm" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre os Ice Cream Makers:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-icm"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-icm" placeholder="Ex: Alavanca forte..." oninput="saveExerciseNote('ex-qua-icm', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-icm" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-icm', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Ice Cream Makers • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -6197,21 +6126,24 @@
           </button>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('EMOM 8 Gímnico • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-emom" onclick="toggleCommentBox('ex-qua-emom')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-emom" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-emom" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre o EMOM:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-emom"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-emom" placeholder="Ex: Candlesticks limpos..." oninput="saveExerciseNote('ex-qua-emom', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-emom" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-emom', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('EMOM 8 Gímnico • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -6244,21 +6176,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Mobilidade Final • Quarta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qua-mob" onclick="toggleCommentBox('ex-qua-mob')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qua-mob" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qua-mob" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações sobre a Mobilidade Final:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qua-mob"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qua-mob" placeholder="Ex: Ombros leves e descontraídos..." oninput="saveExerciseNote('ex-qua-mob', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qua-mob" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qua-mob', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Mobilidade Final • Quarta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -6489,21 +6424,24 @@
 
         <!-- AÇÕES INFERIORES: ENVIAR VÍDEO E GAVETA DE OBSERVAÇÕES -->
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Sessão CrossFit • Quinta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qui-cross" onclick="toggleCommentBox('ex-qui-cross')">
-            <span>💬 Anotar Cargas e Tempo?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qui-cross" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qui-cross" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas anotações (tempo total no Time Cap, cargas no Snatch/DB/Thruster, adaptações):</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qui-cross"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qui-cross" placeholder="Ex: Fechei aos 31'40'', Hang Snatch com 40kg, DB de 15kg, BMU unbroken..." oninput="saveExerciseNote('ex-qui-cross', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qui-cross" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qui-cross', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Sessão CrossFit • Quinta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -6534,21 +6472,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Contemporâneo • Quinta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-qui-mob" onclick="toggleCommentBox('ex-qui-mob')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-qui-mob" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-qui-mob" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-qui-mob"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-qui-mob" placeholder="Ex: Aula suave, movimentação boa..." oninput="saveExerciseNote('ex-qui-mob', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-qui-mob" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-qui-mob', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Contemporâneo • Quinta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -6611,21 +6552,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Worm Push-up • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-worm" onclick="toggleCommentBox('ex-sex-worm')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-worm" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-worm" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-worm"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-worm" placeholder="Ex: Posterior aquecido, ombros soltos..." oninput="saveExerciseNote('ex-sex-worm', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-worm" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-worm', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Worm Push-up • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -6645,21 +6589,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Sprawl • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-sprawl" onclick="toggleCommentBox('ex-sex-sprawl')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-sprawl" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-sprawl" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-sprawl"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-sprawl" placeholder="Ex: Ritmo dinâmico, cardio ativado..." oninput="saveExerciseNote('ex-sex-sprawl', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-sprawl" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-sprawl', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Sprawl • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -6679,21 +6626,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Abdominal Remador • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-remador" onclick="toggleCommentBox('ex-sex-remador')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-remador" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-remador" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-remador"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-remador" placeholder="Ex: Core bem ativo..." oninput="saveExerciseNote('ex-sex-remador', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-remador" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-remador', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Abdominal Remador • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -6713,21 +6663,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Superman • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-superman" onclick="toggleCommentBox('ex-sex-superman')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-superman" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-superman" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-superman"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-superman" placeholder="Ex: Cadeia posterior acordada..." oninput="saveExerciseNote('ex-sex-superman', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-superman" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-superman', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Superman • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -6772,21 +6725,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Bench Press • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-bench" onclick="toggleCommentBox('ex-sex-bench')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-bench" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-bench" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-bench"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-bench" placeholder="Ex: Carga usada: 60kg, 65kg, 70kg, execução limpa..." oninput="saveExerciseNote('ex-sex-bench', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-bench" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-bench', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Bench Press • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -6808,21 +6764,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Elevação de Quadril • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-hip" onclick="toggleCommentBox('ex-sex-hip')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-hip" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-hip" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-hip"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-hip" placeholder="Ex: Glúteos queimando, contração no topo sustentada..." oninput="saveExerciseNote('ex-sex-hip', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-hip" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-hip', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Elevação de Quadril • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -6844,21 +6803,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Hollow Rock • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-hollow" onclick="toggleCommentBox('ex-sex-hollow')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-hollow" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-hollow" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-hollow"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-hollow" placeholder="Ex: Lombar travada no chão, 10 segundos finais puxados..." oninput="saveExerciseNote('ex-sex-hollow', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-hollow" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-hollow', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Hollow Rock • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -6904,21 +6866,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Double Unders • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-du" onclick="toggleCommentBox('ex-sex-du')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-du" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-du" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-du"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-du" placeholder="Ex: Consegui todos os 25 DUs unbroken..." oninput="saveExerciseNote('ex-sex-du', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-du" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-du', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Double Unders • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -6939,21 +6904,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Ground to Overhead • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-gto" onclick="toggleCommentBox('ex-sex-gto')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-gto" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-gto" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-gto"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-gto" placeholder="Ex: Anilha de 15kg / 20kg, fechado em 45 segundos..." oninput="saveExerciseNote('ex-sex-gto', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-gto" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-gto', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Ground to Overhead • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -6974,21 +6942,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Russian Twist • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-twist" onclick="toggleCommentBox('ex-sex-twist')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-twist" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-twist" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-twist"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-twist" placeholder="Ex: Feito sem peso / com anilha de 5kg..." oninput="saveExerciseNote('ex-sex-twist', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-twist" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-twist', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Russian Twist • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -7009,21 +6980,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Devil Press • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-devil" onclick="toggleCommentBox('ex-sex-devil')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-devil" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-devil" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-devil"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-devil" placeholder="Ex: Halteres de 12kg / 15kg cada, ritmo pesado..." oninput="saveExerciseNote('ex-sex-devil', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-devil" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-devil', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Devil Press • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
 
@@ -7044,21 +7018,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Descanso • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-rest" onclick="toggleCommentBox('ex-sex-rest')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-rest" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-rest" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-rest"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-rest" placeholder="Ex: Frequência normalizada a cada volta..." oninput="saveExerciseNote('ex-sex-rest', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-rest" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-rest', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Descanso • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -7091,21 +7068,24 @@
           </div>
         </div>
         <div class="ex-bottom-actions">
-          <button type="button" class="btn-send-video" onclick="openSendVideoModal('Descompressão • Sexta')">
-            <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-            <span>Enviar sua execução</span>
-          </button>
           <button type="button" class="btn-comment" id="btn-comment-ex-sex-mob" onclick="toggleCommentBox('ex-sex-mob')">
-            <span>💬 Observações?</span>
+            <span>💬 Dúvidas ou Observações?</span>
             <span class="comment-dot" id="dot-ex-sex-mob" style="display:none;"></span>
           </button>
         </div>
         <div id="comment-box-ex-sex-mob" class="comment-drawer" style="display: none;">
           <div class="comment-header">
-            <span>👤 Suas observações:</span>
+            <span>👤 Suas anotações ou dúvidas:</span>
             <span class="save-indicator" id="save-status-ex-sex-mob"></span>
           </div>
-          <textarea class="comment-textarea" id="note-ex-sex-mob" placeholder="Ex: Peitoral e panturrilhas soltos..." oninput="saveExerciseNote('ex-sex-mob', this.value)"></textarea>
+          <textarea class="comment-textarea" id="note-ex-sex-mob" placeholder="Escreva aqui sua sensação, carga utilizada ou dúvida..." oninput="saveExerciseNote('ex-sex-mob', this.value)"></textarea>
+          <div class="drawer-video-action-box" style="margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-direction: column; gap: 5px;">
+            <button type="button" class="btn-send-video-drawer" onclick="openSendVideoModal('Descompressão • Sexta')">
+              <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor;"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+              <span>📹 Enviar vídeo para correção do Coach</span>
+            </button>
+            <span style="font-size: 0.70rem; color: #94a3b8; text-align: center;">Opcional: grave caso queira que o Gui avalie sua postura ou técnica.</span>
+          </div>
         </div>
       </div>
     </div>
