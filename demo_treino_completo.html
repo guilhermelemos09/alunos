@@ -5184,6 +5184,105 @@
         display: none !important;
       }
     }
+
+    /* ==================== AJUSTES DE RESPONSIVIDADE E VOLUME DE SÉRIES ==================== */
+    .ex-volume-sets-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-bottom: 10px;
+      padding: 6px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .ex-volume-badge {
+      font-size: 0.76rem !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.03em !important;
+      color: #e2e8f0 !important;
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      white-space: normal !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+      max-width: 100% !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
+      line-height: 1.35 !important;
+    }
+    .sets-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .ex-title {
+      font-size: 0.90rem !important;
+      font-weight: 800 !important;
+      color: #ffffff !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.02em !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 8px !important;
+      flex-wrap: wrap !important;
+      line-height: 1.35 !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .ex-title > span:first-child {
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    .ex-title .btn-video {
+      flex-shrink: 0;
+    }
+    .btn-finish-workout-trigger {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.18) 0%, rgba(56, 189, 248, 0.14) 100%);
+      border: 2px solid var(--brand-neon);
+      border-radius: 14px;
+      padding: 16px 20px;
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(0, 255, 136, 0.25);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-transform: uppercase;
+    }
+    .btn-finish-workout-trigger:hover,
+    .btn-finish-workout-trigger:active {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 26px rgba(0, 255, 136, 0.42);
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.28) 0%, rgba(56, 189, 248, 0.22) 100%);
+    }
+    .finish-flag-icon {
+      font-size: 1.35rem;
+      line-height: 1;
+      display: inline-block;
+      transform: scale(1.1);
+    }
+
 </style>
 </head>
 <body>
@@ -5363,7 +5462,7 @@
               <span class="day-name">SEXTA</span>
               <span class="day-today-badge" id="todayBadge-sexta" style="display:inline-flex;">Hoje</span>
             </div>
-            <div class="day-focus-desc">BENCH PRESS E EMOM 15'</div>
+            <div class="day-focus-desc">BENCH PRESS E EMOM 15 min</div>
             <div class="day-meta-pill">📍 Box CrossFit • ⏱️ 17h • ~50 min</div>
           </div>
           <div class="day-card-right">
@@ -5427,19 +5526,13 @@
 
     <!-- Card Clean de Finalização de Treino -->
     <div class="workout-finish-clean-card" id="workoutFinishCard-segunda">
-      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-segunda" onclick="openBiometriaSessaoModal('segunda')" style="width: 100%; background: linear-gradient(135deg, rgba(0, 255, 136, 0.16) 0%, rgba(56, 189, 248, 0.12) 100%); border: 1.5px solid var(--brand-neon); border-radius: 14px; padding: 15px 18px; color: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 4px 18px rgba(0, 255, 136, 0.22); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
-        <div style="display: flex; align-items: center; gap: 12px; text-align: left;">
-          <span style="font-size: 1.35rem;">🏁</span>
-          <div>
-            <div style="font-size: 0.96rem; font-weight: 900; color: #ffffff; letter-spacing: 0.03em;">FINALIZAR TREINO DE SEGUNDA</div>
-            <div style="font-size: 0.74rem; color: var(--brand-neon); font-weight: 700; margin-top: 2px;">Responder Esforço (Borg), Smartwatch e Enviar para o Gui ➔</div>
-          </div>
-        </div>
-        <div style="font-size: 1.1rem; color: var(--brand-neon); font-weight: 900;">➔</div>
+      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-segunda" onclick="openBiometriaSessaoModal('segunda')">
+        <span>FINALIZAR</span> <span class="finish-flag-icon">🏁</span> <span>SESSÃO</span>
       </button>
       <div id="completeFeedback-segunda" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
-        ✅ Sessão de SEGUNDA finalizada e registrada no histórico com sucesso!
+        ✅ Sessão finalizada e registrada com sucesso!
       </div>
+    </div>
     </div>
 
     <!-- Ajuda Contextual do Treino -->
@@ -5481,7 +5574,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">2 ROUNDS • 5 MOVIMENTOS • ⏱️ REST: 60S</div>
+          <div class="ex-volume-badge">2 ROUNDS • 5 MOVIMENTOS • ⏱️ REST: 60s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Round 1</div>
             <div class="set-pill" onclick="toggleSet(this)">Round 2</div>
@@ -5567,7 +5660,7 @@
           <div class="section-title">CONDICIONAMENTO</div>
         </div>
         <div class="session-meta-chips">
-          <span class="meta-chip meta-chip-time">⏱️ 15 min (5x AMRAP 2')</span>
+          <span class="meta-chip meta-chip-time">⏱️ 15 min (5x AMRAP 2 min:</span>
         </div>
       </div>
 
@@ -5616,19 +5709,13 @@
 
     <!-- Card Clean de Finalização de Treino (Terça) -->
     <div class="workout-finish-clean-card" id="workoutFinishCard-terca">
-      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-terca" onclick="openBiometriaSessaoModal('terca')" style="width: 100%; background: linear-gradient(135deg, rgba(0, 255, 136, 0.16) 0%, rgba(56, 189, 248, 0.12) 100%); border: 1.5px solid var(--brand-neon); border-radius: 14px; padding: 15px 18px; color: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 4px 18px rgba(0, 255, 136, 0.22); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
-        <div style="display: flex; align-items: center; gap: 12px; text-align: left;">
-          <span style="font-size: 1.35rem;">🏁</span>
-          <div>
-            <div style="font-size: 0.96rem; font-weight: 900; color: #ffffff; letter-spacing: 0.03em;">FINALIZAR TREINO DE TERÇA</div>
-            <div style="font-size: 0.74rem; color: var(--brand-neon); font-weight: 700; margin-top: 2px;">Responder Esforço (Borg), Smartwatch e Enviar para o Gui ➔</div>
-          </div>
-        </div>
-        <div style="font-size: 1.1rem; color: var(--brand-neon); font-weight: 900;">➔</div>
+      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-terca" onclick="openBiometriaSessaoModal('terca')">
+        <span>FINALIZAR</span> <span class="finish-flag-icon">🏁</span> <span>SESSÃO</span>
       </button>
       <div id="completeFeedback-terca" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
-        ✅ Sessão de TERÇA finalizada e registrada no histórico com sucesso!
+        ✅ Sessão finalizada e registrada com sucesso!
       </div>
+    </div>
     </div>
 
     <!-- Ajuda Contextual do Treino -->
@@ -5671,7 +5758,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">3 SÉRIES • 35-45S ISOMETRIA • ⏱️ REST: 45S</div>
+          <div class="ex-volume-badge">3 SÉRIES • 35-45S ISOMETRIA • ⏱️ REST: 45s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Série 1</div>
             <div class="set-pill" onclick="toggleSet(this)">Série 2</div>
@@ -5706,7 +5793,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">2 SÉRIES • 10 REPS CONTROLADAS • ⏱️ REST: 30S</div>
+          <div class="ex-volume-badge">2 SÉRIES • 10 REPS CONTROLADAS • ⏱️ REST: 30s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Série 1</div>
             <div class="set-pill" onclick="toggleSet(this)">Série 2</div>
@@ -5740,7 +5827,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">2 ROUNDS • 8 + 8 REPS • ⏱️ REST: 60S</div>
+          <div class="ex-volume-badge">2 ROUNDS • 8 + 8 REPS • ⏱️ REST: 60s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Round 1</div>
             <div class="set-pill" onclick="toggleSet(this)">Round 2</div>
@@ -5774,7 +5861,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">2 ROUNDS • 15 + 15 REPS • ⏱️ REST: 45S</div>
+          <div class="ex-volume-badge">2 ROUNDS • 15 + 15 REPS • ⏱️ REST: 45s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Round 1</div>
             <div class="set-pill" onclick="toggleSet(this)">Round 2</div>
@@ -5820,7 +5907,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">3 SÉRIES • 12-15S ISOMETRIA • ⏱️ REST: 60S</div>
+          <div class="ex-volume-badge">3 SÉRIES • 12-15S ISOMETRIA • ⏱️ REST: 60s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Série 1</div>
             <div class="set-pill" onclick="toggleSet(this)">Série 2</div>
@@ -5855,7 +5942,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">3 SÉRIES • 3 REPS LENTAS • ⏱️ REST: 90S</div>
+          <div class="ex-volume-badge">3 SÉRIES • 3 REPS LENTAS • ⏱️ REST: 90s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Série 1</div>
             <div class="set-pill" onclick="toggleSet(this)">Série 2</div>
@@ -5974,7 +6061,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">3 SÉRIES • 15-20S ISOMETRIA • ⏱️ REST: 60S</div>
+          <div class="ex-volume-badge">3 SÉRIES • 15-20S ISOMETRIA • ⏱️ REST: 60s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Série 1</div>
             <div class="set-pill" onclick="toggleSet(this)">Série 2</div>
@@ -6009,7 +6096,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">3 SÉRIES • 5-6 REPS (CADÊNCIA 3010) • ⏱️ REST: 90S</div>
+          <div class="ex-volume-badge">3 SÉRIES • 5-6 REPS (CADÊNCIA 3010) • ⏱️ REST: 90s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Série 1</div>
             <div class="set-pill" onclick="toggleSet(this)">Série 2</div>
@@ -6044,7 +6131,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">3 SÉRIES • 6-8 REPS • ⏱️ REST: 90S</div>
+          <div class="ex-volume-badge">3 SÉRIES • 6-8 REPS • ⏱️ REST: 90s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Série 1</div>
             <div class="set-pill" onclick="toggleSet(this)">Série 2</div>
@@ -6178,19 +6265,13 @@
 
     <!-- Card Clean de Finalização de Treino (Quarta) -->
     <div class="workout-finish-clean-card" id="workoutFinishCard-quarta">
-      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-quarta" onclick="openBiometriaSessaoModal('quarta')" style="width: 100%; background: linear-gradient(135deg, rgba(0, 255, 136, 0.16) 0%, rgba(56, 189, 248, 0.12) 100%); border: 1.5px solid var(--brand-neon); border-radius: 14px; padding: 15px 18px; color: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 4px 18px rgba(0, 255, 136, 0.22); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
-        <div style="display: flex; align-items: center; gap: 12px; text-align: left;">
-          <span style="font-size: 1.35rem;">🏁</span>
-          <div>
-            <div style="font-size: 0.96rem; font-weight: 900; color: #ffffff; letter-spacing: 0.03em;">FINALIZAR TREINO DE QUARTA</div>
-            <div style="font-size: 0.74rem; color: var(--brand-neon); font-weight: 700; margin-top: 2px;">Responder Esforço (Borg), Smartwatch e Enviar para o Gui ➔</div>
-          </div>
-        </div>
-        <div style="font-size: 1.1rem; color: var(--brand-neon); font-weight: 900;">➔</div>
+      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-quarta" onclick="openBiometriaSessaoModal('quarta')">
+        <span>FINALIZAR</span> <span class="finish-flag-icon">🏁</span> <span>SESSÃO</span>
       </button>
       <div id="completeFeedback-quarta" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
-        ✅ Sessão de QUARTA finalizada e registrada no histórico com sucesso!
+        ✅ Sessão finalizada e registrada com sucesso!
       </div>
+    </div>
     </div>
 
     <!-- Ajuda Contextual do Treino -->
@@ -6474,19 +6555,13 @@
 
     <!-- Card Clean de Finalização de Treino (Quinta) -->
     <div class="workout-finish-clean-card" id="workoutFinishCard-quinta">
-      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-quinta" onclick="openBiometriaSessaoModal('quinta')" style="width: 100%; background: linear-gradient(135deg, rgba(0, 255, 136, 0.16) 0%, rgba(56, 189, 248, 0.12) 100%); border: 1.5px solid var(--brand-neon); border-radius: 14px; padding: 15px 18px; color: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 4px 18px rgba(0, 255, 136, 0.22); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
-        <div style="display: flex; align-items: center; gap: 12px; text-align: left;">
-          <span style="font-size: 1.35rem;">🏁</span>
-          <div>
-            <div style="font-size: 0.96rem; font-weight: 900; color: #ffffff; letter-spacing: 0.03em;">FINALIZAR TREINO DE QUINTA</div>
-            <div style="font-size: 0.74rem; color: var(--brand-neon); font-weight: 700; margin-top: 2px;">Responder Esforço (Borg), Smartwatch e Enviar para o Gui ➔</div>
-          </div>
-        </div>
-        <div style="font-size: 1.1rem; color: var(--brand-neon); font-weight: 900;">➔</div>
+      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-quinta" onclick="openBiometriaSessaoModal('quinta')">
+        <span>FINALIZAR</span> <span class="finish-flag-icon">🏁</span> <span>SESSÃO</span>
       </button>
       <div id="completeFeedback-quinta" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
-        ✅ Sessão de QUINTA finalizada e registrada no histórico com sucesso!
+        ✅ Sessão finalizada e registrada com sucesso!
       </div>
+    </div>
     </div>
 
     <!-- Ajuda Contextual do Treino -->
@@ -6668,14 +6743,14 @@
         </div>
       </div>
 
-      <!-- TIMER DISPARADOR DO BLOCO A CADA 2'30" -->
+      <!-- TIMER DISPARADOR DO BLOCO A CADA 2min30s -->
       <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-        <button type="button" class="btn-wod-timer-trigger" onclick="openWorkoutTimerWithCard('interval', 10, 'A CADA 2'30" • 4 ROUNDS (10 MIN)', 'A cada 2m30s por 4 rounds (10 min total):
+        <button type="button" class="btn-wod-timer-trigger" onclick="openWorkoutTimerWithCard('interval', 10, 'A CADA 2min30s • 4 ROUNDS (10 MIN)', 'A cada 2m30s por 4 rounds (10 min total):
 • 6 Bench Press (força com controle)
 • 10 Elevação de Quadril
 • 10 Hollow Rock + 10s Isometria', this)">
           <svg style="width:14px; height:14px; fill:currentColor;" viewBox="0 0 24 24"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
-          <span>⏱️ Timer 4 Rounds a cada 2'30" (10 min) ↗</span>
+          <span>⏱️ Timer 4 Rounds a cada 2min30s (10 min) ↗</span>
         </button>
       </div>
 
@@ -6688,7 +6763,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">4 ROUNDS • 6 REPETIÇÕES • A CADA 2'30"</div>
+          <div class="ex-volume-badge">4 ROUNDS • 6 REPETIÇÕES • A CADA 2min30s</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Série 1 (6r)</div>
             <div class="set-pill" onclick="toggleSet(this)">Série 2 (6r)</div>
@@ -6760,7 +6835,7 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">4 ROUNDS • 10 ROCKS + 10" ISOMETRIA</div>
+          <div class="ex-volume-badge">4 ROUNDS • 10 ROCKS + 10s ISOMETRIA</div>
           <div class="sets-container">
             <div class="set-pill" onclick="toggleSet(this)">Série 1 (10+10")</div>
             <div class="set-pill" onclick="toggleSet(this)">Série 2 (10+10")</div>
@@ -6799,7 +6874,7 @@
         </div>
       </div>
 
-      <!-- TIMER DISPARADOR DO EMOM 15' -->
+      <!-- TIMER DISPARADOR DO EMOM 15 min -->
       <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
         <button type="button" class="btn-wod-timer-trigger" onclick="openWorkoutTimerWithCard('emom', 15, 'EMOM 15 MIN • WOD SEXTA', 'A cada minuto durante 15 minutos (3 ciclos completos de 5 estações):
 • Minuto 1: 25 Double Unders ou 50 Single Unders
@@ -6961,10 +7036,10 @@
           </button>
         </div>
         <div class="ex-volume-sets-row">
-          <div class="ex-volume-badge">MINUTO 5 • 60" RECUPERAÇÃO TOTAL • 3 CICLOS</div>
+          <div class="ex-volume-badge">MINUTO 5 • 60s RECUPERAÇÃO TOTAL • 3 CICLOS</div>
           <div class="sets-container">
-            <div class="set-pill" onclick="toggleSet(this)">Min 5 (Rest 60")</div>
-            <div class="set-pill" onclick="toggleSet(this)">Min 10 (Rest 60")</div>
+            <div class="set-pill" onclick="toggleSet(this)">Min 5 (Rest 60s)</div>
+            <div class="set-pill" onclick="toggleSet(this)">Min 10 (Rest 60s)</div>
             <div class="set-pill" onclick="toggleSet(this)">Min 15 (Final 🏁)</div>
           </div>
         </div>
@@ -7010,9 +7085,9 @@
         <div class="ex-volume-sets-row">
           <div class="ex-volume-badge">VOLTA À CALMA • ALÍVIO RÁPIDO</div>
           <div class="sets-container">
-            <div class="set-pill" onclick="toggleSet(this)">Peitoral 30"</div>
-            <div class="set-pill" onclick="toggleSet(this)">Lombar 40"</div>
-            <div class="set-pill" onclick="toggleSet(this)">Panturrilhas 30"</div>
+            <div class="set-pill" onclick="toggleSet(this)">Peitoral 30s</div>
+            <div class="set-pill" onclick="toggleSet(this)">Lombar 40s</div>
+            <div class="set-pill" onclick="toggleSet(this)">Panturrilhas 30s</div>
           </div>
         </div>
         <div class="ex-bottom-actions">
@@ -7037,19 +7112,13 @@
 
     <!-- Card Clean de Finalização de Treino (Sexta) -->
     <div class="workout-finish-clean-card" id="workoutFinishCard-sexta">
-      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-sexta" onclick="openBiometriaSessaoModal('sexta')" style="width: 100%; background: linear-gradient(135deg, rgba(0, 255, 136, 0.16) 0%, rgba(56, 189, 248, 0.12) 100%); border: 1.5px solid var(--brand-neon); border-radius: 14px; padding: 15px 18px; color: #ffffff; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-shadow: 0 4px 18px rgba(0, 255, 136, 0.22); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
-        <div style="display: flex; align-items: center; gap: 12px; text-align: left;">
-          <span style="font-size: 1.35rem;">🏁</span>
-          <div>
-            <div style="font-size: 0.96rem; font-weight: 900; color: #ffffff; letter-spacing: 0.03em;">FINALIZAR TREINO DE SEXTA</div>
-            <div style="font-size: 0.74rem; color: var(--brand-neon); font-weight: 700; margin-top: 2px;">Responder Esforço (Borg), Smartwatch e Enviar para o Gui ➔</div>
-          </div>
-        </div>
-        <div style="font-size: 1.1rem; color: var(--brand-neon); font-weight: 900;">➔</div>
+      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-sexta" onclick="openBiometriaSessaoModal('sexta')">
+        <span>FINALIZAR</span> <span class="finish-flag-icon">🏁</span> <span>SESSÃO</span>
       </button>
       <div id="completeFeedback-sexta" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
-        ✅ Sessão de SEXTA finalizada e registrada no histórico com sucesso!
+        ✅ Sessão finalizada e registrada com sucesso!
       </div>
+    </div>
     </div>
 
     <!-- Ajuda Contextual do Treino -->
@@ -7267,7 +7336,7 @@
 
     <!-- VÍDEO 5: 11x BUTTERFLY PULL-UPS (NOVO) -->
     <div class="analysis-accordion-card" id="analysisCard-5" data-category="habilidades" data-subtypes="barra_fixa">
-      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-5')">
+      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-5 min:">
         <div style="flex: 1; min-width: 0;">
           <div class="analysis-card-meta-top">
             <span class="analysis-card-badge">Barra Fixa</span>
@@ -7320,7 +7389,7 @@
 
     <!-- VÍDEO 1: PRESS HANDSTAND NO OMBRO DO PARCEIRO -->
     <div class="analysis-accordion-card" id="analysisCard-1" data-category="habilidades" data-subtypes="handstands acroduo">
-      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-1')">
+      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-1 min:">
         <div style="flex: 1; min-width: 0;">
           <div class="analysis-card-meta-top">
             <span class="analysis-card-badge">Portagem e Handstand</span>
@@ -7370,7 +7439,7 @@
 
     <!-- VÍDEO 2: STRICT RMU LIVRE + 2x CANDLE KIPS -->
     <div class="analysis-accordion-card" id="analysisCard-2" data-category="habilidades" data-subtypes="argolas">
-      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-2')">
+      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-2 min:">
         <div style="flex: 1; min-width: 0;">
           <div class="analysis-card-meta-top">
             <span class="analysis-card-badge">Argolas Altas</span>
@@ -7420,7 +7489,7 @@
 
     <!-- VÍDEO 3: MANJOTA (L-SIT -> PRESS -> CROC) -->
     <div class="analysis-accordion-card" id="analysisCard-3" data-category="habilidades" data-subtypes="handstands pranchas">
-      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-3')">
+      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-3 min:">
         <div style="flex: 1; min-width: 0;">
           <div class="analysis-card-meta-top">
             <span class="analysis-card-badge">Manjota</span>
@@ -7474,7 +7543,7 @@
 
     <!-- VÍDEO 4: OITAVAS NA BARRA -->
     <div class="analysis-accordion-card" id="analysisCard-4" data-category="habilidades" data-subtypes="barra_fixa danca">
-      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-4')">
+      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-4 min:">
         <div style="flex: 1; min-width: 0;">
           <div class="analysis-card-meta-top">
             <span class="analysis-card-badge">Barra Fixa</span>
@@ -9995,235 +10064,55 @@
 
   <!-- ==================== MODAL: GUIA DE INSTRUÇÕES DE BIOMETRIA E SMARTWATCH ==================== -->
   <div id="modalInstrucoesBiometria" class="modal-overlay" onclick="if(event.target === this) closeInstrucoesBiometriaModal();">
-    <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 540px;">
+    <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 520px;">
       <div class="modal-header">
         <div style="display:flex; align-items:center; gap:10px;">
-          <div style="width:36px; height:36px; border-radius:10px; background:rgba(192,132,252,0.14); border:1px solid rgba(192,132,252,0.35); display:flex; align-items:center; justify-content:center; font-size:1.25rem;">
-            <span>📊</span>
+          <div style="width:36px; height:36px; border-radius:10px; background:rgba(56, 189, 248, 0.12); border:1px solid rgba(56, 189, 248, 0.35); display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:#38bdf8;">
+            <span>💡</span>
           </div>
           <div>
-            <h3 style="margin:0; font-size:1.02rem; color:#fff;">Guia de Biometria e Performance</h3>
-            <span style="font-size:0.75rem; color:#c084fc; font-weight:600;">Ciência do Esforço (PSE) e Cruzamento com Smartwatch</span>
+            <h3 style="margin:0; font-size:1.02rem; color:#fff;">Entenda o Cálculo</h3>
+            <span style="font-size:0.75rem; color:#38bdf8; font-weight:600;">Gasto Energético Real e EPOC vs Smartwatch</span>
           </div>
         </div>
         <button class="btn-close" type="button" onclick="closeInstrucoesBiometriaModal()" aria-label="Fechar">&times;</button>
       </div>
 
-      <div style="padding: 16px 20px; font-size:0.81rem; color:#cbd5e1; line-height:1.6; max-height:78vh; overflow-y:auto;">
-        <!-- Abas Internas do Guia -->
-        <div style="display:flex; gap:8px; margin-bottom:14px; border-bottom:1px solid var(--border-subtle); padding-bottom:10px;">
-          <button type="button" id="btnBioGuideTab-pse" class="help-tab-btn active" onclick="switchInstrucoesBiometriaTab('pse')">⚡ Métricas, PSE e Carga</button>
-          <button type="button" id="btnBioGuideTab-watch" class="help-tab-btn" onclick="switchInstrucoesBiometriaTab('watch')">⌚ Smartwatch e Foto</button>
+      <div style="padding: 16px 20px; font-size:0.83rem; color:#cbd5e1; line-height:1.6; max-height:78vh; overflow-y:auto;">
+        
+        <div style="margin-bottom:14px; padding:12px 14px; background:rgba(244,63,94,0.07); border-left:3.5px solid #f43f5e; border-radius:10px;">
+          <div style="font-weight:800; color:#fff; font-size:0.88rem; margin-bottom:4px;">1. Por que o Smartwatch Subestima o Treino?</div>
+          Os relógios convencionais utilizam sensores ópticos no pulso calibrados primariamente para corrida e ciclismo contínuos. Em treinos de força, calistenia e WODs, as contrações musculares isométricas e a pegada comprimem os capilares locais, provocando atraso na leitura dos batimentos. Além disso, grande parte da energia dessas modalidades provém de vias anaeróbias (ATP-CP e glicolítica), que não consomem oxigênio imediato na execução e são completamente ignoradas pelo algoritmo do relógio.
         </div>
 
-        <!-- ABA 1: MÉTRICAS, PSE E CARGA -->
-        <div id="bioGuidePane-pse" style="display:block;">
-          <div style="margin-bottom:12px; padding:11px 13px; background:rgba(249,115,22,0.07); border-left:3.5px solid #f97316; border-radius:8px;">
-            <strong style="color:#fff;">1. O que é a PSE (Escala de Esforço 1 a 10)?</strong><br>
-            A <strong>Percepção Subjetiva de Esforço (Método de Foster)</strong> mede como o seu sistema nervoso central, músculos e articulações sentiram o treino como um todo:<br>
-            • <strong>1 a 2 (Muito Leve):</strong> Mobilidade, soltura ou ativação sem fadiga.<br>
-            • <strong>3 a 4 (Moderado):</strong> Esforço confortável, domínio técnico limpo.<br>
-            • <strong>5 a 6 (Pesado):</strong> Desafiador, respiração profunda e fadiga muscular clara.<br>
-            • <strong>7 a 8 (Muito Intenso):</strong> Séries pesadas próximas do limite técnico ou metabólico forte.<br>
-            • <strong>9 a 10 (Exaustão Máxima):</strong> Esforço absoluto, limite máximo de força ou fôlego.
-          </div>
-
-          <div style="margin-bottom:12px; padding:11px 13px; background:rgba(192,132,252,0.07); border-left:3.5px solid #c084fc; border-radius:8px;">
-            <strong style="color:#fff;">2. Carga Interna em Unidades Arbitrárias (U.A.)</strong><br>
-            Calculada multiplicando a <strong>Duração do Treino (min) × PSE</strong>. Por exemplo: 60 minutos em PSE 7 geram <strong>420 U.A.</strong> Essa métrica permite monitorar o estresse biológico acumulado na semana e ajustar o volume antes que ocorra sobrecarga articular.
-          </div>
-
-          <div style="margin-bottom:12px; padding:11px 13px; background:rgba(0,255,136,0.06); border-left:3.5px solid var(--brand-neon); border-radius:8px;">
-            <strong style="color:#fff;">3. Gasto Calórico Real (Trabalho Mecânico + EPOC)</strong><br>
-            Relógios usam fórmulas de corrida baseadas apenas em batimentos e subestimam o treino de força e calistenia. O app corrige esse erro somando o <strong>custo mecânico anaeróbio das séries realizadas</strong> e o <strong>efeito EPOC</strong> (queima calórica pós-treino para restaurar reservas energéticas e tecido muscular).
-          </div>
-
-          <div style="padding:11px 13px; background:rgba(56,189,248,0.07); border-left:3.5px solid #38bdf8; border-radius:8px;">
-            <strong style="color:#fff;">4. Impulso Cardíaco (TRIMP), VO2 Estimado e Fadiga</strong><br>
-            • <strong>TRIMP de Banister:</strong> Mede a densidade cardiovascular ponderando o tempo e a reserva de frequência cardíaca utilizada.<br>
-            • <strong>VO2 Estimado:</strong> Avalia sua eficiência cardiorrespiratória operacional cruzando a resposta de pulso com a densidade do treino.<br>
-            • <strong>Detector de Fadiga:</strong> Se a sua PSE sobe muito para o mesmo volume de séries, o app sinaliza necessidade de recuperação autonômica e sono.
-          </div>
+        <div style="margin-bottom:14px; padding:12px 14px; background:rgba(0,255,136,0.06); border-left:3.5px solid var(--brand-neon); border-radius:10px;">
+          <div style="font-weight:800; color:#fff; font-size:0.88rem; margin-bottom:4px;">2. Como o App Calcula o Gasto Real</div>
+          Nosso algoritmo combina o <strong>trabalho mecânico real</strong> das séries que você executou, o seu peso corporal e a nota de percepção subjetiva de esforço (PSE). Cada série com sobrecarga impõe um custo metabólico direto de restauração celular, que é integrado à taxa ativa da sessão, corrigindo a subestimação do relógio com fidelidade biomecânica.
         </div>
 
-        <!-- ABA 2: COMO USAR O SMARTWATCH E FOTO -->
-        <div id="bioGuidePane-watch" style="display:none;">
-          <div style="margin-bottom:12px; padding:11px 13px; background:rgba(56,189,248,0.07); border-left:3.5px solid #38bdf8; border-radius:8px;">
-            <strong style="color:#fff;">1. Por que enviar a Foto ou Print do Relógio?</strong><br>
-            Ao fotografar o visor do relógio (Samsung Watch, Apple Watch, Garmin, Polar, Amazfit) ou tirar print do resumo no aplicativo do celular (Samsung Health, Fitness, Strava), você integra seus batimentos cardíacos sem precisar parear Bluetooth ou configurar integrações complexas.
-          </div>
-
-          <div style="margin-bottom:12px; padding:11px 13px; background:rgba(0,255,136,0.06); border-left:3.5px solid var(--brand-neon); border-radius:8px;">
-            <strong style="color:#fff;">2. Qual tela fotografar ao fim do treino?</strong><br>
-            Encerre a sessão no seu relógio e abra a tela de resumo onde aparecem:<br>
-            • <strong>Tempo total de treino</strong><br>
-            • <strong>Frequência Cardíaca Média e Máxima (bpm)</strong><br>
-            • <strong>Calorias estimadas pelo relógio (kcal)</strong>
-          </div>
-
-          <div style="margin-bottom:12px; padding:11px 13px; background:rgba(192,132,252,0.07); border-left:3.5px solid #c084fc; border-radius:8px;">
-            <strong style="color:#fff;">3. Leitura Automática + Edição Livre</strong><br>
-            Ao anexar a foto no modal de finalização, o leitor inteligente identifica os números visíveis e preenche os campos automaticamente. Você também pode digitar ou ajustar qualquer valor manualmente em segundos.
-          </div>
-
-          <div style="padding:11px 13px; background:rgba(251,191,36,0.07); border-left:3.5px solid #fbbf24; border-radius:8px;">
-            <strong style="color:#fff;">4. Posso registrar mesmo quando treinar sem relógio?</strong><br>
-            <strong>Sim!</strong> Basta selecionar sua nota de <strong>PSE (1 a 10)</strong> e confirmar a duração. O app calculará normalmente sua Carga Interna (U.A.), estimativa calórica mecânica e estado de recuperação.
-          </div>
+        <div style="margin-bottom:14px; padding:12px 14px; background:rgba(56,189,248,0.07); border-left:3.5px solid #38bdf8; border-radius:10px;">
+          <div style="font-weight:800; color:#fff; font-size:0.88rem; margin-bottom:4px;">3. EPOC (Efeito Pós-Combustão)</div>
+          O <strong>EPOC (Excess Post-Exercise Oxygen Consumption)</strong> representa as calorias extras que o seu organismo continua queimando nas 12 a 24 horas seguintes ao treino para recompor os estoques de fosfocreatina, tamponar o lactato acumulado, reabastecer a mioglobina e reparar os tecidos musculares. Em treinos intensos, o EPOC adiciona de <strong>10% a 25% a mais de gasto calórico</strong> que não aparece no display do seu smartwatch.
         </div>
+
+        <!-- Accordion Retrátil da Base Científica (Padrão Ouro GEMINI.md) -->
+        <details class="modal-science-accordion" style="margin-top:16px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:10px 14px;">
+          <summary style="font-weight:800; color:#cbd5e1; cursor:pointer; outline:none; font-size:0.8rem; user-select:none;">
+            BASE CIENTÍFICA (REFERÊNCIAS)
+          </summary>
+          <div style="margin-top:10px; font-size:0.77rem; color:#94a3b8; line-height:1.55; display:flex; flex-direction:column; gap:8px;">
+            <div class="modal-science-block">
+              <strong class="modal-science-heading" style="color:#e2e8f0;">CONSUMO EXCESSIVO DE OXIGÊNIO PÓS-EXERCÍCIO (EPOC):</strong> Exercícios de força de alta intensidade e calistenia causam perturbação metabólica profunda, mantendo a taxa de consumo de oxigênio elevada por horas após a sessão para ressíntese de glicogênio, remoção de metabólitos e restauração miocelular (Børsheim & Bahr, 2003).
+            </div>
+            <div class="modal-science-block">
+              <strong class="modal-science-heading" style="color:#e2e8f0;">ESTIMATIVA DE GASTO ENERGÉTICO EM RESISTÊNCIA:</strong> Estudos que utilizam calorimetria indireta e medição de lactato demonstram que algoritmos baseados apenas em frequência cardíaca subestimam em até 30% o gasto calórico de treinos resistidos com intervalo e componente excêntrico (Scott et al., 2011).
+            </div>
+          </div>
+        </details>
 
         <button type="button" class="btn-submit-assessment" onclick="closeInstrucoesBiometriaModal()" style="margin: 16px 0 0 0; width: 100%;">
           <span>Entendi ➔</span>
         </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal de Boas-Vindas e Panorama do App -->
-  <div id="welcomeAppModal" class="modal-overlay" onclick="if(event.target === this) closeWelcomeAppModal();">
-    <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 520px;">
-      <div class="modal-header">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <div style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, rgba(2,132,199,0.2), rgba(37,211,102,0.2)); border:1px solid rgba(0,255,136,0.3); display:flex; align-items:center; justify-content:center; font-size:1.25rem;">
-            🚀
-          </div>
-          <div>
-            <h3 style="margin:0; font-size:1.05rem; color:#fff;">Boas-vindas ao Domínio Corporal!</h3>
-            <span style="font-size:0.75rem; color:var(--brand-neon); font-weight:600;">Seu Treinamento Biomecânico Inteligente</span>
-          </div>
-        </div>
-        <button class="btn-close" type="button" onclick="closeWelcomeAppModal()" aria-label="Fechar">&times;</button>
-      </div>
-      <div class="modal-body" style="padding: 18px 20px; line-height:1.55;">
-        
-        <p style="font-size:0.82rem; color:#cbd5e1; margin-top:0; margin-bottom:14px;">
-          Este aplicativo foi desenvolvido pelo <strong>Prof. Gui Lemos</strong> para ser o seu centro de alta performance em calistenia, flexibilidade e ginástica. Veja tudo o que você pode fazer nele:
-        </p>
-
-        <div style="display:flex; flex-direction:column; gap:11px;">
-          
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px;">
-            <div style="font-size: 0.85rem; font-weight: 800; color: var(--brand-neon); margin-bottom: 3px; display:flex; align-items:center; gap:6px;">
-              <span>🏋️‍♂️</span> Treinos com Biomecânica em Tempo Real
-            </div>
-            <div style="font-size: 0.77rem; color: #94a3b8;">
-              Acesse suas planilhas de Segunda a Sexta, marque as séries realizadas e consulte botões de <strong>Instruções</strong> com diretrizes anatômicas para proteger suas articulações.
-            </div>
-          </div>
-
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px;">
-            <div style="font-size: 0.85rem; font-weight: 800; color: #38bdf8; margin-bottom: 3px; display:flex; align-items:center; gap:6px;">
-              <span>📹</span> Análise de Técnica por Vídeo no WhatsApp
-            </div>
-            <div style="font-size: 0.77rem; color: #94a3b8;">
-              Filmou sua execução de um exercício ou habilidade? Toque no botão <strong>📹 Enviar Vídeo</strong> para encaminhar diretamente ao WhatsApp do treinador e receber correções personalizadas.
-            </div>
-          </div>
-
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px;">
-            <div style="font-size: 0.85rem; font-weight: 800; color: #fbbf24; margin-bottom: 3px; display:flex; align-items:center; gap:6px;">
-              <span>⏱️</span> Central de Cronômetros Esportivos
-            </div>
-            <div style="font-size: 0.77rem; color: #94a3b8;">
-              Utilize o cronômetro flutuante de descanso entre as séries ou acesse a aba <strong>Timers</strong> para WOD, Tabata (20s/10s) e EMOM com bipes sonoros que funcionam offline.
-            </div>
-          </div>
-
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px;">
-            <div style="font-size: 0.85rem; font-weight: 800; color: #a78bfa; margin-bottom: 3px; display:flex; align-items:center; gap:6px;">
-              <span>📊</span> Acompanhamento da sua Evolução
-            </div>
-            <div style="font-size: 0.77rem; color: #94a3b8;">
-              Consulte sua Composição Corporal, Progressão de Técnica, Central de Recordes e Biometria e Performance (cruzamento de PSE e Smartwatch) na aba <strong>Evolução</strong>.
-            </div>
-          </div>
-
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px;">
-            <div style="font-size: 0.85rem; font-weight: 800; color: #34d399; margin-bottom: 3px; display:flex; align-items:center; gap:6px;">
-              <span>📲</span> Instalável no Celular e Funciona Offline (PWA)
-            </div>
-            <div style="font-size: 0.77rem; color: #94a3b8;">
-              Adicione o app à sua tela inicial no navegador. Ele salva automaticamente seu progresso no aparelho, mesmo se houver oscilação de sinal no local do treino.
-            </div>
-          </div>
-
-        </div>
-
-        <button type="button" class="btn-submit-assessment" onclick="closeWelcomeAppModal()" style="margin: 18px 0 0 0; width: 100%;">
-          <span>Explorar Meu App Agora ➔</span>
-        </button>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal de Devolutiva Técnica de Treino (Resposta às Anotações dos Exercícios) -->
-  <div id="devolutivaTreinoModal" class="modal-overlay" onclick="if(event.target === this) closeDevolutivaModal();">
-    <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 520px;">
-      <div class="modal-header">
-        <div style="display:flex; align-items:center; gap:10px;">
-          <div style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg, rgba(56,189,248,0.2), rgba(0,255,136,0.2)); border:1px solid rgba(56,189,248,0.35); display:flex; align-items:center; justify-content:center; font-size:1.25rem;">
-            📋
-          </div>
-          <div>
-            <h3 style="margin:0; font-size:1.02rem; color:#fff;" id="devolutivaModalTitle">Devolutiva do Treino • Quarta-feira</h3>
-            <span style="font-size:0.75rem; color:#38bdf8; font-weight:600;" id="devolutivaModalSubtitle">Box CrossFit • Resposta às Anotações de Exercício</span>
-          </div>
-        </div>
-        <button class="btn-close" type="button" onclick="closeDevolutivaModal()" aria-label="Fechar">&times;</button>
-      </div>
-      <div class="modal-body" style="padding: 16px 20px; line-height:1.55; max-height: 75vh; overflow-y: auto;" id="devolutivaModalContent">
-        
-        <!-- O que foi anotado durante a sessão de quarta -->
-        <div style="background: rgba(251, 191, 36, 0.08); border-left: 4px solid #fbbf24; border-radius: 8px; padding: 12px 14px; margin-bottom: 14px;">
-          <div style="font-size: 0.76rem; font-weight: 800; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px;">
-            📝 Anotações Registradas no Treino de Quarta:
-          </div>
-          <div style="font-size: 0.81rem; color: #f1f5f9; line-height: 1.55;">
-            <p style="margin: 0 0 5px 0;">• <strong>EMOM (Min 1):</strong> Substituição de strict T2B por strict pull-over para proteger a alavanca de puxada e o ombro direito.</p>
-            <p style="margin: 0 0 5px 0;">• <strong>WOD com Halteres:</strong> Uso de 15 kg sustentados com segurança nos DB Box Step Ups e DB Devil Press.</p>
-            <p style="margin: 0;">• <strong>Preservação Meniscal:</strong> Descida da caixa executada estritamente no passo (step down), sem impacto de queda.</p>
-          </div>
-        </div>
-
-        <!-- Orientações do Treinador sobre os exercícios anotados -->
-        <div style="display:flex; flex-direction:column; gap:12px;">
-          
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px;">
-            <div style="font-size: 0.85rem; font-weight: 800; color: var(--brand-neon); margin-bottom: 4px; display:flex; align-items:center; gap:6px;">
-              <span>1.</span> ADAPTAÇÃO BIOMECÂNICA PERFEITA NO PULL-OVER
-            </div>
-            <div style="font-size: 0.78rem; color: #cbd5e1;">
-              A substituição do T2B pelo pull-over estrito foi cirúrgica. Recrutou grande dorsal, redondo maior e transverso abdominal em cadeia cinética fechada sob momento angular controlado, anulando qualquer força de cisalhamento anterior na cabeça umeral operada.
-            </div>
-          </div>
-
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px;">
-            <div style="font-size: 0.85rem; font-weight: 800; color: #38bdf8; margin-bottom: 4px; display:flex; align-items:center; gap:6px;">
-              <span>2.</span> GESTÃO DE CARGA NOS HALTERES (15 KG)
-            </div>
-            <div style="font-size: 0.78rem; color: #cbd5e1;">
-              Os 15 kg foram na medida exata para a densidade do metabólico. O Devil Press foi fluido e o alinhamento da coluna lombar permaneceu estável durante toda a extensão concêntrica de quadril.
-            </div>
-          </div>
-
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 14px;">
-            <div style="font-size: 0.85rem; font-weight: 800; color: #c084fc; margin-bottom: 4px; display:flex; align-items:center; gap:6px;">
-              <span>3.</span> BLINDAGEM MENISCAL RIGOROSA
-            </div>
-            <div style="font-size: 0.78rem; color: #cbd5e1;">
-              A descida no passo (step down) eliminou 100% da força de reação do solo (que chegaria a 3–4x o peso corporal em uma queda livre). Essa disciplina garante que o platô tibial esquerdo suporte as sessões pesadas sem derrame sinovial.
-            </div>
-          </div>
-
-        </div>
-
-        <div style="display: flex; gap: 8px; margin-top: 16px;">
-          <button type="button" class="btn-submit-assessment" onclick="closeDevolutivaModal();" style="margin: 0; width: 100%; background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; font-weight: 700;">
-            <span>Entendido ✓</span>
-          </button>
-        </div>
-
       </div>
     </div>
   </div>
@@ -10559,7 +10448,7 @@
           </div>
 
           <!-- Notificação 4: Análise de Habilidade (11x Butterfly Pull-Up) -->
-          <div class="notif-item" data-notif-id="notif-analysis-5" onclick="openAnalysisCardFromNotif('analysisCard-5', 'habilidades', 'notif-analysis-5')">
+          <div class="notif-item" data-notif-id="notif-analysis-5" onclick="openAnalysisCardFromNotif('analysisCard-5', 'habilidades', 'notif-analysis-5 min:">
             <span class="notif-item-icon">⚡</span>
             <div style="flex:1; min-width:0;">
               <div class="notif-item-title">Habilidade: Butterfly Pull-Up</div>
@@ -11304,28 +11193,20 @@
         watchKcal: watchKcalEl ? watchKcalEl.value : 0
       });
 
-      const setsInfoEl = document.getElementById('bioLiveSetsInfo');
-      if (setsInfoEl) {
-        setsInfoEl.textContent = totalSets > 0 ? `${doneSets > 0 ? doneSets : totalSets}/${totalSets} séries integradas` : 'Sessão livre integrada';
-      }
-
-      const loadEl = document.getElementById('bioPreviewLoadUA');
-      if (loadEl) loadEl.textContent = `${calc.loadUA} U.A.`;
-
       const kcalEl = document.getElementById('bioPreviewRealKcal');
       if (kcalEl) kcalEl.textContent = `${calc.realKcal} kcal`;
 
-      const trimpVo2El = document.getElementById('bioPreviewTrimpVo2');
-      if (trimpVo2El) trimpVo2El.textContent = `${calc.trimp} pts • VO2 ${calc.vo2Est}`;
-
-      const expEl = document.getElementById('bioPreviewExplanation');
-      if (expEl) {
-        if (calc.watchKcal) {
-          expEl.innerHTML = `⌚ Relógio marcou <strong>${calc.watchKcal} kcal</strong>. Cruzando com as séries de força e PSE ${calc.pse}, o gasto real com trabalho mecânico e EPOC é de <strong style="color:var(--brand-neon);">${calc.realKcal} kcal (+${calc.deltaKcal} kcal)</strong> • ${calc.zoneLabel}.`;
+      const deltaEl = document.getElementById('bioPreviewDeltaKcal');
+      if (deltaEl) {
+        if (calc.watchKcal && calc.watchKcal > 0) {
+          deltaEl.textContent = `+${calc.deltaKcal} kcal além do relógio`;
         } else {
-          expEl.innerHTML = `⚡ Gasto calculado via trabalho mecânico das séries + PSE ${calc.pse} + efeito EPOC pós-treino (<strong>+${calc.epocKcal} kcal</strong> nas horas seguintes).`;
+          deltaEl.textContent = `Trabalho das séries + EPOC`;
         }
       }
+
+      const epocEl = document.getElementById('bioPreviewEpocKcal');
+      if (epocEl) epocEl.textContent = `~${calc.epocKcal} kcal`;
     };
 
     window.openBiometriaSessaoModal = function(dayId) {
@@ -12113,7 +11994,7 @@
           },
           {
             id: 'comp_gui_03',
-            date: '2026-07-15',
+            date: '2026-07-15 min,
             weight: 95.35,
             waist: 92.0,
             neck: 40.5,
@@ -12217,7 +12098,7 @@
           },
           {
             id: 'comp_gui_11',
-            date: '2026-09-15',
+            date: '2026-09-15 min,
             weight: 87.45,
             waist: 83.8,
             neck: 39.5,
@@ -12268,7 +12149,7 @@
             photos: null
           },
           {
-            id: 'comp_gui_15',
+            id: 'comp_gui_15 min,
             date: '2026-10-03',
             weight: 86.35,
             waist: 82.5,
@@ -12308,7 +12189,7 @@
           },
           {
             id: 'comp_gui_18',
-            date: '2026-10-15',
+            date: '2026-10-15 min,
             weight: 84.75,
             waist: 81.0,
             neck: 39.0,
@@ -12321,7 +12202,7 @@
           },
           {
             id: 'comp_gui_19',
-            date: '2026-10-15',
+            date: '2026-10-15 min,
             weight: 84.50,
             waist: 81.0,
             neck: 39.0,
@@ -12504,8 +12385,8 @@
       if (summaryRangeEl) summaryRangeEl.textContent = `${date0BR} vs. ${dateLatestBR}`;
 
       // Período e taxa
-      const d0 = new Date((baseline.date || '2026-07-02') + 'T12:00:00');
-      const d1 = new Date((latest.date || '2026-10-15') + 'T12:00:00');
+      const d0 = new Date((baseline.date || '2026-07-02 min: + 'T12:00:00');
+      const d1 = new Date((latest.date || '2026-10-15 min) + 'T12:00:00');
       const diffMs = Math.max(0, d1 - d0);
       const diffDays = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)));
       const diffWeeks = diffDays / 7;
@@ -15234,7 +15115,7 @@
         } else if (lower.includes('glúteo máximo') || lower.includes('ponte de glúteo')) {
           topic = 'ATIVAÇÃO DO GLÚTEO MÁXIMO SEM CARGA AXIAL';
           author = 'Neumann, 2016; Schoenfeld, 2020';
-        } else if (lower.includes('box squat') || lower.includes('senta e levanta') || lower.includes('glut-4')) {
+        } else if (lower.includes('box squat') || lower.includes('senta e levanta') || lower.includes('glut-4 min:) {
           topic = 'LIMITAÇÃO DE BRAÇO DE MOMENTO E CAPTAÇÃO DE GLUT-4';
           author = 'Kapandji, 2019; Powers e Howley, 2018';
         } else if (lower.includes('remada') || lower.includes('suporte torácico')) {
@@ -16221,7 +16102,7 @@
     // Registra Service Worker (PWA Offline)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=165').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=165 min:.then((reg) => {
           reg.update();
         }).catch(err => console.log('SW falhou:', err));
       });
@@ -16286,7 +16167,7 @@
       }
 
       let tagText = '💡 DICA';
-      let tagColor = '#facc15';
+      let tagColor = '#facc15 min;
       let cardBorder = 'rgba(250, 204, 21, 0.4)';
       let btnBg = 'rgba(250, 204, 21, 0.15)';
       let btnBorder = 'rgba(250, 204, 21, 0.4)';

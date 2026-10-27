@@ -4889,7 +4889,106 @@
       border-left: 4.5px solid var(--brand-neon) !important;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55), 0 0 16px rgba(0, 255, 136, 0.06) !important;
     }
-  </style>
+  
+    /* ==================== AJUSTES DE RESPONSIVIDADE E VOLUME DE SÉRIES ==================== */
+    .ex-volume-sets-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-bottom: 10px;
+      padding: 6px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      max-width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .ex-volume-badge {
+      font-size: 0.76rem !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.03em !important;
+      color: #e2e8f0 !important;
+      background: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      white-space: normal !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 4px !important;
+      max-width: 100% !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
+      line-height: 1.35 !important;
+    }
+    .sets-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .ex-title {
+      font-size: 0.90rem !important;
+      font-weight: 800 !important;
+      color: #ffffff !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.02em !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 8px !important;
+      flex-wrap: wrap !important;
+      line-height: 1.35 !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .ex-title > span:first-child {
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    .ex-title .btn-video {
+      flex-shrink: 0;
+    }
+    .btn-finish-workout-trigger {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.18) 0%, rgba(56, 189, 248, 0.14) 100%);
+      border: 2px solid var(--brand-neon);
+      border-radius: 14px;
+      padding: 16px 20px;
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(0, 255, 136, 0.25);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-transform: uppercase;
+    }
+    .btn-finish-workout-trigger:hover,
+    .btn-finish-workout-trigger:active {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 26px rgba(0, 255, 136, 0.42);
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.28) 0%, rgba(56, 189, 248, 0.22) 100%);
+    }
+    .finish-flag-icon {
+      font-size: 1.35rem;
+      line-height: 1;
+      display: inline-block;
+      transform: scale(1.1);
+    }
+
+</style>
 </head>
 <body>
 
@@ -5089,17 +5188,13 @@
 
     <!-- Card Clean de Finalização de Treino -->
     <div class="workout-finish-clean-card" id="workoutFinishCard-treinoa">
-      <div class="finish-controls-row">
-        <label class="finish-checkbox-label">
-          <input type="checkbox" id="checkFinish-treinoa" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('treinoa', this.checked)">
-          <span class="finish-custom-checkbox"></span>
-          <span class="finish-checkbox-text">Finalizar sessão 🏁</span>
-        </label>
-        <button type="button" class="btn-send-coach" id="btnSendCoach-treinoa" onclick="completeWorkoutSession('treinoa')" disabled>
-          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-          <span>Enviar para Coach</span>
-        </button>
+      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-treinoa" onclick="openBiometriaSessaoModal('treinoa')">
+        <span>FINALIZAR</span> <span class="finish-flag-icon">🏁</span> <span>SESSÃO</span>
+      </button>
+      <div id="completeFeedback-treinoa" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
+        ✅ Sessão finalizada e registrada com sucesso!
       </div>
+    </div>
       <div id="completeFeedback-treinoa" class="complete-feedback-box" style="display:none; width: 100%;">
         ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
       </div>
@@ -5138,17 +5233,13 @@
 
     <!-- Card Clean de Finalização de Treino -->
     <div class="workout-finish-clean-card" id="workoutFinishCard-treinob">
-      <div class="finish-controls-row">
-        <label class="finish-checkbox-label">
-          <input type="checkbox" id="checkFinish-treinob" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('treinob', this.checked)">
-          <span class="finish-custom-checkbox"></span>
-          <span class="finish-checkbox-text">Finalizar sessão 🏁</span>
-        </label>
-        <button type="button" class="btn-send-coach" id="btnSendCoach-treinob" onclick="completeWorkoutSession('treinob')" disabled>
-          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-          <span>Enviar para Coach</span>
-        </button>
+      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-treinob" onclick="openBiometriaSessaoModal('treinob')">
+        <span>FINALIZAR</span> <span class="finish-flag-icon">🏁</span> <span>SESSÃO</span>
+      </button>
+      <div id="completeFeedback-treinob" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
+        ✅ Sessão finalizada e registrada com sucesso!
       </div>
+    </div>
       <div id="completeFeedback-treinob" class="complete-feedback-box" style="display:none; width: 100%;">
         ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
       </div>
@@ -5187,17 +5278,13 @@
 
     <!-- Card Clean de Finalização de Treino -->
     <div class="workout-finish-clean-card" id="workoutFinishCard-treinoc">
-      <div class="finish-controls-row">
-        <label class="finish-checkbox-label">
-          <input type="checkbox" id="checkFinish-treinoc" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('treinoc', this.checked)">
-          <span class="finish-custom-checkbox"></span>
-          <span class="finish-checkbox-text">Finalizar sessão 🏁</span>
-        </label>
-        <button type="button" class="btn-send-coach" id="btnSendCoach-treinoc" onclick="completeWorkoutSession('treinoc')" disabled>
-          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-          <span>Enviar para Coach</span>
-        </button>
+      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-treinoc" onclick="openBiometriaSessaoModal('treinoc')">
+        <span>FINALIZAR</span> <span class="finish-flag-icon">🏁</span> <span>SESSÃO</span>
+      </button>
+      <div id="completeFeedback-treinoc" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
+        ✅ Sessão finalizada e registrada com sucesso!
       </div>
+    </div>
       <div id="completeFeedback-treinoc" class="complete-feedback-box" style="display:none; width: 100%;">
         ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
       </div>
@@ -5273,17 +5360,13 @@
     </div>
     <!-- Card Clean de Finalização de Treino (Quarta) -->
     <div class="workout-finish-clean-card" id="workoutFinishCard-quarta">
-      <div class="finish-controls-row">
-        <label class="finish-checkbox-label">
-          <input type="checkbox" id="checkFinish-quarta" class="finish-checkbox-input" onchange="toggleFinishWorkoutBtn('quarta', this.checked)">
-          <span class="finish-custom-checkbox"></span>
-          <span class="finish-checkbox-text">Finalizar sessão 🏁</span>
-        </label>
-        <button type="button" class="btn-send-coach" id="btnSendCoach-quarta" onclick="completeWorkoutSession('quarta')" disabled>
-          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-          <span>Enviar para Coach</span>
-        </button>
+      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-quarta" onclick="openBiometriaSessaoModal('quarta')">
+        <span>FINALIZAR</span> <span class="finish-flag-icon">🏁</span> <span>SESSÃO</span>
+      </button>
+      <div id="completeFeedback-quarta" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
+        ✅ Sessão finalizada e registrada com sucesso!
       </div>
+    </div>
       <div id="completeFeedback-quarta" class="complete-feedback-box" style="display:none; width: 100%;">
         ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
       </div>
@@ -7516,7 +7599,7 @@
             <label class="comp-form-label" style="margin:0;">⚡ Percepção de Esforço</label>
             <span id="bioPseSelectedBadge" style="font-size:0.72rem; font-weight:800; color:#f97316; background:rgba(249,115,22,0.14); border:1px solid rgba(249,115,22,0.35); padding:2px 8px; border-radius:8px;">Nível 7 • Muito Intenso</span>
           </div>
-          <div style="font-size:0.75rem; color:#94a3b8; margin-bottom:8px;">
+          <div style="font-size:0.88rem; font-weight:700; color:#ffffff; margin-bottom:8px;">
             De 0 a 10, quão difícil foi o treino de hoje para você?
           </div>
           <input type="hidden" id="bio_session_pse" value="7">
@@ -7541,10 +7624,10 @@
             <div style="font-size: 0.78rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
               <span>⌚</span> <span>Dados do Smartwatch (Opcional)</span>
             </div>
-            <span style="font-size:0.68rem; color:#94a3b8;">Se utilizou relógio</span>
+            
           </div>
-          <div style="font-size: 0.72rem; color: #94a3b8; margin-bottom: 10px;">
-            Anote abaixo os valores que o seu smartwatch ou monitor marcou na sessão:
+          <div style="font-size: 0.82rem; font-weight:600; color: #cbd5e1; margin-bottom: 10px;">
+            Anote abaixo os valores que o seu smartwatch marcou na sessão:
           </div>
           <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;">
             <div class="comp-form-group" style="margin-bottom:0;">
@@ -7563,33 +7646,30 @@
         </div>
 
         <!-- Preview Instantâneo com Botão Explicativo -->
-        <div class="bio-live-calc-box" id="bioLiveCalcPreviewBox" style="margin-top:14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px 14px;">
-          <div style="margin-bottom:10px;">
-            <span style="font-size:0.75rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.04em;">📊 ESTÍMULO FISIOLÓGICO</span>
-          </div>
-          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; text-align:center;">
-            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:8px 6px;">
-              <div style="font-size:0.66rem; color:#94a3b8;">Carga Interna</div>
-              <div style="font-size:0.95rem; font-weight:900; color:#c084fc;" id="bioPreviewLoadUA">420 U.A.</div>
+        <div class="bio-live-calc-box" id="bioLiveCalcPreviewBox" style="margin-top:14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="font-size:0.80rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.04em; display:flex; align-items:center; gap:6px;">
+              <span>🔥</span> <span>Gasto Calórico Real e EPOC Estimado</span>
             </div>
-            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:8px 6px;">
-              <div style="font-size:0.66rem; color:#94a3b8;">Gasto Estimado</div>
-              <div style="font-size:0.95rem; font-weight:900; color:var(--brand-neon);" id="bioPreviewRealKcal">485 kcal</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:8px 6px;">
-              <div style="font-size:0.66rem; color:#94a3b8;">Densidade / TRIMP</div>
-              <div style="font-size:0.88rem; font-weight:900; color:#38bdf8;" id="bioPreviewTrimpVo2">Calculado</div>
-            </div>
-          </div>
-          <!-- Botão Entenda o Cálculo abaixo das badges das cargas -->
-          <div style="margin-top:10px; display:flex; justify-content:center;">
-            <button type="button" class="btn-video" onclick="openInstrucoesBiometriaModal()" style="padding: 3.5px 12px; font-size: 0.72rem; margin: 0; background: #0e2238; border: 1px solid #38bdf8; color: #fff; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+            <button type="button" class="btn-video" onclick="openInstrucoesBiometriaModal()" style="padding: 3px 10px; font-size: 0.70rem; margin: 0; background: #0e2238; border: 1px solid #38bdf8; color: #fff; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
               <svg viewBox="0 0 24 24" style="width:11px; height:11px; fill:#38bdf8;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
               <span>Entenda o Cálculo</span>
             </button>
           </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; text-align:center;">
+            <div style="background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius:10px; padding:10px 8px;">
+              <div style="font-size:0.68rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Gasto Total Real</div>
+              <div style="font-size:1.15rem; font-weight:900; color:var(--brand-neon); margin-top:2px;" id="bioPreviewRealKcal">485 kcal</div>
+              <div style="font-size:0.65rem; color:#64748b; margin-top:2px;" id="bioPreviewDeltaKcal">+85 kcal além do relógio</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius:10px; padding:10px 8px;">
+              <div style="font-size:0.68rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">EPOC (Pós-Queima)</div>
+              <div style="font-size:1.15rem; font-weight:900; color:#38bdf8; margin-top:2px;" id="bioPreviewEpocKcal">~68 kcal</div>
+              <div style="font-size:0.65rem; color:#64748b; margin-top:2px;">Metabolismo acelerado pós-treino</div>
+            </div>
+          </div>
           <!-- Link clicável sucinto para biometria e performance -->
-          <div style="margin-top:10px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.06); text-align:center; font-size:0.72rem; color:#94a3b8; line-height:1.45;">
+          <div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); text-align:center; font-size:0.75rem; color:#94a3b8; line-height:1.45;">
             📊 Relatório completo em <a href="javascript:void(0)" onclick="goToBiometriaPerformanceView()" style="color:#38bdf8; text-decoration:underline; font-weight:700;">Biometria e Performance ↗</a>
           </div>
         </div>
@@ -7598,7 +7678,7 @@
         <div style="margin-top:16px;">
           <button type="button" onclick="confirmAndSaveBiometriaSession(true)" style="background:var(--brand-neon); border:none; color:#000; font-size:0.86rem; font-weight:900; border-radius:10px; padding:13px 18px; cursor:pointer; box-shadow:0 0 16px var(--brand-neon-glow); display:flex; align-items:center; justify-content:center; gap:8px; width:100%;">
             <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:#000;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-            <span>SALVAR E ENVIAR PARA COACH (WHATSAPP)</span>
+            <span>SALVAR E ENVIAR PARA O COACH</span>
           </button>
         </div>
       </div>
@@ -7615,7 +7695,7 @@
           </div>
           <div>
             <h3 style="margin:0; font-size:1.02rem; color:#fff;">Entenda o Cálculo</h3>
-            <span style="font-size:0.75rem; color:#38bdf8; font-weight:600;">Como o App Calcula Sua Carga e Gasto Real</span>
+            <span style="font-size:0.75rem; color:#38bdf8; font-weight:600;">Gasto Energético Real e EPOC vs Smartwatch</span>
           </div>
         </div>
         <button class="btn-close" type="button" onclick="closeInstrucoesBiometriaModal()" aria-label="Fechar">&times;</button>
@@ -7623,25 +7703,19 @@
 
       <div style="padding: 16px 20px; font-size:0.83rem; color:#cbd5e1; line-height:1.6; max-height:78vh; overflow-y:auto;">
         
-        <!-- Explicação para o Leigo -->
-        <div style="margin-bottom:14px; padding:12px 14px; background:rgba(192,132,252,0.07); border-left:3.5px solid #c084fc; border-radius:10px;">
-          <div style="font-weight:800; color:#fff; font-size:0.88rem; margin-bottom:4px;">1. Carga Interna (U.A.)</div>
-          Multiplicação da <strong>Duração do Treino (minutos)</strong> pela sua <strong>Nota de Esforço (0 a 10)</strong>. Por exemplo: 60 minutos com esforço 7 resultam em <strong>420 Unidades Arbitrárias (U.A.)</strong>. Ela indica quanto estresse biológico seu corpo acumulou, permitindo planejar os descansos ideais.
+        <div style="margin-bottom:14px; padding:12px 14px; background:rgba(244,63,94,0.07); border-left:3.5px solid #f43f5e; border-radius:10px;">
+          <div style="font-weight:800; color:#fff; font-size:0.88rem; margin-bottom:4px;">1. Por que o Smartwatch Subestima o Treino?</div>
+          Os relógios convencionais utilizam sensores ópticos no pulso calibrados primariamente para corrida e ciclismo contínuos. Em treinos de força, calistenia e WODs, as contrações musculares isométricas e a pegada comprimem os capilares locais, provocando atraso na leitura dos batimentos. Além disso, grande parte da energia dessas modalidades provém de vias anaeróbias (ATP-CP e glicolítica), que não consomem oxigênio imediato na execução e são completamente ignoradas pelo algoritmo do relógio.
         </div>
 
         <div style="margin-bottom:14px; padding:12px 14px; background:rgba(0,255,136,0.06); border-left:3.5px solid var(--brand-neon); border-radius:10px;">
-          <div style="font-weight:800; color:#fff; font-size:0.88rem; margin-bottom:4px;">2. Gasto Calórico Real (Trabalho Mecânico + EPOC)</div>
-          Smartwatches calculam calorias baseando-se em corrida contínua e costumam subestimar o treino de força e calistenia. Nosso sistema calcula o trabalho mecânico real das séries que você executou e soma o <strong>efeito EPOC</strong> (calorias extras que seu corpo continua queimando nas horas seguintes para regenerar os tecidos).
+          <div style="font-weight:800; color:#fff; font-size:0.88rem; margin-bottom:4px;">2. Como o App Calcula o Gasto Real</div>
+          Nosso algoritmo combina o <strong>trabalho mecânico real</strong> das séries que você executou, o seu peso corporal e a nota de percepção subjetiva de esforço (PSE). Cada série com sobrecarga impõe um custo metabólico direto de restauração celular, que é integrado à taxa ativa da sessão, corrigindo a subestimação do relógio com fidelidade biomecânica.
         </div>
 
         <div style="margin-bottom:14px; padding:12px 14px; background:rgba(56,189,248,0.07); border-left:3.5px solid #38bdf8; border-radius:10px;">
-          <div style="font-weight:800; color:#fff; font-size:0.88rem; margin-bottom:4px;">3. Impulso Cardíaco e TRIMP de Banister</div>
-          O <strong>TRIMP (Training Impulse)</strong> mede o estresse biológico real sofrido pelo coração. Diferente de uma média simples de batimentos, o esforço cardiovascular não é linear: treinar perto da sua frequência máxima desgasta o organismo de forma exponencial em relação a um trote leve. Pontuações entre <strong>50 e 120 pts</strong> sinalizam uma sessão produtiva de evolução, enquanto acima de <strong>150 pts</strong> indicam alto desgaste autonômico, pedindo sono reparador e hidratação.
-        </div>
-
-        <div style="margin-bottom:14px; padding:12px 14px; background:rgba(251,191,36,0.07); border-left:3.5px solid #fbbf24; border-radius:10px;">
-          <div style="font-weight:800; color:#fff; font-size:0.88rem; margin-bottom:4px;">4. Consumo de Oxigênio (VO2 Estimado)</div>
-          O app calcula a sua capacidade cardiorrespiratória em <strong>ml/kg/min</strong> a partir da razão entre sua frequência cardíaca máxima, em repouso e a intensidade sustentada na sessão. Essa métrica permite acompanhar a evolução do seu fôlego e potência metabólica ao longo das semanas.
+          <div style="font-weight:800; color:#fff; font-size:0.88rem; margin-bottom:4px;">3. EPOC (Efeito Pós-Combustão)</div>
+          O <strong>EPOC (Excess Post-Exercise Oxygen Consumption)</strong> representa as calorias extras que o seu organismo continua queimando nas 12 a 24 horas seguintes ao treino para recompor os estoques de fosfocreatina, tamponar o lactato acumulado, reabastecer a mioglobina e reparar os tecidos musculares. Em treinos intensos, o EPOC adiciona de <strong>10% a 25% a mais de gasto calórico</strong> que não aparece no display do seu smartwatch.
         </div>
 
         <!-- Accordion Retrátil da Base Científica (Padrão Ouro GEMINI.md) -->
@@ -7651,16 +7725,10 @@
           </summary>
           <div style="margin-top:10px; font-size:0.77rem; color:#94a3b8; line-height:1.55; display:flex; flex-direction:column; gap:8px;">
             <div class="modal-science-block">
-              <strong class="modal-science-heading" style="color:#e2e8f0;">MÉTODO DE SESSÃO-RPE (sRPE):</strong> A multiplicação da duração em minutos pela percepção subjetiva de esforço (escala CR-10 modificada de Foster) é o padrão ouro na literatura esportiva para monitorar carga interna de treinamento, fadiga neuromuscular e risco de lesão (Foster et al., 2001).
-            </div>
-            <div class="modal-science-block">
               <strong class="modal-science-heading" style="color:#e2e8f0;">CONSUMO EXCESSIVO DE OXIGÊNIO PÓS-EXERCÍCIO (EPOC):</strong> Exercícios de força de alta intensidade e calistenia causam perturbação metabólica profunda, mantendo a taxa de consumo de oxigênio elevada por horas após a sessão para ressíntese de glicogênio, remoção de metabólitos e restauração miocelular (Børsheim & Bahr, 2003).
             </div>
             <div class="modal-science-block">
-              <strong class="modal-science-heading" style="color:#e2e8f0;">IMPULSO DE TREINAMENTO (TRIMP DE BANISTER):</strong> A equação de Banister (1991) pondera a duração pelo percentual de reserva cardíaca multiplicado por um fator exponencial de lactato sanguíneo, refletindo o custo miocárdico e metabólico com alta sensibilidade fisiológica.
-            </div>
-            <div class="modal-science-block">
-              <strong class="modal-science-heading" style="color:#e2e8f0;">ESTIMATIVA INDIRETA DE VO2 (MÉTODO UTH-SØRENSEN):</strong> O cálculo de capacidade aeróbia operacional baseia-se na razão entre FC máxima e FC de repouso ($VO_{2\max} \approx 15.3 \times \text{FC}_{\max} / \text{FC}_{\text{rep}}$), com validação científica demonstrando correlação $r = 0.88$ contra testes laboratoriais ergoespirométricos diretos (Uth et al., 2004; Swain et al., 1994).
+              <strong class="modal-science-heading" style="color:#e2e8f0;">ESTIMATIVA DE GASTO ENERGÉTICO EM RESISTÊNCIA:</strong> Estudos que utilizam calorimetria indireta e medição de lactato demonstram que algoritmos baseados apenas em frequência cardíaca subestimam em até 30% o gasto calórico de treinos resistidos com intervalo e componente excêntrico (Scott et al., 2011).
             </div>
           </div>
         </details>
@@ -7671,7 +7739,6 @@
       </div>
     </div>
   </div>
-
 
   <!-- Modal de Ajuda Contextual e Instruções do Aplicativo -->
   <div id="contextualHelpModal" class="modal-overlay" onclick="if(event.target === this) closeContextualHelp();">
@@ -8577,7 +8644,7 @@
 
     window.recalcBiometriaModalPreview = function() {
       const daySel = document.getElementById('bio_session_day');
-      const dayId = daySel ? daySel.value : (window._currentBioModalDayId || 'terca');
+      const dayId = daySel ? daySel.value : (window._currentBioModalDayId || 'dia1');
       const durEl = document.getElementById('bio_session_duration');
       const pseEl = document.getElementById('bio_session_pse');
       const hrAvgEl = document.getElementById('bio_watch_hr_avg');
@@ -8597,22 +8664,20 @@
         watchKcal: watchKcalEl ? watchKcalEl.value : 0
       });
 
-      const setsInfoEl = document.getElementById('bioLiveSetsInfo');
-      if (setsInfoEl) {
-        setsInfoEl.textContent = totalSets > 0 ? `${doneSets > 0 ? doneSets : totalSets}/${totalSets} séries integradas` : 'Sessão livre integrada';
-      }
-
-      const loadEl = document.getElementById('bioPreviewLoadUA');
-      if (loadEl) loadEl.textContent = `${calc.loadUA} U.A.`;
-
       const kcalEl = document.getElementById('bioPreviewRealKcal');
       if (kcalEl) kcalEl.textContent = `${calc.realKcal} kcal`;
 
-      const trimpVo2El = document.getElementById('bioPreviewTrimpVo2');
-      if (trimpVo2El) trimpVo2El.textContent = `${calc.trimp} pts • VO2 ${calc.vo2Est}`;
+      const deltaEl = document.getElementById('bioPreviewDeltaKcal');
+      if (deltaEl) {
+        if (calc.watchKcal && calc.watchKcal > 0) {
+          deltaEl.textContent = `+${calc.deltaKcal} kcal além do relógio`;
+        } else {
+          deltaEl.textContent = `Trabalho das séries + EPOC`;
+        }
+      }
 
-      const expEl = document.getElementById('bioPreviewExplanation');
-      if (expEl) expEl.innerHTML = '';
+      const epocEl = document.getElementById('bioPreviewEpocKcal');
+      if (epocEl) epocEl.textContent = `~${calc.epocKcal} kcal`;
     };
 
     window.openBiometriaSessaoModal = function(dayId) {
