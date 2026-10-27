@@ -5558,7 +5558,6 @@
         ✅ Sessão finalizada e registrada com sucesso!
       </div>
     </div>
-    </div>
 
     <!-- Ajuda Contextual do Treino -->
     <div class="contextual-help-wrap" style="margin-top: 24px; margin-bottom: 80px;">
@@ -6193,7 +6192,6 @@
         ✅ Sessão finalizada e registrada com sucesso!
       </div>
     </div>
-    </div>
 
     <!-- Ajuda Contextual do Treino -->
     <div class="contextual-help-wrap" style="margin-top: 24px; margin-bottom: 80px;">
@@ -6486,7 +6484,6 @@
       <div id="completeFeedback-quinta" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
         ✅ Sessão finalizada e registrada com sucesso!
       </div>
-    </div>
     </div>
 
     <!-- Ajuda Contextual do Treino -->
@@ -7069,7 +7066,6 @@
       <div id="completeFeedback-sexta" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
         ✅ Sessão finalizada e registrada com sucesso!
       </div>
-    </div>
     </div>
 
     <!-- Ajuda Contextual do Treino -->
@@ -9331,10 +9327,9 @@
       </div>
       <div class="timer-buttons">
         <button type="button" class="btn-timer" onclick="startTimer(30)">30s</button>
-        <button type="button" class="btn-timer" onclick="startTimer(45)">45s</button>
         <button type="button" class="btn-timer" onclick="startTimer(60)">60s</button>
         <button type="button" class="btn-timer active" onclick="startTimer(90)">90s</button>
-        <button type="button" class="btn-timer" onclick="startTimer(120)">120s</button>
+        <button type="button" class="btn-timer" onclick="startTimer(180)">180s</button>
         <button type="button" class="btn-timer btn-timer-reset" onclick="resetTimer()">Reset</button>
       </div>
     </div>
@@ -13733,10 +13728,8 @@
 
         presets.innerHTML = `
           <button class="btn-preset ${timerState.simpleTimerDuration===30?'active':''}" onclick="setSimpleTimerExact(30)">30s</button>
-          <button class="btn-preset ${timerState.simpleTimerDuration===45?'active':''}" onclick="setSimpleTimerExact(45)">45s</button>
           <button class="btn-preset ${timerState.simpleTimerDuration===60?'active':''}" onclick="setSimpleTimerExact(60)">60s</button>
           <button class="btn-preset ${timerState.simpleTimerDuration===90?'active':''}" onclick="setSimpleTimerExact(90)">90s</button>
-          <button class="btn-preset ${timerState.simpleTimerDuration===120?'active':''}" onclick="setSimpleTimerExact(120)">2 min</button>
           <button class="btn-preset ${timerState.simpleTimerDuration===180?'active':''}" onclick="setSimpleTimerExact(180)">3 min</button>
           <button class="btn-preset" onclick="addSimpleTimerTime(30)" title="Adicionar 30s">+30s</button>
         `;
