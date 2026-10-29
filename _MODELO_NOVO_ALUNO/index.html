@@ -6428,6 +6428,7 @@
       </div>
 
     </div>
+  </div> <!-- end #evolView-composicao -->
 
     <div id="evolView-tecnica" class="evolucao-view-pane" style="display:none;">
       <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding: 6px 0; border-bottom: 1px solid var(--border-subtle);">
@@ -8493,6 +8494,10 @@
       if (subId === 'historico' && typeof renderBodyCompHistoryList === 'function') {
         renderBodyCompHistoryList(getBodyCompHistory());
       }
+      if (subId === 'laudo') {
+        if (typeof renderLaudoCompletoDashboard === 'function') renderLaudoCompletoDashboard();
+        if (typeof renderLaudosHistory === 'function') if (typeof renderLaudosHistory === 'function') renderLaudosHistory();
+      }
       if (subId === 'fotos') {
         if (typeof renderPosturalComparisonUI === 'function') renderPosturalComparisonUI();
         if (typeof renderUserUploadedPhotosGallery === 'function') renderUserUploadedPhotosGallery(getBodyCompHistory());
@@ -10372,7 +10377,7 @@ function updateEvolucaoStats() {
       `;
 
       container.innerHTML = html;
-      renderLaudosHistory();
+      if (typeof renderLaudosHistory === 'function') renderLaudosHistory();
     }
 
     function buildRelatorioComposicaoHTML() {
@@ -10809,6 +10814,76 @@ function updateEvolucaoStats() {
     function closeInstrucoesFotosModal() {
       const modal = document.getElementById('modalInstrucoesFotos');
       if (modal) modal.classList.remove('active');
+    }
+
+    
+    function getLaudosHistory() {
+      try {
+        const key = (typeof getBodyCompStorageKey === 'function') ? getBodyCompStorageKey() + '_laudos' : 'dominio_aluno_body_comp_laudos';
+        return JSON.parse(localStorage.getItem(key) || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCurrentLaudoToHistory() {
+      try {
+        const history = getBodyCompHistory();
+        if (!history || history.length === 0) return;
+        const latest = history[history.length - 1];
+        const key = (typeof getBodyCompStorageKey === 'function') ? getBodyCompStorageKey() + '_laudos' : 'dominio_aluno_body_comp_laudos';
+        const laudos = JSON.parse(localStorage.getItem(key) || '[]');
+        const today = new Date().toISOString().split('T')[0];
+        const exists = laudos.some(l => l.date === today && l.weight === latest.weight && l.waist === latest.waist);
+        if (!exists) {
+          laudos.unshift({
+            id: 'laudo_' + Date.now(),
+            date: today,
+            dateFormatted: new Date().toLocaleDateString('pt-BR'),
+            weight: latest.weight,
+            waist: latest.waist,
+            bodyFat: latest.bodyFat || latest.bfManual || null,
+            notes: latest.notes || ''
+          });
+          localStorage.setItem(key, JSON.stringify(laudos));
+        }
+        if (typeof renderLaudosHistory === 'function') if (typeof renderLaudosHistory === 'function') renderLaudosHistory();
+      } catch (e) {
+        console.error('Erro ao arquivar laudo:', e);
+      }
+    }
+
+    function renderLaudosHistory() {
+      const container = document.getElementById('laudosHistoryList');
+      const badge = document.getElementById('laudosHistoryBadge');
+      if (!container) return;
+      const laudos = getLaudosHistory();
+      if (badge) badge.textContent = laudos.length === 1 ? '1 Laudo' : `${laudos.length} Laudos`;
+
+      if (!laudos || laudos.length === 0) {
+        container.innerHTML = `
+          <div style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 22px 16px; text-align: center; color: #94a3b8; font-size: 0.82rem;">
+            <span>Nenhum laudo arquivado ainda. Clique em "GERAR LAUDO E SALVAR NO HISTÓRICO" acima para registrar a avaliação atual.</span>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = laudos.map(l => `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease;" onclick="openRelatorioComposicaoModal()" onmouseover="this.style.borderColor='#38bdf8'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="display: flex; flex-direction: column; gap: 3px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 0.90rem; font-weight: 800; color: #ffffff;">Laudo de Evolução • ${l.dateFormatted || l.date}</span>
+              <span style="font-size: 0.68rem; font-weight: 800; color: #38bdf8; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); padding: 2px 6px; border-radius: 6px;">✓ Arquivado</span>
+            </div>
+            <div style="font-size: 0.76rem; color: #94a3b8;">
+              Peso: <strong style="color:#e2e8f0;">${l.weight} kg</strong> • Cintura: <strong style="color:#e2e8f0;">${l.waist} cm</strong> ${l.bodyFat ? `• BF: <strong style="color:#e2e8f0;">${l.bodyFat}%</strong>` : ''}
+            </div>
+          </div>
+          <div style="color: #38bdf8; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 4px;">
+            <span>Ver Laudo</span> ↗
+          </div>
+        </div>
+      `).join('');
     }
 
     function openRelatorioComposicaoModal() {
