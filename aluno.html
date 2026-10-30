@@ -5048,6 +5048,47 @@
     }
 
 
+    .drawer-video-action-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+    }
+    .drawer-video-action-text {
+      font-size: 0.73rem;
+      color: #cbd5e1;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.35;
+      width: 100%;
+    }
+    .btn-add-medicao-chamativo {
+      width: 100%;
+      background: linear-gradient(135deg, rgba(0, 255, 136, 0.16) 0%, rgba(0, 255, 136, 0.06) 100%);
+      border: 1.5px solid var(--brand-neon);
+      color: var(--brand-neon);
+      padding: 13px 20px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 18px rgba(0, 255, 136, 0.18);
+      margin-bottom: 16px;
+    }
+    .btn-add-medicao-chamativo:hover, .btn-add-medicao-chamativo:active {
+      background: var(--brand-neon);
+      color: #000000;
+      box-shadow: 0 6px 26px var(--brand-neon-glow);
+      transform: translateY(-1px);
+    }
+
     .btn-send-video-drawer {
       display: inline-flex;
       align-items: center;
@@ -5272,9 +5313,7 @@
         ✅ Sessão finalizada e registrada com sucesso!
       </div>
     </div>
-      <div id="completeFeedback-treinoa" class="complete-feedback-box" style="display:none; width: 100%;">
-        ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
-      </div>
+
     </div>
 
     <!-- Ajuda Contextual do Treino -->
@@ -6439,6 +6478,7 @@
       </div>
 
     </div>
+  </div> <!-- end #evolView-composicao -->
 
     <div id="evolView-tecnica" class="evolucao-view-pane" style="display:none;">
       <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; padding: 6px 0; border-bottom: 1px solid var(--border-subtle);">
@@ -8086,27 +8126,6 @@
         const data = localStorage.getItem('dominio_aluno_completed_workouts');
         return data ? JSON.parse(data) : {};
       } catch (e) {
-    async function carregarTreinosRecentes(alunoSlug, limit = 20) {
-      const cfg = getConfig();
-      const slugVal = alunoSlug || cfg.athleteSlug;
-      if (!cfg.supabaseUrl || !cfg.supabaseAnonKey) return [];
-      try {
-        const cleanUrl = cfg.supabaseUrl.replace(/\/+$/, '');
-        const url = `${cleanUrl}/rest/v1/treinos_logs?aluno_slug=eq.${encodeURIComponent(slugVal)}&order=created_at.desc&limit=${limit}`;
-        const resp = await fetch(url, {
-          headers: {
-            'apikey': cfg.supabaseAnonKey,
-            'Authorization': `Bearer ${cfg.supabaseAnonKey}`
-          }
-        });
-        if (!resp.ok) return [];
-        return await resp.json();
-      } catch (e) {
-        console.warn('[DominioDB] Erro ao carregar treinos recentes:', e);
-        return [];
-      }
-    }
-
         return {};
       }
     }
@@ -8464,7 +8483,7 @@
     function openDayWorkout(dayId) {
       const slug = (typeof DOMINIO_APP_CONFIG !== 'undefined' && DOMINIO_APP_CONFIG.athleteSlug) ? DOMINIO_APP_CONFIG.athleteSlug : 'novo_aluno';
       
-      // Somente novos alunos em modelo genérico ('aluno') são bloqueados pelo gate de ingresso
+      // Somente novos alunos em modelo generico ('aluno') sao bloqueados pelo gate de ingresso
       if (slug === 'aluno' &&
           localStorage.getItem('dominio_assessment_completed') !== 'true' &&
           localStorage.getItem('dominio_' + slug + '_assessment_completed') !== 'true') {
@@ -8503,8 +8522,14 @@
       if (subId === 'historico' && typeof renderBodyCompHistoryList === 'function') {
         renderBodyCompHistoryList(getBodyCompHistory());
       }
-      if (subId === 'fotos' && typeof renderBodyCompPhotosGallery === 'function') {
-        renderBodyCompPhotosGallery();
+      if (subId === 'laudo') {
+        if (typeof renderLaudoCompletoDashboard === 'function') renderLaudoCompletoDashboard();
+        if (typeof renderLaudosHistory === 'function') if (typeof renderLaudosHistory === 'function') renderLaudosHistory();
+      }
+      if (subId === 'fotos') {
+        if (typeof renderPosturalComparisonUI === 'function') renderPosturalComparisonUI();
+        if (typeof renderUserUploadedPhotosGallery === 'function') renderUserUploadedPhotosGallery(getBodyCompHistory());
+        if (typeof renderBodyCompPhotosGallery === 'function') renderBodyCompPhotosGallery();
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -10115,12 +10140,13 @@ function updateEvolucaoStats() {
             </div>
             <div style="font-size:0.74rem; color:#cbd5e1;">
               ${s.notes ? `<strong>Notas do Atleta:</strong> ${s.notes}<br>` : ''}
-              ${s.coachNotes ? `
+              ${(s.coachNotes || s.coachAnalysis) ? `
               <div style="margin-top:8px; padding:8px 10px; background:rgba(0,255,136,0.04); border-left:3.5px solid var(--brand-neon); border-radius:6px; font-size:0.76rem; color:#f1f5f9; line-height:1.55; white-space:pre-line;">
                 <strong style="color:var(--brand-neon); display:block; margin-bottom:4px;">Parecer Individual do Prof. Gui Lemos:</strong>
                 ${s.coachNotes}
               </div>
             ` : ''}
+            </div>
           </div>`;
       });
 
@@ -10203,10 +10229,10 @@ function updateEvolucaoStats() {
             </div>
 
             <!-- Parecer do Treinador Gui Lemos -->
-            ${s.coachNotes ? `
+            ${(s.coachNotes || s.coachAnalysis) ? `
               <div style="background:rgba(56,189,248,0.06); border-left:3.5px solid #38bdf8; border-radius:8px; padding:10px 12px; font-size:0.78rem; color:#cbd5e1; line-height:1.55;">
                 <strong style="color:#38bdf8; display:block; margin-bottom:4px; font-size:0.80rem;">🔬 Diagnóstico e Parecer Técnico:</strong>
-                <div style="white-space:pre-line;">${s.coachNotes}</div>
+                <div style="white-space:pre-line;">${s.coachNotes || s.coachAnalysis}</div>
               </div>
             ` : (s.notes ? `
               <div style="background:rgba(255,255,255,0.03); border-left:3px solid #64748b; border-radius:6px; padding:8px 10px; font-size:0.75rem; color:#94a3b8;">
@@ -10431,7 +10457,7 @@ function updateEvolucaoStats() {
       `;
 
       container.innerHTML = html;
-      renderLaudosHistory();
+      if (typeof renderLaudosHistory === 'function') renderLaudosHistory();
     }
 
     function buildRelatorioComposicaoHTML() {
@@ -10868,6 +10894,76 @@ function updateEvolucaoStats() {
     function closeInstrucoesFotosModal() {
       const modal = document.getElementById('modalInstrucoesFotos');
       if (modal) modal.classList.remove('active');
+    }
+
+    
+    function getLaudosHistory() {
+      try {
+        const key = (typeof getBodyCompStorageKey === 'function') ? getBodyCompStorageKey() + '_laudos' : 'dominio_aluno_body_comp_laudos';
+        return JSON.parse(localStorage.getItem(key) || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCurrentLaudoToHistory() {
+      try {
+        const history = getBodyCompHistory();
+        if (!history || history.length === 0) return;
+        const latest = history[history.length - 1];
+        const key = (typeof getBodyCompStorageKey === 'function') ? getBodyCompStorageKey() + '_laudos' : 'dominio_aluno_body_comp_laudos';
+        const laudos = JSON.parse(localStorage.getItem(key) || '[]');
+        const today = new Date().toISOString().split('T')[0];
+        const exists = laudos.some(l => l.date === today && l.weight === latest.weight && l.waist === latest.waist);
+        if (!exists) {
+          laudos.unshift({
+            id: 'laudo_' + Date.now(),
+            date: today,
+            dateFormatted: new Date().toLocaleDateString('pt-BR'),
+            weight: latest.weight,
+            waist: latest.waist,
+            bodyFat: latest.bodyFat || latest.bfManual || null,
+            notes: latest.notes || ''
+          });
+          localStorage.setItem(key, JSON.stringify(laudos));
+        }
+        if (typeof renderLaudosHistory === 'function') if (typeof renderLaudosHistory === 'function') renderLaudosHistory();
+      } catch (e) {
+        console.error('Erro ao arquivar laudo:', e);
+      }
+    }
+
+    function renderLaudosHistory() {
+      const container = document.getElementById('laudosHistoryList');
+      const badge = document.getElementById('laudosHistoryBadge');
+      if (!container) return;
+      const laudos = getLaudosHistory();
+      if (badge) badge.textContent = laudos.length === 1 ? '1 Laudo' : `${laudos.length} Laudos`;
+
+      if (!laudos || laudos.length === 0) {
+        container.innerHTML = `
+          <div style="background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.12); border-radius: 12px; padding: 22px 16px; text-align: center; color: #94a3b8; font-size: 0.82rem;">
+            <span>Nenhum laudo arquivado ainda. Clique em "GERAR LAUDO E SALVAR NO HISTÓRICO" acima para registrar a avaliação atual.</span>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = laudos.map(l => `
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease;" onclick="openRelatorioComposicaoModal()" onmouseover="this.style.borderColor='#38bdf8'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+          <div style="display: flex; flex-direction: column; gap: 3px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 0.90rem; font-weight: 800; color: #ffffff;">Laudo de Evolução • ${l.dateFormatted || l.date}</span>
+              <span style="font-size: 0.68rem; font-weight: 800; color: #38bdf8; background: rgba(56,189,248,0.12); border: 1px solid rgba(56,189,248,0.3); padding: 2px 6px; border-radius: 6px;">✓ Arquivado</span>
+            </div>
+            <div style="font-size: 0.76rem; color: #94a3b8;">
+              Peso: <strong style="color:#e2e8f0;">${l.weight} kg</strong> • Cintura: <strong style="color:#e2e8f0;">${l.waist} cm</strong> ${l.bodyFat ? `• BF: <strong style="color:#e2e8f0;">${l.bodyFat}%</strong>` : ''}
+            </div>
+          </div>
+          <div style="color: #38bdf8; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 4px;">
+            <span>Ver Laudo</span> ↗
+          </div>
+        </div>
+      `).join('');
     }
 
     function openRelatorioComposicaoModal() {
@@ -12160,6 +12256,27 @@ function updateEvolucaoStats() {
       } catch (e) {
         console.warn('[DominioDB] Erro ao carregar avaliação do Supabase:', e);
         return null;
+      }
+    }
+
+    async function carregarTreinosRecentes(alunoSlug, limit = 20) {
+      const cfg = getConfig();
+      const slugVal = alunoSlug || cfg.athleteSlug;
+      if (!cfg.supabaseUrl || !cfg.supabaseAnonKey) return [];
+      try {
+        const cleanUrl = cfg.supabaseUrl.replace(/\/+$/, '');
+        const url = `${cleanUrl}/rest/v1/treinos_logs?aluno_slug=eq.${encodeURIComponent(slugVal)}&order=created_at.desc&limit=${limit}`;
+        const resp = await fetch(url, {
+          headers: {
+            'apikey': cfg.supabaseAnonKey,
+            'Authorization': `Bearer ${cfg.supabaseAnonKey}`
+          }
+        });
+        if (!resp.ok) return [];
+        return await resp.json();
+      } catch (e) {
+        console.warn('[DominioDB] Erro ao carregar treinos recentes:', e);
+        return [];
       }
     }
 
@@ -13667,13 +13784,13 @@ window.openWelcomeAppModal = function(notifId = null) {
     function checkIntakeGate() {
       const slug = (typeof DOMINIO_APP_CONFIG !== 'undefined' && DOMINIO_APP_CONFIG.athleteSlug) ? DOMINIO_APP_CONFIG.athleteSlug : 'novo_aluno';
       
-      // Alunos com fichas já cadastradas ou pré-configuradas não passam pelo bloqueio
+      // Alunos com fichas ja cadastradas ou pre-configuradas nao passam pelo bloqueio
       if (slug !== 'aluno') {
         localStorage.setItem('dominio_' + slug + '_assessment_completed', 'true');
         if (typeof DEFAULT_STUDENT_INTAKE !== 'undefined' && !localStorage.getItem('dominio_' + slug + '_student_intake')) {
           localStorage.setItem('dominio_' + slug + '_student_intake', JSON.stringify(DEFAULT_STUDENT_INTAKE));
         }
-        updateDedicatedTopBarGate(true);
+        if (typeof updateDedicatedTopBarGate === 'function') updateDedicatedTopBarGate(true);
         return;
       }
 
@@ -13695,7 +13812,8 @@ window.openWelcomeAppModal = function(notifId = null) {
     async function syncWorkoutProgressFromCloud() {
       if (!window.DominioDB || typeof window.DominioDB.carregarTreinosRecentes !== 'function') return;
       try {
-        const slug = (typeof DOMINIO_APP_CONFIG !== 'undefined' && DOMINIO_APP_CONFIG.athleteSlug) ? DOMINIO_APP_CONFIG.athleteSlug : 'novo_aluno';
+        const cfgDb = (window.DominioDB && typeof window.DominioDB.getConfig === 'function') ? window.DominioDB.getConfig() : {};
+        const slug = cfgDb.athleteSlug || (typeof DOMINIO_APP_CONFIG !== 'undefined' && DOMINIO_APP_CONFIG.athleteSlug) || (window.DOMINIO_APP_CONFIG && window.DOMINIO_APP_CONFIG.athleteSlug) || 'aluno';
         const logs = await window.DominioDB.carregarTreinosRecentes(slug, 20);
         if (!Array.isArray(logs) || logs.length === 0) return;
 
