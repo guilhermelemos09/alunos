@@ -6903,89 +6903,58 @@
       </div>
 
       <div style="padding: 16px 20px; max-height: 75vh; overflow-y: auto;">
-        <!-- Data e Peso -->
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-          <div class="comp-form-group">
-            <label class="comp-form-label" for="add_comp_date">📅 Data da Medição</label>
-            <input type="date" id="add_comp_date" class="comp-form-input">
-          </div>
-          <div class="comp-form-group">
-            <label class="comp-form-label" for="add_comp_weight">⚖️ Peso Corporal (kg) *</label>
-            <input type="number" step="0.1" id="add_comp_weight" class="comp-form-input" placeholder="Ex: 68.5">
-          </div>
+        <!-- Medições Corporais (Uma abaixo da outra) -->
+        <div class="comp-form-group">
+          <label class="comp-form-label" for="add_comp_date">📅 Data da Medição</label>
+          <input type="date" id="add_comp_date" class="comp-form-input" onchange="saveCompDraft()">
         </div>
 
-        <!-- Cintura e Quadril -->
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-          <div class="comp-form-group">
-            <label class="comp-form-label" for="add_comp_waist">📏 Cintura (cm) *</label>
-            <input type="number" step="0.1" id="add_comp_waist" class="comp-form-input" placeholder="Ex: 79.0">
-          </div>
-          <div class="comp-form-group">
-            <label class="comp-form-label" for="add_comp_hip">👖 Quadril (cm)</label>
-            <input type="number" step="0.1" id="add_comp_hip" class="comp-form-input" placeholder="Ex: 98.0 (opcional)">
-          </div>
+        <div class="comp-form-group" style="margin-top: 10px;">
+          <label class="comp-form-label" for="add_comp_weight">⚖️ Peso Corporal (kg)</label>
+          <input type="number" step="0.1" id="add_comp_weight" class="comp-form-input" placeholder="Ex: 84.5" oninput="saveCompDraft()">
         </div>
 
-        <!-- Pescoço e % Gordura Manual -->
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-          <div class="comp-form-group">
-            <label class="comp-form-label" for="add_comp_neck">👔 Pescoço (cm)</label>
-            <input type="number" step="0.1" id="add_comp_neck" class="comp-form-input" placeholder="Ex: 37.0 (p/ Marinha)">
-          </div>
-          <div class="comp-form-group">
-            <label class="comp-form-label" for="add_comp_bf_manual">🔬 % Gordura (BF)</label>
-            <input type="number" step="0.1" id="add_comp_bf_manual" class="comp-form-input" placeholder="Ex: 19.5 (se souber)">
-          </div>
+        <div class="comp-form-group" style="margin-top: 10px;">
+          <label class="comp-form-label" for="add_comp_waist">📏 Cintura (cm)</label>
+          <input type="number" step="0.1" id="add_comp_waist" class="comp-form-input" placeholder="Ex: 81.0" oninput="saveCompDraft()">
         </div>
 
-        <div style="font-size:0.72rem; color:#94a3b8; margin:-4px 0 12px 0; line-height: 1.4;">
-          💡 <em>Dica: Caso não saiba o % de gordura, o app calcula uma estimativa pela Fórmula da Marinha dos EUA se preencher pescoço e cintura.</em>
+        <div class="comp-form-group" style="margin-top: 10px;">
+          <label class="comp-form-label" for="add_comp_neck">👔 Pescoço (cm)</label>
+          <input type="number" step="0.1" id="add_comp_neck" class="comp-form-input" placeholder="Ex: 39.0" oninput="saveCompDraft()">
         </div>
 
-        <!-- Percepção de Roupas e Energia -->
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-          <div class="comp-form-group">
-            <label class="comp-form-label" for="add_comp_clothes">👕 Ajuste das Roupas</label>
-            <select id="add_comp_clothes" class="comp-form-select">
-              <option value="folgadas">Roupas mais folgadas</option>
-              <option value="normais" selected>Normais e confortáveis</option>
-              <option value="apertadas">Roupas mais justas</option>
-            </select>
-          </div>
-          <div class="comp-form-group">
-            <label class="comp-form-label" for="add_comp_energy">⚡ Disposição e Energia</label>
-            <select id="add_comp_energy" class="comp-form-select">
-              <option value="5" selected>⭐⭐⭐⭐⭐ Excelente / Máxima</option>
-              <option value="4">⭐⭐⭐⭐ Muito Boa</option>
-              <option value="3">⭐⭐⭐ Normal / Regular</option>
-              <option value="2">⭐⭐ Baixa / Cansado</option>
-              <option value="1">⭐ Muito Baixa</option>
-            </select>
-          </div>
+        <div class="comp-form-group" style="margin-top: 10px;">
+          <label class="comp-form-label" for="add_comp_hip">👖 Quadril (cm) <span style="font-size:0.68rem; color:#94a3b8; font-weight:500;">(Obrigatório para mulheres)</span></label>
+          <input type="number" step="0.1" id="add_comp_hip" class="comp-form-input" placeholder="Ex: 98.0" oninput="saveCompDraft()">
         </div>
 
-        <!-- Upload de Fotos Opcionais -->
-        <div class="comp-form-group" style="margin-top:4px;">
-          <label class="comp-form-label">📸 Fotos de Progresso (Opcionais - salvas no aparelho)</label>
-          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;">
-            <div>
-              <label for="comp_photo_input_front" style="display:block; font-size:0.68rem; color:#94a3b8; margin-bottom:4px; text-align:center;">Frente</label>
-              <input type="file" id="comp_photo_input_front" accept="image/*" style="font-size:0.65rem; color:#94a3b8; width:100%;" onchange="handleCompPhotoPreview(this, 'preview_front')">
-              <div id="preview_front" style="margin-top:4px; height:60px; background:rgba(255,255,255,0.02); border:1px dashed rgba(255,255,255,0.15); border-radius:6px; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:0.68rem; color:#64748b;">Sem foto</div>
+        <!-- TÓPICO A PARTE: % DE GORDURA CORPORAL (OPCIONAL) -->
+        <div class="comp-bf-topic-box" style="margin-top: 14px; margin-bottom: 14px; padding: 12px 14px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px;">
+          <div style="font-size: 0.82rem; font-weight: 800; color: #ffffff; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+            <span>🔬 % DE GORDURA (SE JÁ SOUBER)</span>
+            <span style="font-size: 0.68rem; color: #94a3b8; font-weight: 600; text-transform: uppercase;">Opcional</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="comp-form-group" style="margin-bottom: 0;">
+              <label class="comp-form-label" for="add_comp_bf_manual">Percentual de Gordura (%)</label>
+              <input type="number" step="0.1" id="add_comp_bf_manual" class="comp-form-input" placeholder="Ex: 12.8" oninput="saveCompDraft()">
             </div>
-            <div>
-              <label for="comp_photo_input_side" style="display:block; font-size:0.68rem; color:#94a3b8; margin-bottom:4px; text-align:center;">Lado</label>
-              <input type="file" id="comp_photo_input_side" accept="image/*" style="font-size:0.65rem; color:#94a3b8; width:100%;" onchange="handleCompPhotoPreview(this, 'preview_side')">
-              <div id="preview_side" style="margin-top:4px; height:60px; background:rgba(255,255,255,0.02); border:1px dashed rgba(255,255,255,0.15); border-radius:6px; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:0.68rem; color:#64748b;">Sem foto</div>
-            </div>
-            <div>
-              <label for="comp_photo_input_back" style="display:block; font-size:0.68rem; color:#94a3b8; margin-bottom:4px; text-align:center;">Costas</label>
-              <input type="file" id="comp_photo_input_back" accept="image/*" style="font-size:0.65rem; color:#94a3b8; width:100%;" onchange="handleCompPhotoPreview(this, 'preview_back')">
-              <div id="preview_back" style="margin-top:4px; height:60px; background:rgba(255,255,255,0.02); border:1px dashed rgba(255,255,255,0.15); border-radius:6px; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:0.68rem; color:#64748b;">Sem foto</div>
+            <div class="comp-form-group" style="margin-bottom: 0;">
+              <label class="comp-form-label" for="add_comp_bf_method">Método Utilizado</label>
+              <select id="add_comp_bf_method" class="comp-form-select" onchange="saveCompDraft()">
+                <option value="">Selecione o método...</option>
+                <option value="Bioimpedância (InBody / Balança)">Bioimpedância (InBody / Balança)</option>
+                <option value="DEXA (Densitometria)">DEXA (Densitometria)</option>
+                <option value="Dobras Cutâneas (Adipômetro)">Dobras Cutâneas (Adipômetro)</option>
+                <option value="Ultrassom Corporal">Ultrassom Corporal</option>
+                <option value="Outro">Outro Método</option>
+              </select>
             </div>
           </div>
         </div>
+
+
 
         <!-- Observações -->
         <div class="comp-form-group">
@@ -7450,12 +7419,11 @@
       </div>
 
       <div style="padding: 16px 20px; max-height: 78vh; overflow-y: auto;">
-        <!-- Sessão Concluída e Duração -->
-        <div style="display:grid; grid-template-columns: 1.25fr 0.75fr; gap:10px; align-items:flex-end;">
-          <div class="comp-form-group" style="margin-bottom:0;">
-            <label class="comp-form-label">🏋️‍♂️ Sessão Concluída</label>
-            <div id="bio_session_display" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-left: 3.5px solid var(--brand-neon); border-radius: 10px; padding: 10px 12px; color: #ffffff; font-size: 0.82rem; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; min-height: 42px;">
-              Treino do Dia
+        <!-- Parabéns Sessão Concluída e Duração -->
+        <div style="display:grid; grid-template-columns: 1.3fr 0.7fr; gap:10px; align-items:flex-end; margin-bottom: 6px;">
+          <div style="margin-bottom:0;">
+            <div id="bio_session_display" style="background: rgba(0, 255, 136, 0.08); border: 1px solid rgba(0, 255, 136, 0.25); border-left: 3.5px solid var(--brand-neon); border-radius: 10px; padding: 10px 12px; color: #ffffff; font-size: 0.84rem; font-weight: 800; display: flex; align-items: center; gap: 6px; min-height: 42px; box-sizing: border-box;">
+              <span>🎉 Parabéns! Sessão concluída!</span>
             </div>
             <input type="hidden" id="bio_session_day" value="">
           </div>
@@ -8080,7 +8048,7 @@
     });
 
     // Limpeza forçada de caches legados para garantir que novidades apareçam imediatamente
-    const APP_BUILD_VERSION = '2026-10-29-v190-finalizar-treino-clean';
+    const APP_BUILD_VERSION = '2026-10-29-v191-parabens-sessao-medicoes-stacked';
     if (localStorage.getItem('dominio_aluno_build_ver') !== APP_BUILD_VERSION) {
       localStorage.setItem('dominio_aluno_build_ver', APP_BUILD_VERSION);
       if ('caches' in window) {
@@ -8659,10 +8627,12 @@
         }
       }
 
+      window._currentBioModalSessionTitle = sessionTitle;
+
       const dayDisplay = document.getElementById('bio_session_display');
       if (dayDisplay) {
-        dayDisplay.textContent = sessionTitle;
-        dayDisplay.title = sessionTitle;
+        dayDisplay.textContent = '🎉 Parabéns! Sessão concluída!';
+        dayDisplay.title = sessionTitle || 'Sessão concluída';
       }
 
       // Detecta duração estimada da sessão
@@ -14464,9 +14434,8 @@
 
     window.confirmAndSaveBiometriaSession = function(sendWhatsApp = true, forcedDayId = null) {
       const dayInput = document.getElementById('bio_session_day');
-      const dayDisplay = document.getElementById('bio_session_display');
       const dayId = forcedDayId || (dayInput ? dayInput.value : null) || window._currentBioModalDayId || 'treinoa';
-      const dayLabel = dayDisplay ? dayDisplay.textContent.trim() : ((typeof dayNames !== 'undefined' && dayNames[dayId]) ? dayNames[dayId] : dayId.toUpperCase());
+      const dayLabel = window._currentBioModalSessionTitle || ((typeof dayNames !== 'undefined' && dayNames[dayId]) ? dayNames[dayId] : dayId.toUpperCase());
 
       const durEl = document.getElementById('bio_session_duration');
       const pseEl = document.getElementById('bio_session_pse');
