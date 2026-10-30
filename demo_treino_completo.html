@@ -2259,42 +2259,56 @@
     /* Estilos de Biometria, PSE e Smartwatch */
     .pse-scale-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 6px;
-      margin-top: 8px;
-      margin-bottom: 8px;
+      grid-template-columns: repeat(11, 1fr);
+      gap: 3.5px;
+      margin-top: 4px;
+      margin-bottom: 4px;
     }
     .pse-btn {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 10px;
-      padding: 8px 4px;
+      border-radius: 6px;
+      padding: 5px 0;
+      min-height: 28px;
       color: #cbd5e1;
-      font-family: inherit;
+      font-size: 0.80rem;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2px;
-      transition: all 0.18s ease;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
     .pse-btn .pse-num {
-      font-size: 0.96rem;
-      font-weight: 900;
+      font-size: 0.80rem;
+      font-weight: 800;
       color: #ffffff;
     }
-    .pse-btn .pse-tag {
-      font-size: 0.58rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      opacity: 0.85;
-      letter-spacing: 0.02em;
+    .pse-btn:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
     }
     .pse-btn.active {
-      transform: translateY(-1px);
-      font-weight: 800;
+      font-weight: 900;
+      color: #ffffff;
+      transform: scale(1.04);
+    }
+    @media (max-width: 480px) {
+      .pse-scale-grid {
+        gap: 2.5px;
+      }
+      .pse-btn {
+        padding: 4px 0;
+        font-size: 0.74rem;
+        border-radius: 5px;
+        min-height: 26px;
+      }
+      .pse-btn .pse-num {
+        font-size: 0.74rem;
+      }
     }
     .watch-upload-zone {
       background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(192, 132, 252, 0.08) 100%);
@@ -7283,7 +7297,7 @@
 
     <!-- VÍDEO 5: 11x BUTTERFLY PULL-UPS (NOVO) -->
     <div class="analysis-accordion-card" id="analysisCard-5" data-category="habilidades" data-subtypes="barra_fixa">
-      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-5 min:">
+      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-5')">
         <div style="flex: 1; min-width: 0;">
           <div class="analysis-card-meta-top">
             <span class="analysis-card-badge">Barra Fixa</span>
@@ -7336,7 +7350,7 @@
 
     <!-- VÍDEO 1: PRESS HANDSTAND NO OMBRO DO PARCEIRO -->
     <div class="analysis-accordion-card" id="analysisCard-1" data-category="habilidades" data-subtypes="handstands acroduo">
-      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-1 min:">
+      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-1')">
         <div style="flex: 1; min-width: 0;">
           <div class="analysis-card-meta-top">
             <span class="analysis-card-badge">Portagem e Handstand</span>
@@ -7386,7 +7400,7 @@
 
     <!-- VÍDEO 2: STRICT RMU LIVRE + 2x CANDLE KIPS -->
     <div class="analysis-accordion-card" id="analysisCard-2" data-category="habilidades" data-subtypes="argolas">
-      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-2 min:">
+      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-2')">
         <div style="flex: 1; min-width: 0;">
           <div class="analysis-card-meta-top">
             <span class="analysis-card-badge">Argolas Altas</span>
@@ -7436,7 +7450,7 @@
 
     <!-- VÍDEO 3: MANJOTA (L-SIT -> PRESS -> CROC) -->
     <div class="analysis-accordion-card" id="analysisCard-3" data-category="habilidades" data-subtypes="handstands pranchas">
-      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-3 min:">
+      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-3')">
         <div style="flex: 1; min-width: 0;">
           <div class="analysis-card-meta-top">
             <span class="analysis-card-badge">Manjota</span>
@@ -7490,7 +7504,7 @@
 
     <!-- VÍDEO 4: OITAVAS NA BARRA -->
     <div class="analysis-accordion-card" id="analysisCard-4" data-category="habilidades" data-subtypes="barra_fixa danca">
-      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-4 min:">
+      <button type="button" class="analysis-accordion-trigger" onclick="toggleAnalysisAccordion('analysisCard-4')">
         <div style="flex: 1; min-width: 0;">
           <div class="analysis-card-meta-top">
             <span class="analysis-card-badge">Barra Fixa</span>
@@ -9870,25 +9884,18 @@
           </div>
           <div>
             <h3 style="margin:0; font-size:1.05rem; color:#fff;" id="bioModalHeaderTitle">Finalizar Treino</h3>
-            <span style="font-size:0.75rem; color:#94a3b8; font-weight:600;" id="bioModalHeaderSub">Registro de Percepção e Biometria</span>
           </div>
         </div>
         <button class="btn-close" type="button" onclick="closeBiometriaSessaoModal()" aria-label="Fechar">&times;</button>
       </div>
 
       <div style="padding: 16px 20px; max-height: 78vh; overflow-y: auto;">
-        <!-- Parabéns Sessão Concluída e Duração -->
-        <div style="display:grid; grid-template-columns: 1.3fr 0.7fr; gap:10px; align-items:flex-end; margin-bottom: 6px;">
-          <div style="margin-bottom:0;">
-            <div id="bio_session_display" style="background: rgba(0, 255, 136, 0.08); border: 1px solid rgba(0, 255, 136, 0.25); border-left: 3.5px solid var(--brand-neon); border-radius: 10px; padding: 10px 12px; color: #ffffff; font-size: 0.84rem; font-weight: 800; display: flex; align-items: center; gap: 6px; min-height: 42px; box-sizing: border-box;">
-              <span>🎉 Parabéns! Sessão concluída!</span>
-            </div>
-            <input type="hidden" id="bio_session_day" value="">
-          </div>
-          <div class="comp-form-group" style="margin-bottom:0;">
-            <label class="comp-form-label" for="bio_session_duration">⏱️ Duração (min) *</label>
-            <input type="number" id="bio_session_duration" class="comp-form-input" value="60" min="5" max="240" oninput="recalcBiometriaModalPreview()">
-          </div>
+        <!-- Duração Real -->
+        <div class="comp-form-group" style="margin-bottom: 8px;">
+          <label class="comp-form-label" for="bio_session_duration">⏱️ Duração Real (min)</label>
+          <input type="number" id="bio_session_duration" class="comp-form-input" value="60" min="5" max="240" oninput="recalcBiometriaModalPreview()">
+          <input type="hidden" id="bio_session_day" value="">
+          <span id="bio_session_display" style="display:none;"></span>
         </div>
 
         <!-- Escala Numérica de Percepção de Esforço -->
@@ -9897,7 +9904,7 @@
             <label class="comp-form-label" style="margin:0;">⚡ Percepção de Esforço</label>
             <span id="bioPseSelectedBadge" style="font-size:0.72rem; font-weight:800; color:#f97316; background:rgba(249,115,22,0.14); border:1px solid rgba(249,115,22,0.35); padding:2px 8px; border-radius:8px;">Nível 7 • Muito Intenso</span>
           </div>
-          <div style="font-size:0.88rem; font-weight:700; color:#ffffff; margin-bottom:8px;">
+          <div style="font-size:0.78rem; font-weight:700; color:#ffffff; margin-bottom:6px;">
             De 0 a 10, quão difícil foi o treino de hoje para você?
           </div>
           <input type="hidden" id="bio_session_pse" value="7">
@@ -9918,14 +9925,10 @@
 
         <!-- Registro de Dados do Smartwatch (Opcional - Sem Envio de Print) -->
         <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px 14px; margin-top: 14px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
             <div style="font-size: 0.78rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
               <span>⌚</span> <span>Dados do Smartwatch (Opcional)</span>
             </div>
-            
-          </div>
-          <div style="font-size: 0.82rem; font-weight:600; color: #cbd5e1; margin-bottom: 10px;">
-            Anote abaixo os valores que o seu smartwatch marcou na sessão:
           </div>
           <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;">
             <div class="comp-form-group" style="margin-bottom:0;">
@@ -10381,7 +10384,7 @@
           </div>
 
           <!-- Notificação 4: Análise de Habilidade (11x Butterfly Pull-Up) -->
-          <div class="notif-item" data-notif-id="notif-analysis-5" onclick="openAnalysisCardFromNotif('analysisCard-5', 'habilidades', 'notif-analysis-5 min:">
+          <div class="notif-item" data-notif-id="notif-analysis-5" onclick="openAnalysisCardFromNotif('analysisCard-5', 'habilidades', 'notif-analysis-5')">
             <span class="notif-item-icon">⚡</span>
             <div style="flex:1; min-width:0;">
               <div class="notif-item-title">Habilidade: Butterfly Pull-Up</div>
@@ -11997,7 +12000,7 @@
           },
           {
             id: 'comp_gui_03',
-            date: '2026-07-15 min,
+            date: '2026-07-15',
             weight: 95.35,
             waist: 92.0,
             neck: 40.5,
@@ -12101,7 +12104,7 @@
           },
           {
             id: 'comp_gui_11',
-            date: '2026-09-15 min,
+            date: '2026-09-15',
             weight: 87.45,
             waist: 83.8,
             neck: 39.5,
@@ -12152,7 +12155,7 @@
             photos: null
           },
           {
-            id: 'comp_gui_15 min,
+            id: 'comp_gui_15',
             date: '2026-10-03',
             weight: 86.35,
             waist: 82.5,
@@ -12192,7 +12195,7 @@
           },
           {
             id: 'comp_gui_18',
-            date: '2026-10-15 min,
+            date: '2026-10-15',
             weight: 84.75,
             waist: 81.0,
             neck: 39.0,
@@ -12205,7 +12208,7 @@
           },
           {
             id: 'comp_gui_19',
-            date: '2026-10-15 min,
+            date: '2026-10-15',
             weight: 84.50,
             waist: 81.0,
             neck: 39.0,
@@ -12388,8 +12391,8 @@
       if (summaryRangeEl) summaryRangeEl.textContent = `${date0BR} vs. ${dateLatestBR}`;
 
       // Período e taxa
-      const d0 = new Date((baseline.date || '2026-07-02 min: + 'T12:00:00');
-      const d1 = new Date((latest.date || '2026-10-15 min) + 'T12:00:00');
+      const d0 = new Date((baseline.date || '2026-07-02') + 'T12:00:00');
+      const d1 = new Date((latest.date || '2026-10-15') + 'T12:00:00');
       const diffMs = Math.max(0, d1 - d0);
       const diffDays = Math.max(1, Math.round(diffMs / (1000 * 60 * 60 * 24)));
       const diffWeeks = diffDays / 7;
@@ -15142,7 +15145,7 @@
         } else if (lower.includes('glúteo máximo') || lower.includes('ponte de glúteo')) {
           topic = 'ATIVAÇÃO DO GLÚTEO MÁXIMO SEM CARGA AXIAL';
           author = 'Neumann, 2016; Schoenfeld, 2020';
-        } else if (lower.includes('box squat') || lower.includes('senta e levanta') || lower.includes('glut-4 min:) {
+        } else if (lower.includes('box squat') || lower.includes('senta e levanta') || lower.includes('glut-4')) {
           topic = 'LIMITAÇÃO DE BRAÇO DE MOMENTO E CAPTAÇÃO DE GLUT-4';
           author = 'Kapandji, 2019; Powers e Howley, 2018';
         } else if (lower.includes('remada') || lower.includes('suporte torácico')) {
@@ -16132,7 +16135,7 @@
     // Registra Service Worker (PWA Offline)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=165 min:.then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=165').then((reg) => {
           reg.update();
         }).catch(err => console.log('SW falhou:', err));
       });
@@ -16197,7 +16200,7 @@
       }
 
       let tagText = '💡 DICA';
-      let tagColor = '#facc15 min;
+      let tagColor = '#facc15';
       let cardBorder = 'rgba(250, 204, 21, 0.4)';
       let btnBg = 'rgba(250, 204, 21, 0.15)';
       let btnBorder = 'rgba(250, 204, 21, 0.4)';

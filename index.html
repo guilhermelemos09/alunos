@@ -4845,6 +4845,59 @@
       border-left: 4.5px solid var(--brand-neon) !important;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.55), 0 0 16px rgba(0, 255, 136, 0.06) !important;
     }
+  .pse-scale-grid {
+      display: grid;
+      grid-template-columns: repeat(11, 1fr);
+      gap: 3.5px;
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+    .pse-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 6px;
+      padding: 5px 0;
+      min-height: 28px;
+      color: #cbd5e1;
+      font-size: 0.80rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .pse-btn .pse-num {
+      font-size: 0.80rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .pse-btn:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+    .pse-btn.active {
+      font-weight: 900;
+      color: #ffffff;
+      transform: scale(1.04);
+    }
+    @media (max-width: 480px) {
+      .pse-scale-grid {
+        gap: 2.5px;
+      }
+      .pse-btn {
+        padding: 4px 0;
+        font-size: 0.74rem;
+        border-radius: 5px;
+        min-height: 26px;
+      }
+      .pse-btn .pse-num {
+        font-size: 0.74rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -7412,25 +7465,18 @@
           </div>
           <div>
             <h3 style="margin:0; font-size:1.05rem; color:#fff;" id="bioModalHeaderTitle">Finalizar Treino</h3>
-            <span style="font-size:0.75rem; color:#94a3b8; font-weight:600;" id="bioModalHeaderSub">Registro de Percepção e Biometria</span>
           </div>
         </div>
         <button class="btn-close" type="button" onclick="closeBiometriaSessaoModal()" aria-label="Fechar">&times;</button>
       </div>
 
       <div style="padding: 16px 20px; max-height: 78vh; overflow-y: auto;">
-        <!-- Parabéns Sessão Concluída e Duração -->
-        <div style="display:grid; grid-template-columns: 1.3fr 0.7fr; gap:10px; align-items:flex-end; margin-bottom: 6px;">
-          <div style="margin-bottom:0;">
-            <div id="bio_session_display" style="background: rgba(0, 255, 136, 0.08); border: 1px solid rgba(0, 255, 136, 0.25); border-left: 3.5px solid var(--brand-neon); border-radius: 10px; padding: 10px 12px; color: #ffffff; font-size: 0.84rem; font-weight: 800; display: flex; align-items: center; gap: 6px; min-height: 42px; box-sizing: border-box;">
-              <span>🎉 Parabéns! Sessão concluída!</span>
-            </div>
-            <input type="hidden" id="bio_session_day" value="">
-          </div>
-          <div class="comp-form-group" style="margin-bottom:0;">
-            <label class="comp-form-label" for="bio_session_duration">⏱️ Duração (min) *</label>
-            <input type="number" id="bio_session_duration" class="comp-form-input" value="60" min="5" max="240" oninput="recalcBiometriaModalPreview()">
-          </div>
+        <!-- Duração Real -->
+        <div class="comp-form-group" style="margin-bottom: 8px;">
+          <label class="comp-form-label" for="bio_session_duration">⏱️ Duração Real (min)</label>
+          <input type="number" id="bio_session_duration" class="comp-form-input" value="60" min="5" max="240" oninput="recalcBiometriaModalPreview()">
+          <input type="hidden" id="bio_session_day" value="">
+          <span id="bio_session_display" style="display:none;"></span>
         </div>
 
         <!-- Escala Numérica de Percepção de Esforço -->
@@ -7439,7 +7485,7 @@
             <label class="comp-form-label" style="margin:0;">⚡ Percepção de Esforço</label>
             <span id="bioPseSelectedBadge" style="font-size:0.72rem; font-weight:800; color:#f97316; background:rgba(249,115,22,0.14); border:1px solid rgba(249,115,22,0.35); padding:2px 8px; border-radius:8px;">Nível 7 • Muito Intenso</span>
           </div>
-          <div style="font-size:0.88rem; font-weight:700; color:#ffffff; margin-bottom:8px;">
+          <div style="font-size:0.78rem; font-weight:700; color:#ffffff; margin-bottom:6px;">
             De 0 a 10, quão difícil foi o treino de hoje para você?
           </div>
           <input type="hidden" id="bio_session_pse" value="7">
@@ -7460,14 +7506,10 @@
 
         <!-- Registro de Dados do Smartwatch (Opcional - Sem Envio de Print) -->
         <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px 14px; margin-top: 14px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
             <div style="font-size: 0.78rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
               <span>⌚</span> <span>Dados do Smartwatch (Opcional)</span>
             </div>
-            
-          </div>
-          <div style="font-size: 0.82rem; font-weight:600; color: #cbd5e1; margin-bottom: 10px;">
-            Anote abaixo os valores que o seu smartwatch marcou na sessão:
           </div>
           <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;">
             <div class="comp-form-group" style="margin-bottom:0;">
