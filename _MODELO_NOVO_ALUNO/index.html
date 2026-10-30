@@ -14062,6 +14062,15 @@ window.openWelcomeAppModal = function(notifId = null) {
     if (typeof timersReturnWorkoutDay === 'undefined') var timersReturnWorkoutDay = null;
     if (typeof assessmentReturnTarget === 'undefined') var assessmentReturnTarget = null;
 
+    function toggleMetasDrawer() {
+      const drawer = document.getElementById('metasDrawer');
+      const arrow = document.getElementById('metasArrow');
+      if (!drawer) return;
+      const isHidden = (drawer.style.display === 'none' || !drawer.style.display);
+      drawer.style.display = isHidden ? 'block' : 'none';
+      if (arrow) arrow.textContent = isHidden ? '▴' : '▾';
+    }
+
     function openDedicatedView(sectionId) {
       if (typeof closeBioModal === 'function') closeBioModal();
       if (typeof closeVideoModal === 'function') closeVideoModal();
