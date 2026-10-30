@@ -16217,7 +16217,7 @@
     // Registra Service Worker (PWA Offline)
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=201').then((reg) => {
+        navigator.serviceWorker.register('sw.js?v=202').then((reg) => {
           reg.update();
         }).catch(err => console.log('SW falhou:', err));
       });
