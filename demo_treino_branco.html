@@ -7404,15 +7404,15 @@
 
       <!-- ==================== MODAL: REGISTRAR PSE E SMARTWATCH DO TREINO ==================== -->
   <div id="modalBiometriaSessao" class="modal-overlay" onclick="if(event.target === this) closeBiometriaSessaoModal();">
-    <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 530px;">
+    <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 500px;">
       <div class="modal-header">
         <div style="display:flex; align-items:center; gap:10px;">
-          <div style="width:36px; height:36px; border-radius:10px; background:rgba(192, 132, 252, 0.14); border:1px solid rgba(192, 132, 252, 0.35); display:flex; align-items:center; justify-content:center; font-size:1.25rem;">
-            <span>⌚</span>
+          <div style="width:36px; height:36px; border-radius:10px; background:rgba(0, 255, 136, 0.12); border:1px solid rgba(0, 255, 136, 0.35); display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:var(--brand-neon);">
+            <span>✓</span>
           </div>
           <div>
-            <h3 style="margin:0; font-size:1.02rem; color:#fff;" id="bioModalHeaderTitle">Biometria e Esforço da Sessão</h3>
-            <span style="font-size:0.75rem; color:#c084fc; font-weight:600;" id="bioModalHeaderSub">PSE (Foster) e Cruzamento com Smartwatch</span>
+            <h3 style="margin:0; font-size:1.05rem; color:#fff;" id="bioModalHeaderTitle">Finalizar Treino</h3>
+            <span style="font-size:0.75rem; color:#94a3b8; font-weight:600;" id="bioModalHeaderSub">Registro de Percepção e Biometria</span>
           </div>
         </div>
         <button class="btn-close" type="button" onclick="closeBiometriaSessaoModal()" aria-label="Fechar">&times;</button>
@@ -7433,112 +7433,99 @@
           </div>
         </div>
 
-        <!-- Escala de PSE (Foster 1 a 10) -->
-        <div class="comp-form-group" style="margin-top: 4px;">
+        <!-- Escala Numérica de Percepção de Esforço -->
+        <div class="comp-form-group" style="margin-top: 6px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-            <label class="comp-form-label" style="margin:0;">⚡ Percepção Subjetiva de Esforço (PSE 1 a 10) *</label>
-            <span id="bioPseSelectedBadge" style="font-size:0.72rem; font-weight:800; color:#f97316; background:rgba(249,115,22,0.14); border:1px solid rgba(249,115,22,0.35); padding:2px 8px; border-radius:8px;">PSE 7 • Muito Intenso</span>
+            <label class="comp-form-label" style="margin:0;">⚡ Percepção de Esforço</label>
+            <span id="bioPseSelectedBadge" style="font-size:0.72rem; font-weight:800; color:#f97316; background:rgba(249,115,22,0.14); border:1px solid rgba(249,115,22,0.35); padding:2px 8px; border-radius:8px;">Nível 7 • Muito Intenso</span>
           </div>
-          <div style="font-size:0.72rem; color:#94a3b8; margin-bottom:6px;">
-            Quão difícil foi a sessão de hoje para os seus músculos, articulações e fôlego?
+          <div style="font-size:0.88rem; font-weight:700; color:#ffffff; margin-bottom:8px;">
+            De 0 a 10, quão difícil foi o treino de hoje para você?
           </div>
           <input type="hidden" id="bio_session_pse" value="7">
           <div class="pse-scale-grid" id="bioPseButtonsGrid">
-            <button type="button" class="pse-btn" data-pse="1" onclick="selectBioPse(1)"><span class="pse-num">1</span><span class="pse-tag">M. Leve</span></button>
-            <button type="button" class="pse-btn" data-pse="2" onclick="selectBioPse(2)"><span class="pse-num">2</span><span class="pse-tag">Fácil</span></button>
-            <button type="button" class="pse-btn" data-pse="3" onclick="selectBioPse(3)"><span class="pse-num">3</span><span class="pse-tag">Moderado</span></button>
-            <button type="button" class="pse-btn" data-pse="4" onclick="selectBioPse(4)"><span class="pse-num">4</span><span class="pse-tag">Firme</span></button>
-            <button type="button" class="pse-btn" data-pse="5" onclick="selectBioPse(5)"><span class="pse-num">5</span><span class="pse-tag">Pesado</span></button>
-            <button type="button" class="pse-btn" data-pse="6" onclick="selectBioPse(6)"><span class="pse-num">6</span><span class="pse-tag">Forte</span></button>
-            <button type="button" class="pse-btn active" data-pse="7" onclick="selectBioPse(7)"><span class="pse-num">7</span><span class="pse-tag">M. Forte</span></button>
-            <button type="button" class="pse-btn" data-pse="8" onclick="selectBioPse(8)"><span class="pse-num">8</span><span class="pse-tag">Intenso</span></button>
-            <button type="button" class="pse-btn" data-pse="9" onclick="selectBioPse(9)"><span class="pse-num">9</span><span class="pse-tag">Extremo</span></button>
-            <button type="button" class="pse-btn" data-pse="10" onclick="selectBioPse(10)"><span class="pse-num">10</span><span class="pse-tag">Máximo</span></button>
+            <button type="button" class="pse-btn" data-pse="0" onclick="selectBioPse(0)"><span class="pse-num">0</span></button>
+            <button type="button" class="pse-btn" data-pse="1" onclick="selectBioPse(1)"><span class="pse-num">1</span></button>
+            <button type="button" class="pse-btn" data-pse="2" onclick="selectBioPse(2)"><span class="pse-num">2</span></button>
+            <button type="button" class="pse-btn" data-pse="3" onclick="selectBioPse(3)"><span class="pse-num">3</span></button>
+            <button type="button" class="pse-btn" data-pse="4" onclick="selectBioPse(4)"><span class="pse-num">4</span></button>
+            <button type="button" class="pse-btn" data-pse="5" onclick="selectBioPse(5)"><span class="pse-num">5</span></button>
+            <button type="button" class="pse-btn" data-pse="6" onclick="selectBioPse(6)"><span class="pse-num">6</span></button>
+            <button type="button" class="pse-btn active" data-pse="7" onclick="selectBioPse(7)"><span class="pse-num">7</span></button>
+            <button type="button" class="pse-btn" data-pse="8" onclick="selectBioPse(8)"><span class="pse-num">8</span></button>
+            <button type="button" class="pse-btn" data-pse="9" onclick="selectBioPse(9)"><span class="pse-num">9</span></button>
+            <button type="button" class="pse-btn" data-pse="10" onclick="selectBioPse(10)"><span class="pse-num">10</span></button>
           </div>
         </div>
 
-        <!-- Upload de Foto/Print da Tela do Smartwatch -->
-        <div class="comp-form-group" style="margin-top: 10px;">
-          <label class="comp-form-label">📷 Foto ou Print do Treino no Smartwatch (Opcional)</label>
-          <div class="watch-upload-zone" onclick="document.getElementById('bio_watch_photo_input').click()">
-            <input type="file" id="bio_watch_photo_input" accept="image/*" style="display:none;" onchange="handleSmartwatchPhotoUpload(this)">
-            <div id="bioWatchUploadPrompt">
-              <div style="font-size:1.35rem; margin-bottom:4px;">⌚📸</div>
-              <div style="font-size:0.8rem; font-weight:800; color:#38bdf8;">Toque para fotografar ou anexar print do Relógio</div>
-              <div style="font-size:0.7rem; color:#94a3b8; margin-top:2px;">Samsung Health, Apple Fitness, Garmin ou visor do Smartwatch (leitura automática de FC e kcal)</div>
+        <!-- Registro de Dados do Smartwatch (Opcional - Sem Envio de Print) -->
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 12px 14px; margin-top: 14px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <div style="font-size: 0.78rem; font-weight: 800; color: #38bdf8; display: flex; align-items: center; gap: 6px;">
+              <span>⌚</span> <span>Dados do Smartwatch (Opcional)</span>
             </div>
-            <div id="bioWatchPreviewWrap" style="display:none; align-items:center; gap:12px; text-align:left;">
-              <img id="bioWatchPreviewImg" src="" alt="Preview Relógio" style="width:68px; height:68px; object-fit:cover; border-radius:10px; border:1px solid rgba(56,189,248,0.4);">
-              <div style="flex:1;">
-                <div style="font-size:0.78rem; font-weight:800; color:var(--brand-neon);" id="bioWatchOcrStatus">✓ Imagem do relógio carregada</div>
-                <div style="font-size:0.7rem; color:#cbd5e1; margin-top:2px;" id="bioWatchOcrSub">Verifique ou ajuste os campos abaixo caso necessário.</div>
-                <button type="button" onclick="event.stopPropagation(); clearSmartwatchPhoto();" style="margin-top:4px; background:rgba(244,63,94,0.15); border:1px solid rgba(244,63,94,0.35); color:#f43f5e; font-size:0.66rem; font-weight:700; padding:2px 8px; border-radius:6px; cursor:pointer;">Remover foto</button>
-              </div>
+            
+          </div>
+          <div style="font-size: 0.82rem; font-weight:600; color: #cbd5e1; margin-bottom: 10px;">
+            Anote abaixo os valores que o seu smartwatch marcou na sessão:
+          </div>
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;">
+            <div class="comp-form-group" style="margin-bottom:0;">
+              <label class="comp-form-label" for="bio_watch_hr_avg" style="font-size:0.69rem;">❤️ FC Média (bpm)</label>
+              <input type="number" id="bio_watch_hr_avg" class="comp-form-input" placeholder="Ex: 135" min="50" max="220" oninput="recalcBiometriaModalPreview()">
+            </div>
+            <div class="comp-form-group" style="margin-bottom:0;">
+              <label class="comp-form-label" for="bio_watch_hr_max" style="font-size:0.69rem;">⚡ FC Máx (bpm)</label>
+              <input type="number" id="bio_watch_hr_max" class="comp-form-input" placeholder="Ex: 170" min="60" max="230" oninput="recalcBiometriaModalPreview()">
+            </div>
+            <div class="comp-form-group" style="margin-bottom:0;">
+              <label class="comp-form-label" for="bio_watch_kcal" style="font-size:0.69rem;">🔥 Calorias (kcal)</label>
+              <input type="number" id="bio_watch_kcal" class="comp-form-input" placeholder="Ex: 380" min="20" max="2500" oninput="recalcBiometriaModalPreview()">
             </div>
           </div>
         </div>
 
-        <!-- Campos do Smartwatch (Preenchidos pela Foto ou Manualmente) -->
-        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; margin-top:6px;">
-          <div class="comp-form-group" style="margin-bottom:6px;">
-            <label class="comp-form-label" for="bio_watch_hr_avg" style="font-size:0.7rem;">❤️ FC Média (bpm)</label>
-            <input type="number" id="bio_watch_hr_avg" class="comp-form-input" placeholder="Ex: 136" min="50" max="220" oninput="recalcBiometriaModalPreview()">
+        <!-- Preview Instantâneo com Botão Explicativo -->
+        <div class="bio-live-calc-box" id="bioLiveCalcPreviewBox" style="display: none; margin-top:14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div style="font-size:0.80rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.04em; display:flex; align-items:center; gap:6px;">
+              <span>🔥</span> <span>Gasto Calórico Real</span>
+            </div>
+            <button type="button" class="btn-video" onclick="openInstrucoesBiometriaModal()" style="padding: 3px 10px; font-size: 0.70rem; margin: 0; background: #0e2238; border: 1px solid #38bdf8; color: #fff; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+              <svg viewBox="0 0 24 24" style="width:11px; height:11px; fill:#38bdf8;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              <span>Entenda o Cálculo</span>
+            </button>
           </div>
-          <div class="comp-form-group" style="margin-bottom:6px;">
-            <label class="comp-form-label" for="bio_watch_hr_max" style="font-size:0.7rem;">⚡ FC Pico (bpm)</label>
-            <input type="number" id="bio_watch_hr_max" class="comp-form-input" placeholder="Ex: 172" min="60" max="230" oninput="recalcBiometriaModalPreview()">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; text-align:center;">
+            <div style="background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius:10px; padding:10px 8px;">
+              <div style="font-size:0.68rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">Gasto Total Real</div>
+              <div style="font-size:1.15rem; font-weight:900; color:var(--brand-neon); margin-top:2px;" id="bioPreviewRealKcal">485 kcal</div>
+              <div style="font-size:0.65rem; color:#64748b; margin-top:2px;" id="bioPreviewDeltaKcal">+85 kcal além do relógio</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius:10px; padding:10px 8px;">
+              <div style="font-size:0.68rem; color:#94a3b8; font-weight:700; text-transform:uppercase;">EPOC (Pós-Queima)</div>
+              <div style="font-size:1.15rem; font-weight:900; color:#38bdf8; margin-top:2px;" id="bioPreviewEpocKcal">~68 kcal</div>
+              <div style="font-size:0.65rem; color:#64748b; margin-top:2px;">Metabolismo acelerado pós-treino</div>
+            </div>
           </div>
-          <div class="comp-form-group" style="margin-bottom:6px;">
-            <label class="comp-form-label" for="bio_watch_kcal" style="font-size:0.7rem;">🔥 Kcal Relógio</label>
-            <input type="number" id="bio_watch_kcal" class="comp-form-input" placeholder="Ex: 380" min="20" max="2500" oninput="recalcBiometriaModalPreview()">
+          <!-- Link clicável sucinto para biometria e performance -->
+          <div style="margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); text-align:center; font-size:0.75rem; color:#94a3b8; line-height:1.45;">
+            📊 Para histórico detalhado e gráficos, acesse em <strong style="color:#e2e8f0;">Ferramentas ➔ Evolução ➔ Biometria</strong>.
           </div>
         </div>
 
-        <!-- Preview Instantâneo do Cruzamento Fisiológico -->
-        <div class="bio-live-calc-box" id="bioLiveCalcPreviewBox">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <span style="font-size:0.74rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.03em;">🔬 Resultado do Cruzamento (App + Biometria)</span>
-            <span style="font-size:0.68rem; font-weight:700; color:#94a3b8;" id="bioLiveSetsInfo">Séries do dia integradas</span>
-          </div>
-          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; text-align:center;">
-            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:6px;">
-              <div style="font-size:0.66rem; color:#94a3b8;">Carga (sRPE)</div>
-              <div style="font-size:0.95rem; font-weight:900; color:#c084fc;" id="bioPreviewLoadUA">420 U.A.</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:6px;">
-              <div style="font-size:0.66rem; color:#94a3b8;">Gasto Real + EPOC</div>
-              <div style="font-size:0.95rem; font-weight:900; color:var(--brand-neon);" id="bioPreviewRealKcal">485 kcal</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:6px;">
-              <div style="font-size:0.66rem; color:#94a3b8;">TRIMP / VO2 Est.</div>
-              <div style="font-size:0.88rem; font-weight:900; color:#38bdf8;" id="bioPreviewTrimpVo2">Calculado</div>
-            </div>
-          </div>
-          <div style="font-size:0.71rem; color:#cbd5e1; margin-top:8px; line-height:1.4;" id="bioPreviewExplanation">
-            Inclui o custo mecânico anaeróbio das séries executadas e o consumo de oxigênio pós-treino (EPOC).
-          </div>
-        </div>
-
-        <!-- Botões de Ação -->
-        <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
-          <button type="button" onclick="confirmAndSaveBiometriaSession(true)" style="background:var(--brand-neon); border:none; color:#000; font-size:0.84rem; font-weight:900; border-radius:10px; padding:12px 16px; cursor:pointer; box-shadow:0 0 16px var(--brand-neon-glow); display:flex; align-items:center; justify-content:center; gap:8px;">
+        <!-- Botão Único de Envio Oficial -->
+        <div style="margin-top:16px;">
+          <button type="button" onclick="confirmAndSaveBiometriaSession(true)" style="background:var(--brand-neon); border:none; color:#000; font-size:0.86rem; font-weight:900; border-radius:10px; padding:13px 18px; cursor:pointer; box-shadow:0 0 16px var(--brand-neon-glow); display:flex; align-items:center; justify-content:center; gap:8px; width:100%;">
             <svg viewBox="0 0 24 24" style="width:16px; height:16px; fill:#000;"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-            <span>SALVAR E ENVIAR PARA COACH (WHATSAPP)</span>
+            <span>SALVAR E ENVIAR PARA O COACH</span>
           </button>
-          <div style="display:flex; gap:8px;">
-            <button type="button" onclick="confirmAndSaveBiometriaSession(false)" style="flex:1; background:rgba(56,189,248,0.14); border:1px solid rgba(56,189,248,0.4); color:#38bdf8; font-size:0.78rem; font-weight:800; border-radius:8px; padding:9px 12px; cursor:pointer;">
-              ✓ Apenas Salvar no App
-            </button>
-            <button type="button" onclick="closeBiometriaSessaoModal()" style="background:rgba(255,255,255,0.07); border:none; color:#94a3b8; font-size:0.78rem; font-weight:700; border-radius:8px; padding:9px 14px; cursor:pointer;">
-              Cancelar
-            </button>
-          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ==================== MODAL: GUIA DE INSTRUÇÕES DE BIOMETRIA E SMARTWATCH ==================== -->
+  <!-- ==================== MODAL: ENTENDA O CÁLCULO E BIOMETRIA ==================== -->
   <div id="modalInstrucoesBiometria" class="modal-overlay" onclick="if(event.target === this) closeInstrucoesBiometriaModal();">
     <div class="modal-card" onclick="event.stopPropagation();" style="max-width: 540px;">
       <div class="modal-header">
@@ -8048,7 +8035,7 @@
     });
 
     // Limpeza forçada de caches legados para garantir que novidades apareçam imediatamente
-    const APP_BUILD_VERSION = '2026-10-29-v191-parabens-sessao-medicoes-stacked';
+    const APP_BUILD_VERSION = '2026-10-29-v192-padronizacao-gui-finalizar';
     if (localStorage.getItem('dominio_aluno_build_ver') !== APP_BUILD_VERSION) {
       localStorage.setItem('dominio_aluno_build_ver', APP_BUILD_VERSION);
       if ('caches' in window) {
@@ -8533,6 +8520,20 @@
       const hrMaxEl = document.getElementById('bio_watch_hr_max');
       const watchKcalEl = document.getElementById('bio_watch_kcal');
 
+      const numHrAvg = hrAvgEl && Number(hrAvgEl.value) > 40 ? Number(hrAvgEl.value) : 0;
+      const numHrMax = hrMaxEl && Number(hrMaxEl.value) > 50 ? Number(hrMaxEl.value) : 0;
+      const numWatchKcal = watchKcalEl && Number(watchKcalEl.value) > 10 ? Number(watchKcalEl.value) : 0;
+
+      const previewBox = document.getElementById('bioLiveCalcPreviewBox');
+      const hasBiometrics = (numHrAvg > 0 || numWatchKcal > 0);
+
+      if (!hasBiometrics) {
+        if (previewBox) previewBox.style.display = 'none';
+        return;
+      }
+
+      if (previewBox) previewBox.style.display = 'block';
+
       const tab = document.getElementById('tab-' + dayId);
       const doneSets = tab ? tab.querySelectorAll('.set-pill.done').length : 12;
       const totalSets = tab ? tab.querySelectorAll('.set-pill').length : 12;
@@ -8541,33 +8542,25 @@
         durationMin: durEl ? durEl.value : 60,
         pse: pseEl ? pseEl.value : 7,
         doneSets: doneSets > 0 ? doneSets : totalSets,
-        hrAvg: hrAvgEl ? hrAvgEl.value : 0,
-        hrMax: hrMaxEl ? hrMaxEl.value : 0,
-        watchKcal: watchKcalEl ? watchKcalEl.value : 0
+        hrAvg: numHrAvg,
+        hrMax: numHrMax,
+        watchKcal: numWatchKcal
       });
-
-      const setsInfoEl = document.getElementById('bioLiveSetsInfo');
-      if (setsInfoEl) {
-        setsInfoEl.textContent = totalSets > 0 ? `${doneSets > 0 ? doneSets : totalSets}/${totalSets} séries integradas` : 'Sessão livre integrada';
-      }
-
-      const loadEl = document.getElementById('bioPreviewLoadUA');
-      if (loadEl) loadEl.textContent = `${calc.loadUA} U.A.`;
 
       const kcalEl = document.getElementById('bioPreviewRealKcal');
       if (kcalEl) kcalEl.textContent = `${calc.realKcal} kcal`;
 
-      const trimpVo2El = document.getElementById('bioPreviewTrimpVo2');
-      if (trimpVo2El) trimpVo2El.textContent = `${calc.trimp} pts • VO2 ${calc.vo2Est}`;
-
-      const expEl = document.getElementById('bioPreviewExplanation');
-      if (expEl) {
-        if (calc.watchKcal) {
-          expEl.innerHTML = `⌚ Relógio marcou <strong>${calc.watchKcal} kcal</strong>. Cruzando com as séries de força e PSE ${calc.pse}, o gasto real com trabalho mecânico e EPOC é de <strong style="color:var(--brand-neon);">${calc.realKcal} kcal (+${calc.deltaKcal} kcal)</strong> • ${calc.zoneLabel}.`;
+      const deltaEl = document.getElementById('bioPreviewDeltaKcal');
+      if (deltaEl) {
+        if (calc.watchKcal && calc.watchKcal > 0) {
+          deltaEl.textContent = `+${calc.deltaKcal} kcal além do relógio`;
         } else {
-          expEl.innerHTML = `⚡ Gasto calculado via trabalho mecânico das séries + PSE ${calc.pse} + efeito EPOC pós-treino (<strong>+${calc.epocKcal} kcal</strong> nas horas seguintes).`;
+          deltaEl.textContent = `Trabalho das séries + EPOC`;
         }
       }
+
+      const epocEl = document.getElementById('bioPreviewEpocKcal');
+      if (epocEl) epocEl.textContent = `~${calc.epocKcal} kcal`;
     };
 
     window.openBiometriaSessaoModal = function(dayId) {

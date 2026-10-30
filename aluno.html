@@ -7435,7 +7435,7 @@
         </div>
 
         <!-- Preview Instantâneo com Botão Explicativo -->
-        <div class="bio-live-calc-box" id="bioLiveCalcPreviewBox" style="margin-top:14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 16px;">
+        <div class="bio-live-calc-box" id="bioLiveCalcPreviewBox" style="display: none; margin-top:14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 14px 16px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
             <div style="font-size:0.80rem; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:0.04em; display:flex; align-items:center; gap:6px;">
               <span>🔥</span> <span>Gasto Calórico Real</span>
@@ -8016,7 +8016,7 @@
     });
 
     // Limpeza forçada de caches legados para garantir que novidades apareçam imediatamente
-    const APP_BUILD_VERSION = '2026-10-29-v191-parabens-sessao-medicoes-stacked';
+    const APP_BUILD_VERSION = '2026-10-29-v192-padronizacao-gui-finalizar';
     if (localStorage.getItem('dominio_aluno_build_ver') !== APP_BUILD_VERSION) {
       localStorage.setItem('dominio_aluno_build_ver', APP_BUILD_VERSION);
       if ('caches' in window) {
@@ -8720,6 +8720,20 @@
       const hrMaxEl = document.getElementById('bio_watch_hr_max');
       const watchKcalEl = document.getElementById('bio_watch_kcal');
 
+      const numHrAvg = hrAvgEl && Number(hrAvgEl.value) > 40 ? Number(hrAvgEl.value) : 0;
+      const numHrMax = hrMaxEl && Number(hrMaxEl.value) > 50 ? Number(hrMaxEl.value) : 0;
+      const numWatchKcal = watchKcalEl && Number(watchKcalEl.value) > 10 ? Number(watchKcalEl.value) : 0;
+
+      const previewBox = document.getElementById('bioLiveCalcPreviewBox');
+      const hasBiometrics = (numHrAvg > 0 || numWatchKcal > 0);
+
+      if (!hasBiometrics) {
+        if (previewBox) previewBox.style.display = 'none';
+        return;
+      }
+
+      if (previewBox) previewBox.style.display = 'block';
+
       const tab = document.getElementById('tab-' + dayId);
       const doneSets = tab ? tab.querySelectorAll('.set-pill.done').length : 12;
       const totalSets = tab ? tab.querySelectorAll('.set-pill').length : 12;
@@ -8728,9 +8742,9 @@
         durationMin: durEl ? durEl.value : 60,
         pse: pseEl ? pseEl.value : 7,
         doneSets: doneSets > 0 ? doneSets : totalSets,
-        hrAvg: hrAvgEl ? hrAvgEl.value : 0,
-        hrMax: hrMaxEl ? hrMaxEl.value : 0,
-        watchKcal: watchKcalEl ? watchKcalEl.value : 0
+        hrAvg: numHrAvg,
+        hrMax: numHrMax,
+        watchKcal: numWatchKcal
       });
 
       const kcalEl = document.getElementById('bioPreviewRealKcal');
