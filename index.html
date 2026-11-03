@@ -5279,9 +5279,6 @@
       <span class="meta-item">⏳ ~50 a 60 min</span>
     </div>
 
-    
-    </div>
-
     <div style="text-align: center; padding: 32px 16px; color: var(--text-dim); font-size: 0.85rem;">
       <p>Sessão em formatação pelo treinador.</p>
     </div>
@@ -5294,8 +5291,6 @@
       <div id="completeFeedback-treinoa" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
         ✅ Sessão finalizada e registrada com sucesso!
       </div>
-    </div>
-
     </div>
 
     <!-- Ajuda Contextual do Treino -->
@@ -5314,9 +5309,6 @@
       <span class="meta-item">⏳ ~50 a 60 min</span>
     </div>
 
-    
-    </div>
-
     <div style="text-align: center; padding: 32px 16px; color: var(--text-dim); font-size: 0.85rem;">
       <p>Sessão em formatação pelo treinador.</p>
     </div>
@@ -5328,10 +5320,6 @@
       </button>
       <div id="completeFeedback-treinob" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
         ✅ Sessão finalizada e registrada com sucesso!
-      </div>
-    </div>
-      <div id="completeFeedback-treinob" class="complete-feedback-box" style="display:none; width: 100%;">
-        ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
       </div>
     </div>
 
@@ -5351,9 +5339,6 @@
       <span class="meta-item">⏳ ~50 a 60 min</span>
     </div>
 
-    
-    </div>
-
     <div style="text-align: center; padding: 32px 16px; color: var(--text-dim); font-size: 0.85rem;">
       <p>Sessão em formatação pelo treinador.</p>
     </div>
@@ -5365,10 +5350,6 @@
       </button>
       <div id="completeFeedback-treinoc" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
         ✅ Sessão finalizada e registrada com sucesso!
-      </div>
-    </div>
-      <div id="completeFeedback-treinoc" class="complete-feedback-box" style="display:none; width: 100%;">
-        ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
       </div>
     </div>
 
@@ -5440,19 +5421,7 @@
       </div>
 
     </div>
-    <!-- Card Clean de Finalização de Treino (Quarta) -->
-    <div class="workout-finish-clean-card" id="workoutFinishCard-quarta">
-      <button type="button" class="btn-finish-workout-trigger" id="btnTriggerFinish-quarta" onclick="openBiometriaSessaoModal('quarta')">
-        <span class="finish-flag-icon">🏁</span> <span>FINALIZAR SESSÃO</span>
-      </button>
-      <div id="completeFeedback-quarta" class="complete-feedback-box" style="display:none; width: 100%; margin-top: 10px;">
-        ✅ Sessão finalizada e registrada com sucesso!
-      </div>
-    </div>
-      <div id="completeFeedback-quarta" class="complete-feedback-box" style="display:none; width: 100%;">
-        ✅ Treino finalizado e relatório enviado com sucesso para o Coach!
-      </div>
-    </div>
+
 
   </div><!-- end #tab-recados -->
 
@@ -7188,8 +7157,7 @@
       </div>
     </div>
   </div>
-    </div>
-  </div>
+  </div><!-- end #mainTrainingView -->
 
   <!-- Modal de Vídeo e Técnica -->
   <div id="videoModal" class="modal-overlay" onclick="handleOverlayClick(event)">
@@ -14104,6 +14072,15 @@ window.openWelcomeAppModal = function(notifId = null) {
        ======================================================== */
     if (typeof timersReturnWorkoutDay === 'undefined') var timersReturnWorkoutDay = null;
     if (typeof assessmentReturnTarget === 'undefined') var assessmentReturnTarget = null;
+
+    function toggleMetasDrawer() {
+      const drawer = document.getElementById('metasDrawer');
+      const arrow = document.getElementById('metasArrow');
+      if (!drawer) return;
+      const isHidden = (drawer.style.display === 'none' || !drawer.style.display);
+      drawer.style.display = isHidden ? 'block' : 'none';
+      if (arrow) arrow.textContent = isHidden ? '▴' : '▾';
+    }
 
     function openDedicatedView(sectionId) {
       if (typeof closeBioModal === 'function') closeBioModal();
