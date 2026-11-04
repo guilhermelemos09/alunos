@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dominio-alunos-v204';
+const CACHE_NAME = 'dominio-alunos-v205';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -58,7 +58,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(event.request, { cache: 'no-cache' })
         .then((networkResponse) => {
-          if (networkResponse && networkResponse.status === 202) {
+          if (networkResponse && networkResponse.status === 200) {
             const responseClone = networkResponse.clone();
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, responseClone);
@@ -69,7 +69,7 @@ self.addEventListener('fetch', (event) => {
         .catch(() => {
           return caches.match(event.request).then((cachedResponse) => {
             if (cachedResponse) return cachedResponse;
-            return caches.match('./helenice.html');
+            return caches.match('./index.html');
           });
         })
     );
@@ -79,7 +79,7 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request)
       .then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 202) {
+        if (networkResponse && networkResponse.status === 200) {
           const responseClone = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseClone);
